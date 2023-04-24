@@ -6,16 +6,23 @@
 
 # Nome do projeto
 
-## Nome do grupo
+## Apex <img align="left" alt="My_Truck" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
+
 
 ## Integrantes: 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 1</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 2</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><a href="https://www.linkedin.com/in/bruna-brasil-alexandre-734055214/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118626-41937f3e-65c6-4ac6-beb4-7c7b4058a17f.jpg" width="100px;" alt=""/><br><sub><b>Bruna Brasil</b></sub></a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/caio-kakunaka-235754264/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118766-77e387d3-8bf1-40fd-a59c-089e19ae31c2.jpg" width="100px;" alt=""/><br><sub><b>Caio Enoki</b></sub></a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/fuchsfelipel/"><img width="100px;" style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118916-9c1dd397-0756-48f2-9727-378ad6c46325.jpg" width="100px;" alt=""/><br><sub><b>Felipe Fuchs</b></sub></a></td>
+       <td align="center"><a href="https://github.com/2023M2T6-Inteli/Projeto3/"<img style="border-radius: 40%;" src="https://user-images.githubusercontent.com/85657433/234119829-76c806c1-f0b3-4dc8-8589-b12f1a08cce7.jpg" width="100px;" alt=""/><br><sub><b>João Cauê</b></sub></a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/lucas-nogueira-nunes/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234119179-19b04e2b-0ed1-4cc0-b2b0-dc1c68778626.jpg" width="100px;" alt=""/><br><sub><b>Lucas Nunes</b></sub></a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/rafael-coutinho2004/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234119268-5373274c-7542-4f1e-90bd-784464c019ab.jpg" width="100px;" alt=""/><br><sub><b>Rafael Coutinho</b></sub></a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/rafaelarojas/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234119340-5bd7715d-bc31-4386-a9fc-7cd37422e65a.jpg" width="100px;" alt=""/><br><sub><b>Rafaela Rojas</b></sub></a></td>
+    </tr>
+  </table>
+</div>
 
 ## 📝 Descrição
 
