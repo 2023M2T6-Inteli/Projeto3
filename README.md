@@ -4,9 +4,11 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-# Nome do projeto
+<div align="center">
+<img align="center" alt="GABA Logo" height="100" width="500" src="https://user-images.githubusercontent.com/85657433/235332583-5b9d0919-1f9e-4a67-8d78-85bd98d727d0.png">
+</div>
 
-## Apex <img align="left" alt="My_Truck" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
+## Apex <img align="left" alt="Apex Logo" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
 
 
 ## Integrantes: 
