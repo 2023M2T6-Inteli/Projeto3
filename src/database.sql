@@ -78,6 +78,8 @@ CREATE INDEX "index_grades_on_student_id" ON "grades" ("student_id");
 INSERT INTO users (id, first_name, last_name, email, accepted_terms_at, admin, encrypted_password)
 VALUES (1, 'Angelita', 'Silva', 'admin@example.com', 0, true, '$2a$1');
 INSERT INTO classrooms (id, name, user_id, subject)
+VALUES (1, 'Português da Angelita', 1, 'Math');
+INSERT INTO classrooms (id, name, user_id, subject)
 VALUES (2, 'Matemática da Angelita', 1, 'Math');
 INSERT INTO students (id, name)
 VALUES (1, 'Joãozinho');
