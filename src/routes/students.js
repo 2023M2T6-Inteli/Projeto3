@@ -22,6 +22,9 @@ router.get('/:id', (req, res, next) => {
         if (err) {
             return res.status(400).json({error: err.message});
         }
+
+        if (row === undefined) return res.sendStatus(404);
+
         res.status(200).json(row);
     });
 });
