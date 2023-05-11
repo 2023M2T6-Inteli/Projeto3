@@ -30,7 +30,8 @@
 
 Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
 
-> Aviso: O ChatGPT foi utilizado para deixar o código mais conciso na partes dos CRUDs.
+## Documentação da API
+A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
 
 ## 📁 Estrutura de pastas
 
@@ -116,3 +117,5 @@ deve possuir o valor "node app.js".
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
+
+> Nota: O ChatGPT foi utilizado para deixar o código mais conciso na partes dos CRUDs.
