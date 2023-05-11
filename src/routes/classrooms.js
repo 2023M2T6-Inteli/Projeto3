@@ -2,73 +2,66 @@
 var express = require('express');
 var router = express.Router();
 
-// SQLite
-const sqlite3 = require('sqlite3').verbose();
-const DBPATH = './database.db';
+// GET /classrooms
+router.get('/', (req, res, next) => {
+    const sql = 'SELECT * FROM classrooms'
 
-/* GET /classrooms */
-router.get('/', function (req, res, next) {
-    let db = new sqlite3.Database(DBPATH);
-    let sql = 'SELECT * FROM classrooms ORDER BY classrooms.name COLLATE NOCASE';
-    db.all(sql, [], (err, rows) => {
+    req.db.all(sql, [], (err, rows) => {
         if (err) {
-            throw err;
+            return res.status(500).json({error: err.message});
         }
-        res.json(rows);
+        res.status(200).json(rows);
     });
-    db.close();
 });
 
-/* GET /classrooms/:id */
-router.get('/:id', function (req, res, next) {
-    let db = new sqlite3.Database(DBPATH);
-    let sql = 'SELECT * FROM classrooms WHERE classrooms.id = ? ORDER BY classrooms.name COLLATE NOCASE';
-    db.all(sql, [req.params['id']], (err, rows) => {
+// GET/classrooms/:id
+router.get('/:id', (req, res, next) => {
+    const sql = 'SELECT * FROM classrooms WHERE id = ?'
+
+    req.db.get(sql, [req.params.id], (err, row) => {
         if (err) {
-            throw err;
+            return res.status(400).json({error: err.message});
         }
-        res.json(rows[0]);
+        res.status(200).json(row);
     });
-    db.close();
 });
 
-/* POST /classrooms */
-router.post('/', function (req, res, next) {
-    let db = new sqlite3.Database(DBPATH);
-    const sql = "INSERT INTO classrooms (name, user_id, subject) VALUES (?, ?, ?)";
-    db.run(sql, [req.body.name, req.body.user_id, req.body.subject], err => {
+// POST /classrooms
+router.post('/', (req, res, next) => {
+    const {name, user_id, subject} = req.body;
+    const sql = 'INSERT INTO classrooms(name, user_id, subject) VALUES (?, ?, ?)'
+
+    req.db.run(sql, [name, user_id, subject], function (err) {
         if (err) {
-            throw err;
+            return res.status(400).json({error: err.message});
         }
-        res.json({message: "success"});
+        res.status(201).json({id: this.lastID});
     });
-    db.close();
 });
 
-/* PUT /classrooms/:id */
-router.put('/:id', function (req, res, next) {
-    let db = new sqlite3.Database(DBPATH);
+// PUT /classrooms/:id
+router.put('/:id', (req, res, next) => {
+    const {name, user_id, subject} = req.body;
     const sql = "UPDATE classrooms SET name = ?, user_id = ?, subject = ? WHERE id = ?";
-    db.run(sql, [req.body.name, req.body.user_id, req.body.subject, req.params["id"]], err => {
+
+    req.db.run(sql, [name, user_id, subject, req.params.id], function (err) {
         if (err) {
-            throw err;
+            return res.status(400).json({error: err.message});
         }
-        res.json({message: "success"});
+        res.status(200).json({changes: this.changes});
     });
-    db.close();
 });
 
-/* DELETE /classrooms/:id */
-router.delete('/:id', function (req, res, next) {
-    let db = new sqlite3.Database(DBPATH);
-    const sql = "DELETE FROM classrooms WHERE id = ?";
-    db.run(sql, [req.params["id"]], err => {
+// DELETE /classrooms/:id
+router.delete('/:id', (req, res, next) => {
+    const sql = 'DELETE FROM classrooms WHERE id = ?'
+
+    req.db.run(sql, req.params.id, function (err) {
         if (err) {
-            throw err;
+            return res.status(400).json({error: err.message});
         }
-        res.json({message: "success"});
+        res.status(200).json({deleted: this.changes});
     });
-    db.close();
 });
 
 module.exports = router;

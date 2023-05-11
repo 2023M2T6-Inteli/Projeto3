@@ -30,6 +30,8 @@
 
 Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
 
+> Aviso: O ChatGPT foi utilizado para deixar o código mais conciso na partes dos CRUDs.
+
 ## 📁 Estrutura de pastas
 
 |--> documentos<br>
