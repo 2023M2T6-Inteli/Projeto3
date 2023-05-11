@@ -30,6 +30,9 @@
 
 Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
 
+## Documentação da API
+A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
+
 ## 📁 Estrutura de pastas
 
 |--> documentos<br>
@@ -56,6 +59,8 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 ## 💻 Configuração para desenvolvimento
 
 Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
+
+> Nota: Quando você cria uma base de dados à partir do `database.sql`, são inseridos dados de seed. 
 
 1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
@@ -112,3 +117,5 @@ deve possuir o valor "node app.js".
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
+
+> Nota: O ChatGPT foi utilizado para deixar o código mais conciso na partes dos CRUDs.
