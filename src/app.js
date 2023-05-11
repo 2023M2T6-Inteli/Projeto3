@@ -9,6 +9,7 @@ let db = new sqlite3.Database('./database.db');
 
 var indexRouter = require('./routes/index');
 var classroomsRouter = require('./routes/classrooms');
+var activitiesRouter = require('./routes/activities');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/activities', activitiesRouter);
 app.use('/classrooms', classroomsRouter);
 
 // catch 404 and forward to error handler
