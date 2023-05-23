@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+
+    <title>Gaba</title>
+</head>
+<body class="w-full h-screen bg-[#D9D9D9]">
+<header class="flex flex-row-reverse fixed top-0 left-0 right-0 flex-initial w-full sm:h-20 h-14 bg-[#F0F0F0] items-center">
+    <div class="mr-8 ml-24 w-6 flex-initial sm:ml-32 md:mr-18">
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center py-2 space-x-2"
+                type="button">
+            <img src="./images/user_icon.png" class="w-full scale-[2]">
+        </button>
+        <div id="dropdown" class="z-10 hidden bg-[#16afb8] divide-y divide-gray-100 rounded-lg shadow w-44">
+            <ul class="py-2 text-base font-medium text-[#F0F0F0]" aria-labelledby="dropdownDefaultButton">
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Perfil</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Configurações</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </button>
+    </div>
+    <div class="flex w-6 flex-initial items-end">
+        <button id="dropdownClassroomButton" data-dropdown-toggle="dropclass"
+                class="text-[#F0F0F0] bg-[#16afb8] hover:bg-[#369398] focus:ring-4 focus:outline-none focus:ring-[#16afb8] text-lg font-medium rounded-lg sm:px-3 px-2 sm:py-3 py-2 text-center inline-flex items-center"
+                type="button">Turmas
+            <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div id="dropclass" class="z-10 hidden bg-[#16afb8] divide-y divide-gray-100 rounded-lg shadow w-44">
+            <ul class="py-2 text-base font-medium text-[#F0F0F0]" aria-labelledby="dropdownClassroomButton">
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">1 A</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">2 B</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">5 C</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">9 D</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="min-h-screen bg-[#d9d9d9] fixed top-0">
+    <div class="sidebar min-h-screen w-[3.8rem] overflow-hidden border-r rounded-br-md border-transparent bg-[#16afb8] shadow-lg hover:w-[12rem] hover:shadow-lg">
+        <div class="flex h-screen flex-col justify-between pt-2 pb-6">
+            <div>
+                <div class="-ml-10 w-max p-0">
+                    <img src="./images/gaba_png.png" class="-mt-10 -mb-3 w-60" alt="Logo Gaba">
+                </div>
+                <ul class="mt-0 tracking-wide space-y-2">
+                    <li class="min-w-max">
+                        <a href="#" aria-label="dashboard"
+                           class="bg group flex items-center space-x-6 px-4 py-3 text-[#F0F0F0] hover:bg-[#369398]">
+                            <svg class="-ml-0 h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+                                      class="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                                <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+                                      class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                                <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+                                      class="fill-current group-hover:text-sky-300"></path>
+                            </svg>
+                            <span class="-mr-1 font-medium">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="min-w-max">
+                        <a href="#"
+                           class="bg group flex items-center space-x-6 px-4 py-3 text-[#F0F0F0] hover:bg-[#369398]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
+                                      d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                                      clip-rule="evenodd"/>
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                                      d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"/>
+                            </svg>
+                            <span class="font-medium">Categories</span>
+                        </a>
+                    </li>
+                    <li class="min-w-max">
+                        <a href="#"
+                           class="group flex items-center space-x-6 px-4 py-3 text-[#F0F0F0] hover:bg-[#369398]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                      d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                                      clip-rule="evenodd"/>
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                      d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/>
+                            </svg>
+                            <span class="font-medium">Reports</span>
+                        </a>
+                    </li>
+                    <li class="min-w-max">
+                        <a href="#"
+                           class="group flex items-center space-x-6 px-4 py-3 text-[#F0F0F0] hover:bg-[#369398]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                                      d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                      d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>
+                            </svg>
+                            <span class="font-medium">Other data</span>
+                        </a>
+                    </li>
+                    <li class="min-w-max">
+                        <a href="#"
+                           class="group flex items-center space-x-6 px-4 py-3 text-[#F0F0F0] hover:bg-[#369398]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                      d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                      d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-medium">Finance</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="mt-72 tracking-wide space-y-2">
+                    <li class="ml-2 min-w-max">
+                        <button id="theme-toggle" type="button"
+                                class="rounded-lg text-sm text-gray-500 p-2.5 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+                            <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor"
+                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor"
+                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                      fill-rule="evenodd" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-24 flex h-96 flex-row flex-wrap items-center ml-[3.8rem] sm:mt-32">
+    <div class="h-96 flex-none w-[290px] sm:w-[600px] md:mr-8">
+        <p class="sm:text-3xl text-2xl font-bold text-[#16afb8] ml-12">Gráfico 1</p>
+        <div class="mt-4 ml-8 flex h-72 items-center">
+            <div class="flex-none w-full h-72 bg-[#F0F0F0] border rounded-lg"></div>
+        </div>
+    </div>
+    <div class="h-96 flex-none w-[290px] sm:w-[416px] lg:w-[384px] 2xl:w-[400px]">
+        <p class="sm:text-3xl text-2xl font-bold text-[#16afb8] lg:ml-2 ml-10">Gráfico 2</p>
+        <div class="mt-4 ml-8 flex h-72 items-center lg:ml-0 2xl:mr-4">
+            <div class="flex-none w-full h-72 bg-[#F0F0F0] border rounded-lg"></div>
+        </div>
+    </div>
+    <div class="h-96 flex-none w-[290px] sm:w-[416px] 2xl:w-[400px]">
+        <p class="sm:text-3xl text-2xl font-bold text-[#16afb8] 2xl:ml-6 ml-10">Gráfico 3</p>
+        <div class="mt-4 mr-0 ml-8 flex h-72 items-center 2xl:ml-4">
+            <div class="flex-none w-full h-72 bg-[#F0F0F0] border rounded-lg"></div>
+        </div>
+    </div>
+    <div class="w-full flex-none h-[400px]">
+        <div class="mt-4 mr-6 ml-8 flex h-full items-center">
+            <div class="flex-none w-full min-w-[260px] h-full mb-12 bg-[#F0F0F0] border rounded-lg">
+                <div class="grid grid-cols-2 grid-rows-1 justify-items-end">
+                    <p class="sm:text-3xl text-2xl font-bold text-[#16afb8] sm:ml-8 ml-4 mt-6 justify-self-start">
+                        Habilidades da BNCC
+                    </p>
+                    <div class="mr-16 w-6 flex-initial sm:mr-28">
+                        <button id="dropdownFilterButton" data-dropdown-toggle="dropfilter"
+                                class="text-[#F0F0F0] bg-[#16afb8] hover:bg-[#369398] focus:ring-4 focus:outline-none focus:ring-[#16afb8] text-lg font-medium rounded-lg sm:px-2 sm:py-1 px-1 py-0 text-center inline-flex items-center mt-6"
+                                type="button">Filtro
+                            <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropfilter"
+                             class="z-10 hidden bg-[#16afb8] divide-y divide-gray-100 rounded-lg shadow w-44">
+                            <ul class="py-2 text-base font-medium text-[#F0F0F0]"
+                                aria-labelledby="dropdownFilterButton">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Geografia</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">História</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Matemática</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-[#369398]">Português</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./javascripts/darkmode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+</html>
