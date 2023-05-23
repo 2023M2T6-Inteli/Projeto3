@@ -1,0 +1,31 @@
+html
+  head
+  body
+    header.flex.flex-row-reverse.fixed.top-0.left-0.right-0.flex-initial.w-full.h-14.items-center(class='sm:h-20 bg-[#F0F0F0]')
+      .mr-8.ml-24.w-6.flex-initial(class='sm:ml-32 md:mr-18')
+        button#dropdownDefaultButton.flex.items-center.py-2.space-x-2(data-dropdown-toggle='dropdown', type='button')
+          img.w-full(src='./images/user_icon.png', class='scale-[2]')
+        #dropdown.z-10.hidden.divide-y.divide-gray-100.rounded-lg.shadow.w-44(class='bg-[#16afb8]')
+          ul.py-2.text-base.font-medium(class='text-[#F0F0F0]', aria-labelledby='dropdownDefaultButton')
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') Perfil
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') Configura&ccedil;&otilde;es
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') Sair
+      .flex.w-6.flex-initial.items-end
+        button#dropdownClassroomButton.text-lg.font-medium.rounded-lg.px-2.py-2.text-center.inline-flex.items-center(data-dropdown-toggle='dropclass', class='text-[#F0F0F0] bg-[#16afb8] hover:bg-[#369398] focus:ring-4 focus:outline-none focus:ring-[#16afb8] sm:px-3 sm:py-3', type='button')
+          | Turmas
+          svg.ml-2.h-4.w-4(aria-hidden='true', fill='none', stroke='currentColor', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+            path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M19 9l-7 7-7-7')
+        // Dropdown menu
+        #dropclass.z-10.hidden.divide-y.divide-gray-100.rounded-lg.shadow.w-44(class='bg-[#16afb8]')
+          ul.py-2.text-base.font-medium(class='text-[#F0F0F0]', aria-labelledby='dropdownClassroomButton')
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') 1 A
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') 2 B
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') 5 C
+            li
+              a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') 9 D
