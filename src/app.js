@@ -8,6 +8,7 @@ const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./database.db');
 
 var indexRouter = require('./routes/index');
+var menuRouter = require('./routes/menu');
 var signInRouter = require('./routes/sign_in');
 var signUpRouter = require('./routes/sign_up');
 var activitiesRouter = require('./routes/activities');
@@ -37,6 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/menu', menuRouter);
 app.use('/sign_in', signInRouter);
 app.use('/sign_up', signUpRouter);
 app.use('/activities', activitiesRouter);
