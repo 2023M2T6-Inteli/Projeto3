@@ -1,48 +1,45 @@
-html
-    head
-    body
-        .min-h-screen.fixed.top-0(class='bg-[#d9d9d9]')
-            .sidebar.min-h-screen.overflow-hidden.border-r.rounded-br-md.border-transparent.shadow-lg(class='w-[3.8rem] bg-[#16afb8] hover:w-[12rem] hover:shadow-lg')
-                .flex.h-screen.flex-col.justify-between.pt-2.pb-6
-                    div
-                        .-ml-10.w-max.p-0
-                            img.-mt-10.-mb-3.w-60(src='./images/gaba_png.png', alt='Logo Gaba')
-                        ul.mt-0.tracking-wide.space-y-2
-                            li.min-w-max
-                                a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='#', aria-label='dashboard', class='text-[#F0F0F0] hover:bg-[#369398]')
-                                    svg.-ml-0.h-6.w-6(viewBox='0 0 24 24', fill='currentColor')
-                                        path.fill-current.text-cyan-400(d='M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z', class='dark:fill-slate-600')
-                                        path.fill-current.text-cyan-200(d='M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z', class='group-hover:text-cyan-300')
-                                        path.fill-current(d='M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z', class='group-hover:text-sky-300')
-                                    span.-mr-1.font-medium Dashboard
-                            li.min-w-max
-                                a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
-                                    svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
-                                        path.fill-current.text-gray-300(class='group-hover:text-cyan-300', fill-rule='evenodd', d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z', clip-rule='evenodd')
-                                        path.fill-current.text-gray-600(class='group-hover:text-cyan-600', d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z')
-                                    span.font-medium Categories
-                            li.min-w-max
-                                a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
-                                    svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
-                                        path.fill-current.text-gray-600(class='group-hover:text-cyan-600', fill-rule='evenodd', d='M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z', clip-rule='evenodd')
-                                        path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z')
-                                    span.font-medium Reports
-                            li.min-w-max
-                                a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
-                                    svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
-                                        path.fill-current.text-gray-600(class='group-hover:text-cyan-600', d='M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z')
-                                        path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z')
-                                    span.font-medium Other data
-                            li.min-w-max
-                                a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
-                                    svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
-                                        path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z')
-                                        path.fill-current.text-gray-600(class='group-hover:text-cyan-600', fill-rule='evenodd', d='M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z', clip-rule='evenodd')
-                                    span.font-medium Finance
-                        ul.mt-72.tracking-wide.space-y-2
-                            li.ml-2.min-w-max
-                                button#theme-toggle.text-gray-500.rounded-lg.text-sm(type='button', class='dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 p-2.5')
-                                    svg#theme-toggle-dark-icon.hidden.w-5.h-5(fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
-                                        path(d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z')
-                                    svg#theme-toggle-light-icon.hidden.w-5.h-5(fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
-                                        path(d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z', fill-rule='evenodd', clip-rule='evenodd')
+.min-h-screen.fixed.top-0(class='bg-[#d9d9d9]')
+    .sidebar.min-h-screen.overflow-hidden.border-r.rounded-br-md.border-transparent.shadow-lg(class='w-[3.8rem] bg-[#16afb8] hover:w-[12rem] hover:shadow-lg')
+        .flex.h-screen.flex-col.justify-between.pt-2.pb-6
+            div
+                .-ml-10.w-max.p-0
+                    img.w-40.mb-4.ml-12(src='./images/gaba_png.png', alt='Logo Gaba')
+                ul.mt-0.tracking-wide.space-y-2
+                    li.min-w-max
+                        a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='#', aria-label='dashboard', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.-ml-0.h-6.w-6(viewBox='0 0 24 24', fill='currentColor')
+                                path.fill-current.text-cyan-400(d='M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z', class='dark:fill-slate-600')
+                                path.fill-current.text-cyan-200(d='M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z', class='group-hover:text-cyan-300')
+                                path.fill-current(d='M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z', class='group-hover:text-sky-300')
+                            span.-mr-1.font-medium Dashboard
+                    li.min-w-max
+                        a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
+                                path.fill-current.text-gray-300(class='group-hover:text-cyan-300', fill-rule='evenodd', d='M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z', clip-rule='evenodd')
+                                path.fill-current.text-gray-600(class='group-hover:text-cyan-600', d='M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z')
+                            span.font-medium Categories
+                    li.min-w-max
+                        a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
+                                path.fill-current.text-gray-600(class='group-hover:text-cyan-600', fill-rule='evenodd', d='M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z', clip-rule='evenodd')
+                                path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z')
+                            span.font-medium Reports
+                    li.min-w-max
+                        a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
+                                path.fill-current.text-gray-600(class='group-hover:text-cyan-600', d='M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z')
+                                path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z')
+                            span.font-medium Other data
+                    li.min-w-max
+                        a.group.flex.items-center.space-x-6.px-4.py-3(href='#', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20', fill='currentColor')
+                                path.fill-current.text-gray-300(class='group-hover:text-cyan-300', d='M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z')
+                                path.fill-current.text-gray-600(class='group-hover:text-cyan-600', fill-rule='evenodd', d='M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z', clip-rule='evenodd')
+                            span.font-medium Finance
+                ul.mt-72.tracking-wide.space-y-2
+                    li.ml-2.min-w-max
+                        button#theme-toggle.text-gray-500.rounded-lg.text-sm(type='button', class='dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 p-2.5')
+                            svg#theme-toggle-dark-icon.hidden.w-5.h-5(fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                                path(d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z')
+                            svg#theme-toggle-light-icon.hidden.w-5.h-5(fill='currentColor', viewBox='0 0 20 20', xmlns='http://www.w3.org/2000/svg')
+                                path(d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z', fill-rule='evenodd', clip-rule='evenodd')
