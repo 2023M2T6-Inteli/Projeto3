@@ -1,0 +1,37 @@
+extends layouts/logged_in.pug
+block content
+    .mt-24.flex.h-96.flex-row.flex-wrap.items-center(class='ml-[3.8rem] sm:mt-32')
+        .h-96.flex-none(class='w-[290px] sm:w-[600px] md:mr-8')
+            p.text-2xl.font-bold.ml-12(class='sm:text-3xl text-[#16afb8]') Gr&aacute;fico 1
+            .mt-4.ml-8.flex.h-72.items-center
+                .flex-none.w-full.h-72.border.rounded-lg(class='bg-[#F0F0F0]')
+        .h-96.flex-none(class='w-[290px] sm:w-[416px] lg:w-[384px] 2xl:w-[400px]')
+            p.text-2xl.font-bold.ml-10(class='sm:text-3xl text-[#16afb8] lg:ml-2') Gr&aacute;fico 2
+            .mt-4.ml-8.flex.h-72.items-center(class='lg:ml-0 2xl:mr-4')
+                .flex-none.w-full.h-72.border.rounded-lg(class='bg-[#F0F0F0]')
+        .h-96.flex-none(class='w-[290px] sm:w-[416px] 2xl:w-[400px]')
+            p.text-2xl.font-bold.ml-10(class='sm:text-3xl text-[#16afb8] 2xl:ml-6') Gr&aacute;fico 3
+            .mt-4.mr-0.ml-8.flex.h-72.items-center(class='2xl:ml-4')
+                .flex-none.w-full.h-72.border.rounded-lg(class='bg-[#F0F0F0]')
+        .w-full.flex-none(class='h-[400px]')
+            .mt-4.mr-6.ml-8.flex.h-full.items-center
+                .flex-none.w-full.h-full.mb-12.border.rounded-lg(class='min-w-[260px] bg-[#F0F0F0]')
+                    .grid.grid-cols-2.grid-rows-1.justify-items-end
+                        p.text-2xl.font-bold.ml-4.mt-6.justify-self-start(class='sm:text-3xl text-[#16afb8] sm:ml-8')
+                            | Habilidades da BNCC
+                        .mr-16.w-6.flex-initial(class='sm:mr-28')
+                            button#dropdownFilterButton.text-lg.font-medium.rounded-lg.px-1.py-0.text-center.inline-flex.items-center.mt-6(data-dropdown-toggle='dropfilter' class='text-[#F0F0F0] bg-[#16afb8] hover:bg-[#369398] focus:ring-4 focus:outline-none focus:ring-[#16afb8] sm:px-2 sm:py-1' type='button')
+                                | Filtro
+                                svg.ml-2.h-4.w-4(aria-hidden='true' fill='none' stroke='currentColor' viewbox='0 0 24 24' xmlns='http://www.w3.org/2000/svg')
+                                    path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7')
+                            // Dropdown menu
+                            #dropfilter.z-10.hidden.divide-y.divide-gray-100.rounded-lg.shadow.w-44(class='bg-[#16afb8]')
+                                ul.py-2.text-base.font-medium(class='text-[#F0F0F0]' aria-labelledby='dropdownFilterButton')
+                                    li
+                                        a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Geografia
+                                    li
+                                        a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Hist&oacute;ria
+                                    li
+                                        a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Matem&aacute;tica
+                                    li
+                                        a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Portugu&ecirc;s
