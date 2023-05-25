@@ -6,10 +6,10 @@ html(lang="pt-BR")
         link(rel="stylesheet" href="./stylesheets/style.css")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
         script(src="https://cdn.tailwindcss.com")
-    body(class='w-full h-screen bg-[#D9D9D9]')
+    body(class='w-full h-full bg-[#D9D9D9]')
         include ../includes/head.pug
         include ../includes/sidebar.pug
-        main(class='mt-24 mx-[5rem]')
+        main(class='mt-24 ml-[5rem]')
             block content
         block body_scripts
             script(src="./javascripts/darkmode.js")
