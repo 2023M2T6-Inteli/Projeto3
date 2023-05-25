@@ -1,26 +1,26 @@
 extends layouts/public.pug
 block content
-    section.flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='md:h-screen lg:py-0')
+    section.flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='md:h-screen lg:py-0 bg-[#16afb8]')
             a.flex.items-center.mb-6.text-2xl.font-semibold.text-gray-900(href='#' class='dark:text-white')
                 img.h-24.mb-4(src='/images/gaba_png.png' alt='logo')
-            .w-full.bg-white.rounded-lg.shadow(class='dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700')
+            .w-full.rounded-lg.shadow(class='bg-[#F0F0F0] md:mt-0 sm:max-w-md xl:p-0')
                 .p-6.space-y-4(class='md:space-y-6 sm:p-8')
-                    h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900(class='md:text-2xl dark:text-white')
+                    h1.text-xl.font-bold.leading-tight.tracking-tight(class='md:text-2xl text-[#16afb8]')
                         | Entre na sua conta
                     form.space-y-4(class='md:space-y-6' action='#')
                         div
-                            label.block.mb-2.text-sm.font-medium.text-gray-900(for='email' class='dark:text-white') Email
-                            input#email.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='joao@example.com' required='')
+                            label.block.mb-2.text-sm.font-medium(for='email' class='text-[#16afb8]') Email
+                            input#email.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.50' placeholder='joao@exemplo.com' required='')
                         div
-                            label.block.mb-2.text-sm.font-medium.text-gray-900(for='password' class='dark:text-white') Senha
-                            input#password.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='password' placeholder='••••••••' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' required='')
+                            label.block.mb-2.text-sm.font-medium(for='password' class='text-[#16afb8]') Senha
+                            input#password.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='password' placeholder='••••••••' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' required='')
                         .flex.items-center.justify-between
                             .flex.items-start
                                 .flex.items-center.h-5
-                                    input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800' required='')
+                                    input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='focus:ring-3 focus:ring-primary-300' required='')
                                 .ml-3.text-sm
-                                    label.text-gray-500(for='remember' class='dark:text-gray-300') Lembre minha senha
-                        button.w-full.text-white.bg-blue-600.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-primary-800') Continuar
+                                    label(for='remember' class='text-[#16afb8]') Lembre minha senha
+                        button.w-full.text-white.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-[#16afb8] hover:bg-[#369398] text-[#F0F0F0] focus:ring-4 focus:outline-none focus:ring-blue-300 py-3.5') Continuar
                         p.text-sm.font-light.text-gray-500(class='dark:text-gray-400')
                             | Ainda não tem uma conta?
-                            a.font-medium.text-primary-600(href='/sign_up' class='ml-1 hover:underline dark:text-primary-500') Cadastre-se
+                            a.font-medium(href='/sign_up' class='ml-1 hover:underline text-[#16afb8]') Cadastre-se
