@@ -4,7 +4,7 @@ var router = express.Router();
 
 // GET /classrooms
 router.get('/', (req, res, next) => {
-    const sql = 'SELECT * FROM classrooms'
+/*    const sql = 'SELECT * FROM classrooms'
 
     req.db.all(sql, [], (err, rows) => {
         if (err) {
@@ -12,6 +12,8 @@ router.get('/', (req, res, next) => {
         }
         res.status(200).json(rows);
     });
+*/
+    res.render('classrooms', { title: 'Gaba' });
 });
 
 // GET/classrooms/:id
