@@ -20,6 +20,7 @@ var registrationsRouter = require('./routes/registrations');
 var studentsRouter = require('./routes/students');
 var tutorialRouter = require('./routes/tutorial');
 var examRouter = require('./routes/exam');
+var createRouter = require('./routes/create');
 
 var app = express();
 
@@ -52,7 +53,7 @@ app.use('/registrations', registrationsRouter);
 app.use('/students', studentsRouter);
 app.use('/tutorial', tutorialRouter);
 app.use('/exam', examRouter);
-
+app.use('/create', createRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
