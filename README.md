@@ -28,7 +28,7 @@
 
 ## 📝 Descrição
 
-Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
+O GABA pretende ajudar no mapeamento pelos professores das defasagens dos estudantes brasileiros de escolas públicas, permitindo que o professor crie atividades na plataforma, exporte-as, aplique-as com seus estudantes e então corrija no site atribuindo notas aos alunos. Como as perguntas ou os itens das atividades criadas são ligados a uma habilidade da BNCC pelo professor, nossa aplicação é capaz de informar após a correção qual a habilidade que precisa ser trabalhada, assim como médias da turma e notas individuais. De acordo com esse feedback, também são recomendados planos de aula da Nova Escola relacionados às defasagens apresentadas pela turma.
 
 ## Documentação da API
 A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
@@ -37,8 +37,8 @@ A documentação da API foi feita no Postman e pode ser encontrada [aqui](https:
 
 |--> documentos<br>
   &emsp;| --> outros <br>
-  &emsp;| T6_G3_V(VERSÃO)_Web_application_document.pdf<br>
-  &emsp;| T6_G3_V(VERSÃO)_Web_application_document.docx<br>
+  &emsp;| WAD.pdf<br>
+  &emsp;| WAD.docx<br>
 |--> imagens<br>
 |--> src<br>
   &emsp;|--> Backend<br>
