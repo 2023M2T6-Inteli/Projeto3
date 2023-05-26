@@ -5,13 +5,14 @@ var router = express.Router();
 // GET /grades
 router.get('/', (req, res, next) => {
     const sql = 'SELECT * FROM grades'
-
+/*
     req.db.all(sql, [], (err, rows) => {
         if (err) {
             return res.status(500).json({error: err.message});
         }
         res.status(200).json(rows);
-    });
+    });*/
+    res.render('grades', {title: 'Gaba'})
 });
 
 // GET/grades/:id
