@@ -1,44 +1,14 @@
 extends layouts/logged_in.pug
 block content
-    .flex.flex-col.items-center.justify-center.mt-16(class='ml-20 sm:mt-28 mr-24')
-        .p-4.flex.flex-col.gap-2.items-center.justify-center.rounded-2xl(class='min-w-[250px] w-full bg-[#16afb8]')
-            input.w-full.rounded-xl.text-left.text-sm(type='text' placeholder='Nome da atividade:' class='text-[#16afb8] font-bold sm:text-base')
-            .flex.flex-row.gap-2.w-full
-                input.rounded-xl.text-left.text-sm(type='text' placeholder='Disciplina:' class='text-[#16afb8] font-bold w-7/12 sm:w-2/3 sm:text-base')
-                input.rounded-xl.text-left.text-sm(type='text' placeholder='Data:' class='text-[#16afb8] font-bold w-5/12 sm:w-1/3 sm:text-base')
-        .flex.flex-col.mt-5.rounded-2xl.p-4.items-center.w-full.gap-10(class='bg-[#16afb8] min-w-[250px]')
-            .flex.flex-row.items-center.h-24.bg-white.rounded-xl.mt-4.w-full(class='xl:space-x-[60%] lg:space-x-[50%] md:space-x-[35%] sm:space-x-[16%] space-x-4')
-                .flex.items-center.h-full(class='sm:max-w-full min-w-[100px]')
-                    button.rounded-xl.px-4.py-2.ml-2.text-white.font-bold.text-sm(class='bg-[#16afb8] md:ml-8 lg:ml-14 lg:text-xl md:text-lg sm:ml-4 sm:text-base') Imprimir
-                .flex.items-center.h-full(class='sm:min-w-full w-[90px]')
-                    button.rounded-xl.px-1.py-1.text-white.font-bold.text-sm(class='bg-[#16afb8] lg:text-lg sm:text-base sm:px-4 sm:py-2') Adicionar pergunta
-            .w-full.mb-4.border.rounded-lg(class='bg-[#D9D9D9]')
-                .flex.items-center.justify-between.px-3.py-2.border-b
-                    .flex.flex-wrap.items-center(class='divide-[#D9D9D9] sm:divide-x')
-                        .flex.items-center.space-x-1(class='sm:pr-4')
-                            button.p-2.text-gray-600.rounded.cursor-pointer(type='button' class='hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600')
-                                svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                    path(fill-rule='evenodd' d='M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z' clip-rule='evenodd')
-                                span.sr-only Attach file
-                            button.p-2.text-gray-600.rounded.cursor-pointer(type='button' class='hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600')
-                                svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                    path(fill-rule='evenodd' d='M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z' clip-rule='evenodd')
-                                span.sr-only Upload image
-                            button.p-2.text-gray-600.rounded.cursor-pointer(type='button' class='hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600')
-                                svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                    path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z' clip-rule='evenodd')
-                                span.sr-only Add emoji
-                            button.p-2.text-gray-600.rounded.cursor-pointer(type='button' class='hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600')
-                                svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                    path(fill-rule='evenodd' d='M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z' clip-rule='evenodd')
-                                span.sr-only Download
-                    button.p-2.text-gray-500.rounded.cursor-pointer(type='button' data-tooltip-target='tooltip-fullscreen' class='sm:ml-auto hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600')
-                        svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                            path(fill-rule='evenodd' d='M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z' clip-rule='evenodd')
-                        span.sr-only Full screen
-                    #tooltip-fullscreen.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.transition-opacity.duration-300.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip(role='tooltip' class='dark:bg-gray-700' data-popper-reference-hidden='' data-popper-escaped='' data-popper-placement='bottom' style='position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 335px, 0px);')
-                        | Show full screen
-                        .tooltip-arrow(data-popper-arrow='')
-                .px-4.py-2.rounded-b-lg(class='bg-[#F0F0F0]')
-                    textarea#description.block.w-full.px-0.text-sm.border-0(rows='8' class='text-[#16afb8] bg-[#F0F0F0] focus:ring-0 dark:placeholder-[#16afb9]' placeholder='Write event description here...' required='')
-                        | The 4th Digital Transformation and Industry 4.0 Free Online Conference Organized by Flowbite and Themesberg, Live on Saturday 26th Nov at 02:00 pm GMT | 04:00 pm EET on Zoom Webinars
+    .flex.flex-col.items-center.justify-center.mt-8
+        .p-4.flex.flex-row.gap-4.items-center.justify-center.rounded-2xl(class='min-w-[200px] w-[90%] bg-[#16afb8]')
+            select.p-3.rounded-2xl.text-2xl(class='w-2/3 text-[#16afb8]')
+                option Escolha uma atividade
+                option Multiplicação
+                option Relevos brasileiros
+                option Revolução Francesa
+            select.p-3.rounded-2xl.text-2xl(class='w-1/3 text-[#16afb8]')
+                option Escolha uma turma
+                option Turma A
+                option Turma B
+                option Turma C

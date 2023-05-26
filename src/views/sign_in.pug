@@ -7,7 +7,7 @@ block content
                 .p-6.space-y-4(class='md:space-y-6 sm:p-8')
                     h1.text-xl.font-bold.leading-tight.tracking-tight(class='md:text-2xl text-[#16afb8]')
                         | Entre na sua conta
-                    form.space-y-4(class='md:space-y-6' action='#')
+                    form.space-y-4(class='md:space-y-6' action='/menu')
                         div
                             label.block.mb-2.text-sm.font-medium(for='email' class='text-[#16afb8]') Email
                             input#email.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.50' placeholder='joao@exemplo.com' required='')
@@ -17,10 +17,10 @@ block content
                         .flex.items-center.justify-between
                             .flex.items-start
                                 .flex.items-center.h-5
-                                    input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='focus:ring-3 focus:ring-primary-300' required='')
+                                    input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='focus:ring-3 focus:ring-primary-300')
                                 .ml-3.text-sm
                                     label(for='remember' class='text-[#16afb8]') Lembre minha senha
-                        button.w-full.text-white.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-[#16afb8] hover:bg-[#369398] text-[#F0F0F0] focus:ring-4 focus:outline-none focus:ring-blue-300 py-3.5') Continuar
+                        button.w-full.text-white.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-[#16afb8] hover:bg-[#369398] text-[#F0F0F0] py-3.5') Continuar
                         p.text-sm.font-light.text-gray-500(class='dark:text-gray-400')
                             | Ainda não tem uma conta?
                             a.font-medium(href='/sign_up' class='ml-1 hover:underline text-[#16afb8]') Cadastre-se
