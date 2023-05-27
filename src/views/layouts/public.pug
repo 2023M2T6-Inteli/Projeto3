@@ -3,6 +3,7 @@ html(lang="pt-BR")
     head
         title Gaba · #{title}
         block head_scripts
+        //Imports
         link(rel="stylesheet" href="./stylesheets/style.css")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css")
         script(src="https://cdn.tailwindcss.com")
@@ -11,5 +12,6 @@ html(lang="pt-BR")
         main(class='')
             block content
         block body_scripts
+            //Scripts
             script(src="./javascripts/darkmode.js")
             script(src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js")
