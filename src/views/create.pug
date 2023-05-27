@@ -1,18 +1,25 @@
+//-
+    Import logged_in layout
 extends layouts/logged_in.pug
 block content
+    //Main
     .flex.flex-col.items-center.justify-center.mt-16(class='ml-20 sm:mt-28 mr-24')
+        //Section title
         .p-4.flex.flex-col.gap-2.items-center.justify-center.rounded-2xl(class='min-w-[250px] w-full bg-[#16afb8]')
             input.w-full.rounded-xl.text-left.text-sm(type='text' placeholder='Nome da atividade:' class='text-[#16afb8] font-bold sm:text-base')
             .flex.flex-row.gap-2.w-full
                 input.rounded-xl.text-left.text-sm(type='text' placeholder='Disciplina:' class='text-[#16afb8] font-bold w-7/12 sm:w-2/3 sm:text-base')
                 input.rounded-xl.text-left.text-sm(type='text' placeholder='Data:' class='text-[#16afb8] font-bold w-5/12 sm:w-1/3 sm:text-base')
+        //Section form-activitie
         .flex.flex-col.mt-5.rounded-2xl.p-4.items-center.w-full.gap-10(class='bg-[#16afb8] min-w-[250px]')
             .flex.flex-row.items-center.h-24.shadow.rounded-xl.mt-4.w-full(class='xl:space-x-[60%] lg:space-x-[50%] md:space-x-[35%] bg-[#F0F0F0] sm:space-x-[16%] space-x-4')
+                //Submiti buttons
                 .flex.items-center.h-full(class='sm:max-w-full min-w-[100px]')
                     button.rounded-xl.px-4.py-2.ml-2.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] md:ml-8 lg:ml-14 lg:text-xl md:text-lg sm:ml-4 sm:text-base') Imprimir
                 .flex.items-center.h-full(class='sm:min-w-full w-[90px]')
                     button.rounded-xl.px-1.py-1.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] lg:text-lg sm:text-base sm:px-4 sm:py-2') Adicionar pergunta
             .w-full.mb-4.border.rounded-lg(class='bg-[#D9D9D9]')
+                //Text box
                 .flex.items-center.justify-between.px-3.py-2.border-b
                     .flex.flex-wrap.items-center(class='divide-[#D9D9D9] sm:divide-x')
                         .flex.items-center.space-x-1(class='sm:pr-4')
