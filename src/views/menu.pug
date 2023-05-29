@@ -3,26 +3,21 @@
 extends layouts/logged_in.pug
 block content
     //Main
-    .mt-24.flex.h-96.w-full.flex-row.flex-wrap.items-center.gap-x-3(class='sm:mt-32')
+    .flex.h-96.w-full.flex-col.items-center.gap-y-1(class='sm:mt-32')
         //Section chart 1
-        .h-96.flex-none(class='w-full min-w-[260px] sm:w-[550px] xl:w-2/4')
+        .h-96.flex-none(class='w-full min-w-[260px]')
             p.text-2xl.font-bold.ml-2(class='sm:text-3xl text-[#16afb8]') Gr&aacute;fico 1
-            .mt-4.flex.h-72.items-center.mr-2(class='sm:mr-0')
-                .flex-none.w-full.h-72.border.rounded-lg.shadow(class=' bg-[#F0F0F0] ')
+            .mt-4.flex.h-72.w-full.items-center.mr-2(class='sm:mr-0')
+                canvas#graphHabilities.mr-2.border.rounded-lg.shadow(class='bg-[#F0F0F0] md:mr-8')
         //Section chart 2
-        .h-96.flex-none(class='w-full min-w-[260px] sm:w-[270px] md:w-[400px] xl:w-[23%]')
+        .h-96.flex-none(class='w-full min-w-[260px]')
             p.text-2xl.font-bold.ml-2(class='sm:text-3xl text-[#16afb8]') Gr&aacute;fico 2
-            .mt-4.ml-0.mr-2.flex.h-72.items-center(class='sm:mr-0')
-                .flex-none.w-full.h-72.border.rounded-lg.shadow(class=' bg-[#F0F0F0] ')
-        //Section chart 3
-        .h-96.flex-none(class='w-full min-w-[260px] sm:w-[270px] md:w-[400px] xl:w-[24%]')
-            p.text-2xl.font-bold.ml-2(class='sm:text-3xl text-[#16afb8]') Gr&aacute;fico 3
-            .mt-4.flex.h-72.items-center.mr-2(class='md:mr-3')
-                .flex-none.w-full.h-72.border.rounded-lg.shadow(class=' bg-[#F0F0F0] ')
+            .mt-4.ml-0.flex.h-72.items-center
+                canvas#graphWorst.mr-2.border.rounded-lg.shadow(class=' bg-[#F0F0F0] md:mr-8')
         //Section habilities
         .w-full.flex-none.h-full
-            .mt-4.mr-6.flex.h-full.items-center
-                .flex-none.w-full.h-full.mb-12.border.rounded-lg.shadow(class='min-w-[260px] bg-[#F0F0F0] ')
+            .mt-4.flex.mr-2.h-full.items-center(class="md:mr-8")
+                .flex-none.w-full.h-full.mb-12.border.rounded-lg.shadow(class='min-w-[260px] bg-[#F0F0F0]')
                     .grid.grid-cols-2.grid-rows-1.justify-items-end
                         p.text-2xl.font-bold.ml-4.mt-6.justify-self-start(class='sm:text-3xl text-[#16afb8] sm:ml-8')
                             | Habilidades da BNCC
@@ -43,3 +38,4 @@ block content
                                         a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Matem&aacute;tica
                                     li
                                         a.block.px-4.py-2(href='#' class='hover:bg-[#369398]') Portugu&ecirc;s
+    script(src="./javascripts/front_menu.js") 
