@@ -49,6 +49,7 @@ CREATE INDEX "index_activities_on_classroom_id" ON "activities" ("classroom_id")
 CREATE TABLE IF NOT EXISTS "criteria"
 (
     "id"          integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "year"        integer,
     "mec_code"    varchar,
     "subject"     varchar,
     "synthesis"   varchar,
@@ -100,12 +101,12 @@ INSERT INTO activities (id, name, created_at, user_id, classroom_id)
 VALUES (1, 'Prova 1', '2023-05-18 09:48:53', 1, 1);
 INSERT INTO activities (id, name, created_at, user_id, classroom_id)
 VALUES (2, 'Prova 2', '2023-05-19 13:32:24', 1, 1);
-INSERT INTO criteria (id, mec_code, subject, synthesis, description)
-VALUES (1, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
-INSERT INTO criteria (id, mec_code, subject, synthesis, description)
-VALUES (2, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
-INSERT INTO criteria (id, mec_code, subject, synthesis, description)
-VALUES (3, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
+VALUES (1, 1, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
+VALUES (2, 1, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
+VALUES (3, 1, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
 INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
 VALUES (1, 'Questão 1', 1, 1, 100);
 INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
