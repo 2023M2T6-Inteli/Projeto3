@@ -10,14 +10,8 @@ block content
             .flex.flex-row.gap-2.w-full
                 input.rounded-xl.text-left.text-sm(type='text' placeholder='Disciplina:' class='text-[#16afb8] font-bold w-7/12 sm:w-2/3 sm:text-base')
                 input.rounded-xl.text-left.text-sm(type='text' placeholder='Data:' class='text-[#16afb8] font-bold w-5/12 sm:w-1/3 sm:text-base')
-        //Section form-activitie
-        .flex.flex-col.mt-5.rounded-2xl.p-4.items-center.w-full.gap-10(class='bg-[#16afb8] min-w-[250px]')
-            .flex.flex-row.items-center.h-24.shadow.rounded-xl.mt-4.w-full(class='xl:space-x-[60%] lg:space-x-[50%] md:space-x-[35%] bg-[#F0F0F0] sm:space-x-[16%] space-x-4')
-                //Submiti buttons
-                .flex.items-center.h-full(class='sm:max-w-full min-w-[100px]')
-                    button.rounded-xl.px-4.py-2.ml-2.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] md:ml-8 lg:ml-14 lg:text-xl md:text-lg sm:ml-4 sm:text-base') Imprimir
-                .flex.items-center.h-full(class='sm:min-w-full w-[90px]')
-                    button.rounded-xl.px-1.py-1.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] lg:text-lg sm:text-base sm:px-4 sm:py-2') Adicionar pergunta
+        //Section form-activities
+        .flex.flex-col.mt-5.rounded-2xl.p-4.items-center.w-full.gap-3(class='bg-[#16afb8] min-w-[250px]')
             .w-full.mb-4.border.rounded-lg(class='bg-[#D9D9D9]')
                 //Text box
                 .flex.items-center.justify-between.px-3.py-2.border-b
@@ -49,3 +43,9 @@ block content
                 .px-4.py-2.rounded-b-lg(class='bg-[#F0F0F0]')
                     textarea#description.block.w-full.px-0.text-sm.border-0(rows='8' class='text-[#1F1F1F] bg-[#F0F0F0] focus:ring-0' placeholder='Write event description here...' required='')
                         | The 4th Digital Transformation and Industry 4.0 Free Online Conference Organized by Flowbite and Themesberg, Live on Saturday 26th Nov at 02:00 pm GMT | 04:00 pm EET on Zoom Webinars
+            .flex.flex-row.items-center.h-24.shadow.rounded-xl.mt-4.w-full(class='bg-[#F0F0F0]')
+                //Submit buttons
+                .flex.items-center.h-full(class='w-8/12 min-w-[90px]')
+                    button.rounded-xl.ml-2.px-2.py-2.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] lg:text-lg sm:text-base sm:px-4 sm:ml-6') Adicionar pergunta
+                .flex.items-center.justify-end.h-full(class='w-4/12 min-w-[120px]')
+                    button.rounded-xl.mr-2.px-4.py-2.text-white.shadow.font-bold.text-sm(class='bg-[#16afb8] lg:text-xl md:text-lg sm:text-base sm:mr-6') Imprimir
