@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS "classrooms"
     "name"    varchar,
     "user_id" integer NOT NULL,
     "subject" varchar,
+    "year"    integer,
     CONSTRAINT "fk_classroom_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
 );
 CREATE INDEX "index_classrooms_on_user_id" ON "classrooms" ("user_id");
@@ -37,6 +38,7 @@ CREATE TABLE IF NOT EXISTS "activities"
 (
     "id"           integer NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name"         varchar,
+    "created_at"   text,
     "user_id"      integer NOT NULL,
     "classroom_id" integer NOT NULL,
     CONSTRAINT "fk_activity_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
@@ -46,10 +48,11 @@ CREATE INDEX "index_activities_on_user_id" ON "activities" ("user_id");
 CREATE INDEX "index_activities_on_classroom_id" ON "activities" ("classroom_id");
 CREATE TABLE IF NOT EXISTS "criteria"
 (
-    "id"       integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name"     varchar,
-    "mec_code" varchar,
-    "subject"  varchar
+    "id"          integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "mec_code"    varchar,
+    "subject"     varchar,
+    "synthesis"   varchar,
+    "description" varchar
 );
 CREATE TABLE IF NOT EXISTS "questions"
 (
@@ -77,10 +80,10 @@ CREATE INDEX "index_grades_on_student_id" ON "grades" ("student_id");
 
 INSERT INTO users (id, first_name, last_name, email, accepted_terms_at, admin, encrypted_password)
 VALUES (1, 'Angelita', 'Silva', 'admin@example.com', 0, true, '$2a$1');
-INSERT INTO classrooms (id, name, user_id, subject)
-VALUES (1, 'Português da Angelita', 1, 'Math');
-INSERT INTO classrooms (id, name, user_id, subject)
-VALUES (2, 'Matemática da Angelita', 1, 'Math');
+INSERT INTO classrooms (id, name, user_id, subject,year)
+VALUES (1, 'Português da Angelita', 1, 'Português', 2);
+INSERT INTO classrooms (id, name, user_id, subject, year)
+VALUES (2, 'Matemática da Angelita', 1, 'Matemática', 2);
 INSERT INTO students (id, name)
 VALUES (1, 'Joãozinho');
 INSERT INTO students (id, name)
@@ -93,14 +96,16 @@ INSERT INTO registrations (id, classroom_id, student_id)
 VALUES (2, 1, 2);
 INSERT INTO registrations (id, classroom_id, student_id)
 VALUES (3, 1, 3);
-INSERT INTO activities (id, name, user_id, classroom_id)
-VALUES (1, 'Prova 1', 1, 1);
-INSERT INTO criteria (id, name, mec_code, subject)
-VALUES (1, 'Números', 'EF03MA01', 'Math');
-INSERT INTO criteria (id, name, mec_code, subject)
-VALUES (2, 'Operações', 'EF03MA02', 'Math');
-INSERT INTO criteria (id, name, mec_code, subject)
-VALUES (3, 'Geometria', 'EF03MA03', 'Math');
+INSERT INTO activities (id, name, created_at, user_id, classroom_id)
+VALUES (1, 'Prova 1', '2023-05-18 09:48:53', 1, 1);
+INSERT INTO activities (id, name, created_at, user_id, classroom_id)
+VALUES (2, 'Prova 2', '2023-05-19 13:32:24', 1, 1);
+INSERT INTO criteria (id, mec_code, subject, synthesis, description)
+VALUES (1, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
+INSERT INTO criteria (id, mec_code, subject, synthesis, description)
+VALUES (2, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
+INSERT INTO criteria (id, mec_code, subject, synthesis, description)
+VALUES (3, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
 INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
 VALUES (1, 'Questão 1', 1, 1, 100);
 INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
