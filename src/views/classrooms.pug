@@ -1,12 +1,17 @@
+//-
+    Import logged_in layout
 extends layouts/logged_in.pug
 block content
+    //Main
     .flex.flex-col.items-center.justify-center.mt-8
+        //Section Filter-classes
         .p-4.flex.items-center.justify-center.rounded-2xl(class='min-w-[200px] w-9/12 bg-[#16afb8]')
             select.w-full.p-3.rounded-2xl.text-2xl(class='text-[#16afb8] bg-[#F0F0F0]')
                 option Escolha uma turma
                 option Turma A
                 option Turma B
                 option Turma C
+        //Section classes
         .flex.flex-col.mt-5.rounded-2xl.p-3(class='bg-[#16afb8] min-w-[250px] w-11/12')
             .flex.flex-row.gap-2.items-center(class='sm:gap-5')
                 .relative.flex(class='w-11/12 min-w-[98px]')
@@ -20,6 +25,7 @@ block content
                 li 3. ...
                 li 4. ...
                 li 5. ...
+        //Submit button
         .flex.items-center.w-full.justify-end
             button.h-12.w-20.rounded-3xl.mt-5.text-lg.text-center.mr-6(class='text-[#F0F0F0] bg-[#16afb8] sm:w-24 sm:text-xl sm:rounded-3xl sm:mr-10 lg:mr-12')
                 | Salvar
