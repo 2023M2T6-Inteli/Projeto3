@@ -23,7 +23,7 @@ block content
                     input.w-full.py-2.rounded-3xl.text-sm.text-center(type='text' placeholder='Nome do aluno' class='bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]')
                     ion-icon.text-xl.absolute.transform(name='search' class='top-1/2 right-2.5 -translate-y-1/2 text-[#16afb8]')
             //Students list
-            .rounded-2xl.mt-5.p-3.mb-2.shadow.text-2xl(class='sm:text-3xl bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
+            .rounded-2xl.mt-5.p-3.mb-2.shadow.text-2xl(class='sm:text-3xl dark:shadow-[#7A7A7A] bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
                 ul
                 li
                     button.bg-transparent.rounded-md.pl-2.py-1(data-modal-target="student-modal", data-modal-toggle="student-modal", class="sm:pr-[60%] pr-[37%] hover:bg-[#D9D9D9] dark:hover:bg-[#333333]") 1. Maria
@@ -42,7 +42,7 @@ block content
     //Container Students
     .fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.max-h-full(id="student-modal" tabindex="-1" class="md:inset-0 h-[calc(100%-1rem)]")
         .relative.w-fit.max-h-full(class="max-w-[80%]")
-            .relative.rounded-lg.shadow(class="bg-[#16AFB8]")
+            .relative.rounded-lg.shadow(class="bg-[#16AFB8] dark:shadow-[#7A7A7A]")
                 .flex.items-center.justify-between.p-5.border-b.rounded-t
                     h3.text-xl.font-medium(class="text-[#F0F0F0]")
                         | Nome do estudante
@@ -52,7 +52,7 @@ block content
                             path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                         span.sr-only Close modal
                 .p-6.space-y-6
-                    .rounded-lg(class="bg-[#F0F0F0] dark:bg-[#1F1F1F] shadow w-full")
+                    .rounded-lg(class="bg-[#F0F0F0] dark:bg-[#1F1F1F] shadow dark:shadow-[#7A7A7A] w-full")
                         //Modal style
                         .flex.items-center.p-6.rounded-b.flex-wrap.justify-center(class="border-[#F0F0F0]")
                             .flex(class="p-2 rounded hover:bg-[#D9D9D9] dark:hover:bg-[#333333]")
