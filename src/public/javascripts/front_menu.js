@@ -1,17 +1,107 @@
 window.addEventListener("load", function(){
-    const canvasHabilities = document.getElementById('graphHabilities').getContext('2d');
-    const canvasWorst = document.getElementById('graphWorst').getContext('2d');
 
+    let graphs = new XMLHttpRequest();
+    graphs.open('GET', 'menu/graphs', true);
+    graphs.send();
+
+    let graphs_data;
+    let graphs_array;
+    graphs.onreadystatechange = function(){
+        if(graphs.readyState === 4 && graphs.status === 200){
+            graphs_data = graphs.responseText;
+            graphs_data = JSON.parse(graphs_data);
+
+            graphs_array = filterGraphData(graphs_data);
+            buildGraphOne(graphs_array);
+            buildGraphTwo(graphs_array);
+        }
+    };
+});
+
+
+function filterGraphData(graph_data){
+    let grades = [];
+    let names = [];
+    let sum_per_subject = [];
+    let avg_denominator = [];
+    let avg_index = 0;
+    let subjects = [];
+
+    for(let i = 0; i < graph_data.length; i++){
+        let equalizer = 10 / graph_data[i].max_grade_percent;
+        let grade = graph_data[i].grade_percent;
+        let description = graph_data[i].description;
+        let name = graph_data[i].name;
+
+        if(i > 0 && description === graph_data[i-1].description){
+            sum_per_subject[avg_index] += grade * equalizer;
+            avg_denominator[avg_index]++;
+            grades[avg_index].push(grade * equalizer);
+            if(avg_index === 0){
+                names.push(name);
+            };
+        }
+        else if(i > 0 && description != graph_data[i-1].description){
+            avg_index++;
+            sum_per_subject.push(grade * equalizer);
+            avg_denominator.push(1);
+            subjects.push(description);
+            grades.push([grade * equalizer]);
+        }
+        else if(i === 0){
+            sum_per_subject.push(grade * equalizer);
+            grades.push([grade * equalizer]);
+            names.push(name)
+            avg_denominator.push(1);
+            subjects.push(description);
+        };
+    };
+    
+    let avg_result = [[],[],[],names,grades]
+
+    for(let subj = 0; subj < subjects.length; subj++){
+        avg_result[0].push(subjects[subj]);
+    };
+
+    for(let i = 0; i < sum_per_subject.length; i++){
+        let sum = sum_per_subject[i];
+        let colors = avg_result[1];
+        if(sum < 5){
+            colors.push('rgb(255,0,0,0.75)');
+        }
+        else if(sum >= 5 && sum < 8){
+            colors.push('rgb(255,242,0,0.75)');
+        }
+        else{
+            colors.push('rgb(22,185,174,0.75)')
+        };
+    };
+
+    for(let sum = 0; sum <= sum_per_subject.length; sum++){
+        avg_result[2].push(sum_per_subject[sum] / avg_denominator[sum]);
+    };
+
+    return avg_result;
+};
+
+
+function buildGraphOne(arr){
+
+    const subjects = arr[0];
+    const colors = arr[1];
+    const averages = arr[2];
+
+    const canvasHabilities = document.getElementById('graphHabilities').getContext('2d');
     let graphHabilities = new Chart(canvasHabilities, {
 
         type: 'bar',
 
         data: {
-            labels: ['Divisão', 'Fatoração', 'Radiciação', 'Potencialização', 'Multiplicação', 'Subtração', 'Soma'],
+            labels: subjects,
             datasets: [{
                 label: 'Média da turma',
-                backgroundColor: 'rgb(255,0,0,0.75)',
-                data: [3, 4, 4, 5, 6, 7, 9, 10]
+                backgroundColor: colors,
+                data: averages
             }]
         },
         options:{
@@ -24,20 +114,63 @@ window.addEventListener("load", function(){
                     top:10,
                     bottom:10
                 }
+            },
+            scales:{
+                y:{
+                    max:10,
+                    min:0
+                }
             }
+                
         }
+    });
+};
 
-        });
+
+function buildGraphTwo(arr){
+    
+    const subjects = arr[0];
+    const averages = arr[2];
+    const names = arr[3];
+    const grades = arr[4];
+
+    let min = averages[0];
+    let min_index = 0;
+
+    for(let i = 0; i < averages.length; i++){
+        if(averages[i] < min){
+            min = averages[i];
+            min_index = i;
+        };
+    };
+
+    let worst_grades = grades[min_index];
+    let colors = []
+
+    for(let i = 0; i < worst_grades.length; i++){
+        let grade = worst_grades[i];
+        if(grade < 5){
+            colors.push('rgb(255,0,0,0.75)');
+        }
+        else if(grade >= 5 && grade < 8){
+            colors.push('rgb(255,242,0,0.75)');
+        }
+        else{
+            colors.push('rgb(22,185,174,0.75)')
+        };
+    };
+
+    const canvasWorst = document.getElementById('graphWorst').getContext('2d');
     let graphWorst = new Chart(canvasWorst, {
 
-        type: 'bar',
+        type: 'line',
     
         data: {
-            labels: ['Maria', 'Otávio', 'Sérgio', 'Eduarda', 'Jéssica', 'Marcelo', 'Teresa'],
+            labels: names,
             datasets: [{
-                label: 'Nota em Divisão',
-                backgroundColor: ['rgb(255,0,0,0.75)', 'rgb(255,0,0,0.75)', 'rgb(255,0,0,0.75)', 'rgb(255,0,0,0.75)', 'rgb(255,242,0,0.75)', 'rgb(255,242,0,0.75)', 'rgb(0,255,0,0.75)'],
-                data: [0, 0, 1, 3, 5, 5, 7, 10]
+                label: `Nota em ${subjects[min_index]}`,
+                backgroundColor: colors,
+                data: worst_grades
             }]
         },
         options:{
@@ -50,8 +183,14 @@ window.addEventListener("load", function(){
                     top:10,
                     bottom:10
                 }
+            },
+            scales:{
+                y:{
+                    max:10,
+                    min:0
+                }
             }
+                
         }
-    
     });
-});
+};
