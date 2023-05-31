@@ -76,22 +76,22 @@ function filterGraphData(graph_data){
         avg_result[0].push(subjects[subj]);
     };
 
-    for(let i = 0; i < sum_per_subject.length; i++){
-        let sum = sum_per_subject[i];
+    for(let sum = 0; sum <= sum_per_subject.length; sum++){
+        avg_result[2].push(Math.round(sum_per_subject[sum] / avg_denominator[sum]));
+    };
+
+    for(let i = 0; i < avg_result[2].length; i++){
+        let avg = avg_result[2][i];
         let colors = avg_result[1];
-        if(sum < 5){
+        if(avg < 5){
             colors.push('rgb(255,0,0,0.75)');
         }
-        else if(sum >= 5 && sum < 8){
+        else if(avg >= 5 && avg < 8){
             colors.push('rgb(255,242,0,0.75)');
         }
         else{
             colors.push('rgb(22,185,174,0.75)')
         };
-    };
-
-    for(let sum = 0; sum <= sum_per_subject.length; sum++){
-        avg_result[2].push(sum_per_subject[sum] / avg_denominator[sum]);
     };
 
     return avg_result;
@@ -112,7 +112,7 @@ function buildGraphOne(arr){
         data: {
             labels: subjects,
             datasets: [{
-                label: 'Média da turma',
+                label:"Média da turma",
                 backgroundColor: colors,
                 data: averages
             }]
@@ -133,8 +133,14 @@ function buildGraphOne(arr){
                     max:10,
                     min:0
                 }
+            },
+            plugins:{
+                legend:{
+                    labels:{
+                        boxWidth: 0
+                    }
+                }
             }
-                
         }
     });
 };
@@ -182,7 +188,8 @@ function buildGraphTwo(arr){
             labels: names,
             datasets: [{
                 label: `Nota em ${subjects[min_index]}`,
-                backgroundColor: colors,
+                pointBackgroundColor: colors,
+                backgroundColor:colors,
                 data: worst_grades
             }]
         },
@@ -202,8 +209,14 @@ function buildGraphTwo(arr){
                     max:10,
                     min:0
                 }
-            }
-                
+            },
+            plugins:{
+                legend:{
+                    labels:{
+                        boxWidth: 0
+                    }
+                }
+            }       
         }
     });
 };
