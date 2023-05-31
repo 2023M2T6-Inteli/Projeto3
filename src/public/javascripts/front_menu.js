@@ -103,6 +103,7 @@ function filterGraphData(graph_data){
 
 
 function buildGraphOne(arr){
+    const theme = document.getElementById('theme-toggle-light-icon');   
 
     const subjects = arr[0];
     const colors = arr[1];
