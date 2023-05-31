@@ -1,5 +1,9 @@
 window.addEventListener("load", function(){
-
+    
+    Chart.defaults.font.family = "Poppins";
+    Chart.defaults.font.size = 14;
+    Chart.defaults.color = '#7A7A7A';
+    Chart.defaults.backgroundColor = '#7A7A7A';
     let graphs = new XMLHttpRequest();
     graphs.open('GET', 'menu/graphs', true);
     graphs.send();
@@ -84,13 +88,13 @@ function filterGraphData(graph_data){
         let avg = avg_result[2][i];
         let colors = avg_result[1];
         if(avg < 5){
-            colors.push('rgb(255,0,0,0.75)');
+            colors.push('rgb(247,68,68,0.85)');
         }
         else if(avg >= 5 && avg < 8){
-            colors.push('rgb(255,242,0,0.75)');
+            colors.push('rgb(237,212,79,0.85)');
         }
         else{
-            colors.push('rgb(22,185,174,0.75)')
+            colors.push('rgb(49,179,85,0.85)')
         };
     };
 
@@ -131,7 +135,15 @@ function buildGraphOne(arr){
             scales:{
                 y:{
                     max:10,
-                    min:0
+                    min:0,
+                    grid:{
+                        color: '#7A7A7A'
+                    }
+                },
+                x:{
+                    grid:{
+                        color: '#7A7A7A'
+                    }
                 }
             },
             plugins:{
@@ -169,13 +181,13 @@ function buildGraphTwo(arr){
     for(let i = 0; i < worst_grades.length; i++){
         let grade = worst_grades[i];
         if(grade < 5){
-            colors.push('rgb(255,0,0,0.75)');
+            colors.push('rgb(255,0,0,1)');
         }
         else if(grade >= 5 && grade < 8){
-            colors.push('rgb(255,242,0,0.75)');
+            colors.push('rgb(255,242,0,1)');
         }
         else{
-            colors.push('rgb(22,185,174,0.75)')
+            colors.push('rgb(22,185,174,1)')
         };
     };
 
@@ -189,8 +201,12 @@ function buildGraphTwo(arr){
             datasets: [{
                 label: `Nota em ${subjects[min_index]}`,
                 pointBackgroundColor: colors,
-                backgroundColor:colors,
-                data: worst_grades
+                borderColor: 'rgb(22, 175, 184, 1)',
+                data: worst_grades,
+//                fill: true,
+                pointRadius: 6,
+                pointBorderWidth: 0,
+                borderWidth: 6
             }]
         },
         options:{
@@ -207,7 +223,15 @@ function buildGraphTwo(arr){
             scales:{
                 y:{
                     max:10,
-                    min:0
+                    min:0,
+                    grid:{
+                        color: '#7A7A7A'
+                    }
+                },
+                x:{
+                    grid:{
+                        color: '#7A7A7A'
+                    }
                 }
             },
             plugins:{
