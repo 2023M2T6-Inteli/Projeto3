@@ -16,6 +16,19 @@ window.addEventListener("load", function(){
             buildGraphTwo(graphs_array);
         }
     };
+
+    let request = new XMLHttpRequest();
+    request.open('GET', 'menu/classrooms', true);
+    request.send();
+
+    let requested_data
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            requested_data = request.responseText;
+            requested_data = JSON.parse(requested_data);
+            buildDropClassText(requested_data);
+        }
+    };
 });
 
 
@@ -193,4 +206,33 @@ function buildGraphTwo(arr){
                 
         }
     });
+};
+
+
+function buildDropClassText(json){
+
+    let text = [];
+
+    for(let i = 0; i < json.length; i++){
+        text.push(json[i].id);
+        text.push(json[i].name);
+    };
+
+    const classroomsList = document.getElementById('classroomsList');
+    for(let i = 0; i < text.length; i++){
+        if(i % 2 === 0){
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+
+            a.classList.add("block", "px-4", "py-2", "hover:bg-[#369398]");
+            a.href = `menu/graphs?id:${text[i]}`
+            a.innerHTML = `${text[i+1]}`
+
+            li.appendChild(a)
+            classroomsList.appendChild(li)
+        }
+        else{
+            continue;
+        };
+    };
 };

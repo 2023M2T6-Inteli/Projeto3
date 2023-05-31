@@ -15,4 +15,14 @@ router.get('/graphs', function(req, res, next) {
         res.status(200).json(rows);
     });
   });
+
+router.get('/classrooms', function(req, res, next) {
+  const sql = 'SELECT id, name FROM classrooms;'
+    req.db.all(sql, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({error: err.message});
+        }
+        res.status(200).json(rows);
+    });
+  });  
 module.exports = router;
