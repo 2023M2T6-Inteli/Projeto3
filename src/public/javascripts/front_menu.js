@@ -1,7 +1,10 @@
+//variable that tells the script when the page has already loaded graphs before
+//so it doesn't try to load the most recent activity's graphs again
 let pageLoaded = 0;
 
+//executes once html has loaded
 window.addEventListener("load", function(){
-    
+    //configuring some default chart values
     Chart.defaults.font.family = "Poppins";
     Chart.defaults.font.size = 14;
     Chart.defaults.color = '#7A7A7A';
@@ -10,24 +13,79 @@ window.addEventListener("load", function(){
     getClasstivitiesData();
 });
 
-
-function getClasstivitiesData(){
-
-    let request = new XMLHttpRequest();
-    request.open('GET', 'menu/classtivities', true);
-    request.send();
-
-    let requested_data
-    request.onreadystatechange = function(){
-        if(request.readyState === 4 && request.status === 200){
-            requested_data = request.responseText;
+//gets json data from the specified endpoint and returns it
+function getData(route) {
+    return new Promise(function(resolve, reject) {
+      let request = new XMLHttpRequest();
+      request.open('GET', route, true);
+      request.send();
+  
+      request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+          if (request.status === 200) {
+            let requested_data = request.responseText;
             requested_data = JSON.parse(requested_data);
-            buildClasstivitiesText(requested_data);
-        };
+            resolve(requested_data);
+          } else {
+            reject(new Error('Erro na solicitação. Status: ' + request.status));
+          }
+        }
+      };
+    });
+  };
+  
+//gets the required json data to build the dropdown button's content
+function getClasstivitiesData() {
+    getData('menu/classtivities')
+        .then(function(request) {
+            buildClasstivitiesText(request);
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
+};
+
+
+//filters the received json object, organizing it and using arrays to store the data
+function buildClasstivitiesText(json){
+    
+    let text = [[],[],[],[],[]]
+    let actv_ids = text[0];
+    let actv_names = text[1];
+    let dates = text[2];
+    let class_ids = text[3];
+    let class_names = text[4];
+
+    //storing the data in specific arrays
+    for(let i = 0; i < json.length; i++){
+        actv_ids.push(json[i].actv_id);
+        actv_names.push(json[i].actv_name);
+        dates.push(json[i].created_at);
+        class_ids.push(json[i].class_id);
+        class_names.push(json[i].class_name);
+    };
+
+    dates = dates.map((date) => dateFormat(date));
+
+    //creating elements for each activity applied in a classroom
+    const classtvsList = document.getElementById('classtivitiesList');
+    for(let i = 0; i < text[0].length; i++){
+        let actv_id = actv_ids[i];
+        let actv_name = actv_names[i];
+        let class_id = class_ids[i];
+        let class_name = class_names[i];
+        createListElem(actv_id, actv_name, class_id, class_name, classtvsList);
+    };
+    //checks if the page has already been loaded
+    if(pageLoaded === 0){
+        const ids_dates = [actv_ids, dates, class_ids];
+        getMostRecentActv(ids_dates);
+        pageLoaded++;
     };
 };
 
 
+//creates the dropdown button's content based on the database's data
 function createListElem(actv_id, actv_name, class_id, class_name, list){
 
     let li = document.createElement("li");
@@ -35,15 +93,16 @@ function createListElem(actv_id, actv_name, class_id, class_name, list){
 
     a.classList.add("block", "px-4", "py-2", "hover:bg-[#369398]");
     a.href = `javascript:getGraphData(${actv_id}, ${class_id});`;
-    a.innerHTML = `${actv_name} - ${class_name}`
+    a.innerHTML = `${actv_name} - ${class_name}`;
 
-    li.appendChild(a)
-    list.appendChild(li)
+    li.appendChild(a);
+    list.appendChild(li);
 };
 
 
+//gets the most recent activity's data to generate its graphs when the page is loaded
 function getMostRecentActv(dates){
-
+    //creating Date objects in order to compare them and get the most recent
     let max_date = new Date(dates[1][0]);
     let max_date_index = 0;
 
@@ -58,52 +117,42 @@ function getMostRecentActv(dates){
 };
 
 
-function roundNums(num){
-
-    if(num.toString().length > 2){
-        return num.toFixed(2);
-    }
-    else{
-        return num;
-    };
-};
-
-
+//gets the required json data to build the graphs' content
 function getGraphData(actv_id, class_id){
 
-    let graphs = new XMLHttpRequest();
-    graphs.open('GET', `menu/graphs?actvId=${actv_id}&classId=${class_id}`, true);
-    graphs.send();
-
-    let graphs_data;
-    let graphs_array;
-    graphs.onreadystatechange = function(){
-        if(graphs.readyState === 4 && graphs.status === 200){
-            graphs_data = graphs.responseText;
-            graphs_data = JSON.parse(graphs_data);
-
-            graphs_array = filterGraphData(graphs_data);
+    getData(`menu/graphs?actvId=${actv_id}&classId=${class_id}`)
+        .then(function(request){
+            let graphs_array = filterGraphData(request);
             buildGraphOne(graphs_array);
             buildGraphTwo(graphs_array);
-        };
-    };
+        });
 };
 
 
+//rounds numbers that have more than two decimal places
+function roundNums(num){
+
+    if(num.toString().length > 2)
+        return num.toFixed(2);
+    else
+        return num;
+};
+
+//defines which colors are used in the graphs based on the grades
 function defineColors(grade){
 
     if(grade < 5){
-        return 'rgb(247,68,68,0.85)';
+        return 'rgb(247,68,68,0.85)'; //returning red for bad grades
     }
     else if(grade >= 5 && grade <= 7){
-        return 'rgb(237,212,79,0.85)';
+        return 'rgb(237,212,79,0.85)'; //returning yellow for median grades
     }
     else{
-        return 'rgb(49,179,85,0.85)';
+        return 'rgb(49,179,85,0.85)'; //returning green for good grades
     };
 };
 
-
+//destroys existing charts when the user decides to see another activity's data
 function destroyChart(chart){
     const current_chart = Chart.getChart(chart);
     if(current_chart != undefined){
@@ -111,12 +160,12 @@ function destroyChart(chart){
     };
 };
 
-
+//formats date strings from the database so javascript can read them correctly
 function dateFormat(date){
     return date.replace(' ', 'T');
 };
 
-
+//filters the received json object, organizing it and using arrays to storage the data
 function filterGraphData(graph_data){
     let grades = [];
     let names = [];
@@ -125,6 +174,7 @@ function filterGraphData(graph_data){
     let avg_index = 0;
     let subjects = [];
 
+    //storing the data in specific arrays, filtering it and making some average calculations
     for(let i = 0; i < graph_data.length; i++){
         let equalizer = 10 / graph_data[i].max_grade_percent;
         let grade = graph_data[i].grade_percent;
@@ -156,16 +206,15 @@ function filterGraphData(graph_data){
         };
     };
     
-    let avg_result = [[],[],[],names,grades]
+    //creating the array which will be filled up with the filtered and organized data
+    let avg_result = [subjects,[],[],names,grades]
 
-    for(let subj = 0; subj < subjects.length; subj++){
-        avg_result[0].push(subjects[subj]);
-    };
-
+    //calculating averages
     for(let sum = 0; sum <= sum_per_subject.length; sum++){
         avg_result[2].push(roundNums(sum_per_subject[sum] / avg_denominator[sum]));
     };
 
+    //defining colors for each grade
     let colors = avg_result[1];
     for(let i = 0; i < avg_result[2].length; i++){
         let avg = avg_result[2][i];
@@ -175,15 +224,16 @@ function filterGraphData(graph_data){
     return avg_result;
 };
 
-
+//builds the first graph
 function buildGraphOne(arr){  
-
+    //getting from the argument (filtered data) only the elements that will be used in the graph
     const subjects = arr[0];
     const colors = arr[1];
     const averages = arr[2];
 
     destroyChart("graphHabilities");
 
+    //building the graph
     const canvasHabilities = document.getElementById('graphHabilities').getContext('2d');
     let graphHabilities = new Chart(canvasHabilities, {
 
@@ -234,16 +284,17 @@ function buildGraphOne(arr){
 };
 
 
+//builds the second graph
 function buildGraphTwo(arr){
-    
+    //getting from the argument (filtered data) only the elements that will be used in the graph
     const subjects = arr[0];
     const averages = arr[2];
     const names = arr[3];
     const grades = arr[4];
 
+    //calculating the smallest average
     let min = averages[0];
     let min_index = 0;
-
     for(let i = 0; i < averages.length; i++){
         if(averages[i] < min){
             min = averages[i];
@@ -251,9 +302,11 @@ function buildGraphTwo(arr){
         };
     };
 
+    //getting the grades that form the smallest average
     let worst_grades = grades[min_index];
-    let colors = []
 
+    //assigning some colors to them
+    let colors = []
     for(let i = 0; i < worst_grades.length; i++){
         let grade = worst_grades[i];
         colors.push(defineColors(grade));
@@ -261,6 +314,7 @@ function buildGraphTwo(arr){
 
     destroyChart("graphWorst");
 
+    //building the graph
     const canvasWorst = document.getElementById('graphWorst').getContext('2d');
     let graphWorst = new Chart(canvasWorst, {
 
@@ -312,41 +366,4 @@ function buildGraphTwo(arr){
             }       
         }
     });
-};
-
-
-function buildClasstivitiesText(json){
-    
-    let text = [[],[],[],[],[]]
-    let actv_ids = text[0];
-    let actv_names = text[1];
-    let dates = text[2];
-    let class_ids = text[3];
-    let class_names = text[4];
-
-    for(let i = 0; i < json.length; i++){
-        actv_ids.push(json[i].actv_id);
-        actv_names.push(json[i].actv_name);
-        dates.push(json[i].created_at);
-        class_ids.push(json[i].class_id);
-        class_names.push(json[i].class_name);
-    };
-
-    dates = dates.map((date) => dateFormat(date));
-
-    const classtvsList = document.getElementById('classtivitiesList');
-
-    for(let i = 0; i < text[0].length; i++){
-        let actv_id = actv_ids[i];
-        let actv_name = actv_names[i];
-        let class_id = class_ids[i];
-        let class_name = class_names[i];
-        createListElem(actv_id, actv_name, class_id, class_name, classtvsList);
-    };
-
-    if(pageLoaded === 0){
-        const ids_dates = [actv_ids, dates, class_ids];
-        getMostRecentActv(ids_dates);
-        pageLoaded++;
-    };
 };
