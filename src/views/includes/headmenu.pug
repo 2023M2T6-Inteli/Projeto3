@@ -1,9 +1,9 @@
 header.flex.flex-row-reverse.shadow.fixed.top-0.left-0.right-0.flex-initial.w-full.h-14.items-center(class='sm:h-20 bg-[#F0F0F0] dark:bg-[#333333] dark:shadow-[#7A7A7A]')
-    .mr-6.w-6.ml-12.flex-initial(class='sm:ml-14 dark:shadow-[#7A7A7A] md:mr-18')
+    .mr-8.w-6.ml-12.flex-initial(class='sm:ml-14 dark:shadow-[#7A7A7A]')
         button#dropdownProfileButton.flex.items-center.py-2.space-x-2(data-dropdown-toggle='dropdownProfile', type='button')
             img.w-full(src='./images/user_icon.png', class='scale-[1.5] sm:scale-[2]')
         //Dropdown menu
-        #dropdownProfile.z-10.hidden.divide-y.divide-gray-100.rounded-lg.shadow.w-44(class='dark:shadow-[#7A7A7A] bg-[#16afb8]')
+        #dropdownProfile.z-10.hidden.divide-y.overflow-scroll.max-h-64.rounded-lg.shadow.w-44(class='dark:shadow-[#7A7A7A] bg-[#16afb8]')
             ul.py-2.text-base.font-medium(class='text-[#F0F0F0]', aria-labelledby='dropdownProfileButton')
                 li
                     a.block.px-4.py-2(href='#', class='hover:bg-[#369398]') Perfil
@@ -15,5 +15,5 @@ header.flex.flex-row-reverse.shadow.fixed.top-0.left-0.right-0.flex-initial.w-fu
             svg.ml-2.h-4.w-4(aria-hidden='true', fill='none', stroke='currentColor', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
                 path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M19 9l-7 7-7-7')
         // Dropdown menu
-        #dropclasstvs.z-10.hidden.divide-y.divide-gray-100.rounded-lg.shadow.w-64(class='dark:shadow-[#7A7A7A] bg-[#16afb8]')
+        #dropclasstvs.z-10.hidden.divide-y.overflow-scroll.max-h-64.rounded-lg.shadow.w-76(class='dark:shadow-[#7A7A7A] bg-[#16afb8]')
             ul#classtivitiesList.py-2.text-sm.font-medium(class='sm:text-lg text-[#F0F0F0]', aria-labelledby='dropdownClasstivitiesButton')
