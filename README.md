@@ -16,7 +16,6 @@
   <table>
     <tr>
       <td align="center"><a href="https://www.linkedin.com/in/bruna-brasil-alexandre-734055214/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118626-41937f3e-65c6-4ac6-beb4-7c7b4058a17f.jpg" width="100px;" alt=""/><br><sub><b>Bruna Brasil</b></sub></a></td>
-      <td align="center"><a href="https://www.linkedin.com/in/caio-kakunaka-235754264/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118766-77e387d3-8bf1-40fd-a59c-089e19ae31c2.jpg" width="100px;" alt=""/><br><sub><b>Caio Enoki</b></sub></a></td>
       <td align="center"><a href="https://www.linkedin.com/in/fuchsfelipel/"><img width="100px;" style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234118916-9c1dd397-0756-48f2-9727-378ad6c46325.jpg" width="100px;" alt=""/><br><sub><b>Felipe Fuchs</b></sub></a></td>
        <td align="center"><a href="https://github.com/2023M2T6-Inteli/Projeto3/"><img style="border-radius: 40%;" src="https://user-images.githubusercontent.com/85657433/234119829-76c806c1-f0b3-4dc8-8589-b12f1a08cce7.jpg" width="100px;" alt=""/><br><sub><b>João Cauê</b></sub></a></td>
       <td align="center"><a href="https://www.linkedin.com/in/lucas-nogueira-nunes/"><img style="border-radius: 50%;" src="https://user-images.githubusercontent.com/85657433/234119179-19b04e2b-0ed1-4cc0-b2b0-dc1c68778626.jpg" width="100px;" alt=""/><br><sub><b>Lucas Nunes</b></sub></a></td>
@@ -28,7 +27,7 @@
 
 ## 📝 Descrição
 
-Curta descrição sobre o que o seu projeto faz (problema a ser resolvido e solução proposta).
+O GABA pretende ajudar no mapeamento pelos professores das defasagens dos estudantes brasileiros de escolas públicas, permitindo que o professor crie atividades na plataforma, exporte-as, aplique-as com seus estudantes e então corrija no site atribuindo notas aos alunos. Como as perguntas ou os itens das atividades criadas são ligados a uma habilidade da BNCC pelo professor, nossa aplicação é capaz de informar após a correção qual a habilidade que precisa ser trabalhada, assim como médias da turma e notas individuais. De acordo com esse feedback, também são recomendados planos de aula da Nova Escola relacionados às defasagens apresentadas pela turma.
 
 ## Documentação da API
 A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
@@ -37,8 +36,8 @@ A documentação da API foi feita no Postman e pode ser encontrada [aqui](https:
 
 |--> documentos<br>
   &emsp;| --> outros <br>
-  &emsp;| T6_G3_V(VERSÃO)_Web_application_document.pdf<br>
-  &emsp;| T6_G3_V(VERSÃO)_Web_application_document.docx<br>
+  &emsp;| WAD.pdf<br>
+  &emsp;| WAD.docx<br>
 |--> imagens<br>
 |--> src<br>
   &emsp;|--> Backend<br>

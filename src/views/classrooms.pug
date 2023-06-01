@@ -1,26 +1,32 @@
+//-
+    Import logged_in layout
 extends layouts/logged_in.pug
 block content
+    //Main
     .flex.flex-col.items-center.justify-center.mt-8
+        //Section Filter-classes
         .p-4.flex.items-center.justify-center.rounded-2xl(class='min-w-[200px] w-9/12 bg-[#16afb8]')
-            select.w-full.p-3.rounded-2xl.text-2xl(class='sm:text-3xl text-[#16afb8]')
+            select.w-full.p-3.rounded-2xl.pr-2.text-2xl(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F]')
                 option Escolha uma turma
                 option Turma A
                 option Turma B
                 option Turma C
+        //Section classes
         .flex.flex-col.mt-5.rounded-2xl.p-3(class='bg-[#16afb8] min-w-[250px] w-11/12')
             .flex.flex-row.gap-2.items-center(class='sm:gap-5')
                 .relative.flex(class='w-11/12 min-w-[98px]')
-                    input.w-full.rounded-3xl.text-center.pr-10(type='text' placeholder='Nome do aluno' class='text-[#16afb8]')
-                    ion-icon.text-xl.absolute.transform(name='search' class='top-1/2 right-2.5 -translate-y-1/2 text-[#16afb8]')
-                button.rounded-3xl.bg-white.px-2.py-2(class='text-[#16afb8] sm:px-4') Adicionar
-            .bg-white.rounded-2xl.mt-5.p-3.text-2xl(class='sm:text-3xl text-[#16afb8]')
+                    input.w-full.text-sm.rounded-3xl.py-2.text-center.pr-10(type='text' placeholder='Nome do aluno' class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl')
+                    ion-icon.text-xl.absolute.transform(name='search' class='top-1/2 right-2.5 -translate-y-1/2 text-[#16afb8] bg-transparent')
+                button.rounded-3xl.px-2.py-2(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:px-4') Adicionar
+            .rounded-2xl.mt-5.shadow.p-3.text-2xl.mb-2(class='dark:shadow-[#7A7A7A] sm:text-3xl bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
                 ul
                 li 1. Maria
                 li 2. Jo&atilde;o
                 li 3. ...
                 li 4. ...
                 li 5. ...
+        //Submit button
         .flex.items-center.w-full.justify-end
-            button.h-12.w-20.rounded-3xl.mt-5.text-white.text-lg.text-center.mr-6(class='bg-[#16afb8] sm:w-24 sm:text-xl sm:rounded-3xl sm:mr-10 lg:mr-12')
+            button.h-12.w-20.rounded-3xl.mt-5.text-lg.text-center.mr-6(class='text-[#F0F0F0] bg-[#16afb8] sm:w-24 sm:text-xl sm:rounded-3xl sm:mr-10 lg:mr-12')
                 | Salvar
     script(src='https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js')

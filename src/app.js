@@ -18,6 +18,9 @@ var gradesRouter = require('./routes/grades');
 var questionsRouter = require('./routes/questions');
 var registrationsRouter = require('./routes/registrations');
 var studentsRouter = require('./routes/students');
+var tutorialRouter = require('./routes/tutorial');
+var examRouter = require('./routes/exam');
+var createRouter = require('./routes/create');
 
 var app = express();
 
@@ -37,7 +40,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', signInRouter);
 app.use('/menu', menuRouter);
 app.use('/sign_in', signInRouter);
 app.use('/sign_up', signUpRouter);
@@ -48,7 +51,9 @@ app.use('/grades', gradesRouter);
 app.use('/questions', questionsRouter);
 app.use('/registrations', registrationsRouter);
 app.use('/students', studentsRouter);
-
+app.use('/tutorial', tutorialRouter);
+app.use('/exam', examRouter);
+app.use('/create', createRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
