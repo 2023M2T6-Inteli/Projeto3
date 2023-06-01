@@ -1,11 +1,78 @@
+let pageLoaded = 0;
+
 window.addEventListener("load", function(){
     
     Chart.defaults.font.family = "Poppins";
     Chart.defaults.font.size = 14;
     Chart.defaults.color = '#7A7A7A';
     Chart.defaults.backgroundColor = '#7A7A7A';
+
+    getClasstivitiesData();
+});
+
+
+function getClasstivitiesData(){
+
+    let request = new XMLHttpRequest();
+    request.open('GET', 'menu/classtivities', true);
+    request.send();
+
+    let requested_data
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            requested_data = request.responseText;
+            requested_data = JSON.parse(requested_data);
+            buildClasstivitiesText(requested_data);
+        };
+    };
+};
+
+
+function createListElem(actv_id, actv_name, class_id, class_name, list){
+
+    let li = document.createElement("li");
+    let a = document.createElement("a");
+
+    a.classList.add("block", "px-4", "py-2", "hover:bg-[#369398]");
+    a.href = `javascript:getGraphData(${actv_id}, ${class_id});`;
+    a.innerHTML = `${actv_name} - ${class_name}`
+
+    li.appendChild(a)
+    list.appendChild(li)
+};
+
+
+function getMostRecentActv(dates){
+
+    let max_date = new Date(dates[1][0]);
+    let max_date_index = 0;
+
+    for(let i = 0; i < dates[1].length; i++){
+        let date = new Date(dates[1][i])
+        if(date > max_date){
+            max_date = date;
+            max_date_index = i;
+        };
+    };
+    getGraphData(dates[0][max_date_index], dates[2][max_date_index]);
+};
+
+
+function roundNums(num){
+
+    if(num.toString().length > 2){
+        return num.toFixed(2);
+    }
+    else{
+        return num;
+    };
+};
+
+
+function getGraphData(actv_id, class_id){
+
     let graphs = new XMLHttpRequest();
-    graphs.open('GET', 'menu/graphs', true);
+    graphs.open('GET', `menu/graphs?actvId=${actv_id}&classId=${class_id}`, true);
     graphs.send();
 
     let graphs_data;
@@ -18,22 +85,36 @@ window.addEventListener("load", function(){
             graphs_array = filterGraphData(graphs_data);
             buildGraphOne(graphs_array);
             buildGraphTwo(graphs_array);
-        }
+        };
     };
+};
 
-    let request = new XMLHttpRequest();
-    request.open('GET', 'menu/classrooms', true);
-    request.send();
 
-    let requested_data
-    request.onreadystatechange = function(){
-        if(request.readyState === 4 && request.status === 200){
-            requested_data = request.responseText;
-            requested_data = JSON.parse(requested_data);
-            buildDropClassText(requested_data);
-        }
+function defineColors(grade){
+
+    if(grade < 5){
+        return 'rgb(247,68,68,0.85)';
+    }
+    else if(grade >= 5 && grade <= 7){
+        return 'rgb(237,212,79,0.85)';
+    }
+    else{
+        return 'rgb(49,179,85,0.85)';
     };
-});
+};
+
+
+function destroyChart(chart){
+    const current_chart = Chart.getChart(chart);
+    if(current_chart != undefined){
+        current_chart.destroy();
+    };
+};
+
+
+function dateFormat(date){
+    return date.replace(' ', 'T');
+};
 
 
 function filterGraphData(graph_data){
@@ -52,8 +133,8 @@ function filterGraphData(graph_data){
 
         if(i > 0 && description === graph_data[i-1].description){
             sum_per_subject[avg_index] += grade * equalizer;
+            grades[avg_index].push(roundNums(grade * equalizer));
             avg_denominator[avg_index]++;
-            grades[avg_index].push(grade * equalizer);
             if(avg_index === 0){
                 names.push(name);
             };
@@ -61,13 +142,14 @@ function filterGraphData(graph_data){
         else if(i > 0 && description != graph_data[i-1].description){
             avg_index++;
             sum_per_subject.push(grade * equalizer);
+            grades.push([roundNums(grade * equalizer)]);
             avg_denominator.push(1);
             subjects.push(description);
-            grades.push([grade * equalizer]);
+
         }
         else if(i === 0){
             sum_per_subject.push(grade * equalizer);
-            grades.push([grade * equalizer]);
+            grades.push([roundNums(grade * equalizer)]);
             names.push(name)
             avg_denominator.push(1);
             subjects.push(description);
@@ -81,33 +163,26 @@ function filterGraphData(graph_data){
     };
 
     for(let sum = 0; sum <= sum_per_subject.length; sum++){
-        avg_result[2].push(Math.round(sum_per_subject[sum] / avg_denominator[sum]));
+        avg_result[2].push(roundNums(sum_per_subject[sum] / avg_denominator[sum]));
     };
 
+    let colors = avg_result[1];
     for(let i = 0; i < avg_result[2].length; i++){
         let avg = avg_result[2][i];
-        let colors = avg_result[1];
-        if(avg < 5){
-            colors.push('rgb(247,68,68,0.85)');
-        }
-        else if(avg >= 5 && avg < 8){
-            colors.push('rgb(237,212,79,0.85)');
-        }
-        else{
-            colors.push('rgb(49,179,85,0.85)')
-        };
+        colors.push(defineColors(avg));
     };
 
     return avg_result;
 };
 
 
-function buildGraphOne(arr){
-    const theme = document.getElementById('theme-toggle-light-icon');   
+function buildGraphOne(arr){  
 
     const subjects = arr[0];
     const colors = arr[1];
     const averages = arr[2];
+
+    destroyChart("graphHabilities");
 
     const canvasHabilities = document.getElementById('graphHabilities').getContext('2d');
     let graphHabilities = new Chart(canvasHabilities, {
@@ -181,16 +256,10 @@ function buildGraphTwo(arr){
 
     for(let i = 0; i < worst_grades.length; i++){
         let grade = worst_grades[i];
-        if(grade < 5){
-            colors.push('rgb(255,0,0,1)');
-        }
-        else if(grade >= 5 && grade < 8){
-            colors.push('rgb(255,242,0,1)');
-        }
-        else{
-            colors.push('rgb(22,185,174,1)')
-        };
+        colors.push(defineColors(grade));
     };
+
+    destroyChart("graphWorst");
 
     const canvasWorst = document.getElementById('graphWorst').getContext('2d');
     let graphWorst = new Chart(canvasWorst, {
@@ -202,9 +271,8 @@ function buildGraphTwo(arr){
             datasets: [{
                 label: `Nota em ${subjects[min_index]}`,
                 pointBackgroundColor: colors,
-                borderColor: 'rgb(22, 175, 184, 1)',
+                borderColor: 'rgb(22, 175, 184, 0.85)',
                 data: worst_grades,
-//                fill: true,
                 pointRadius: 6,
                 pointBorderWidth: 0,
                 borderWidth: 6
@@ -247,30 +315,38 @@ function buildGraphTwo(arr){
 };
 
 
-function buildDropClassText(json){
-
-    let text = [];
+function buildClasstivitiesText(json){
+    
+    let text = [[],[],[],[],[]]
+    let actv_ids = text[0];
+    let actv_names = text[1];
+    let dates = text[2];
+    let class_ids = text[3];
+    let class_names = text[4];
 
     for(let i = 0; i < json.length; i++){
-        text.push(json[i].id);
-        text.push(json[i].name);
+        actv_ids.push(json[i].actv_id);
+        actv_names.push(json[i].actv_name);
+        dates.push(json[i].created_at);
+        class_ids.push(json[i].class_id);
+        class_names.push(json[i].class_name);
     };
 
-    const classroomsList = document.getElementById('classroomsList');
-    for(let i = 0; i < text.length; i++){
-        if(i % 2 === 0){
-            let li = document.createElement("li");
-            let a = document.createElement("a");
+    dates = dates.map((date) => dateFormat(date));
 
-            a.classList.add("block", "px-4", "py-2", "hover:bg-[#369398]");
-            a.href = `menu/graphs?id:${text[i]}`
-            a.innerHTML = `${text[i+1]}`
+    const classtvsList = document.getElementById('classtivitiesList');
 
-            li.appendChild(a)
-            classroomsList.appendChild(li)
-        }
-        else{
-            continue;
-        };
+    for(let i = 0; i < text[0].length; i++){
+        let actv_id = actv_ids[i];
+        let actv_name = actv_names[i];
+        let class_id = class_ids[i];
+        let class_name = class_names[i];
+        createListElem(actv_id, actv_name, class_id, class_name, classtvsList);
+    };
+
+    if(pageLoaded === 0){
+        const ids_dates = [actv_ids, dates, class_ids];
+        getMostRecentActv(ids_dates);
+        pageLoaded++;
     };
 };
