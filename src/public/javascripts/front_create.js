@@ -1,39 +1,45 @@
-// Pegar do pug o botão e o conteúdo a ser duplicado
-const botaoClicado = document.getElementById('addQuestionButton');
-const caixaDePerguntas = document.getElementById('questionBox');
-const botoesFixos = document.getElementById('submitButtons')
-const deletarClicado = document.getElementById('deleteQuestionButton');
+// Pegar do pug o botão, posições e o conteúdo a ser duplicado
+const addQuestionButton = document.getElementById('addQuestionButton');
+const questionBox = document.getElementById('questionBox');
+const submitButtons = document.getElementById('submitButtons');
 
-var codigoDuplicado; // Variável global para armazenar a cópia
+// Event Listener vai "ouvir" os cliques do nosso botão e chamar a função duplicate()
+addQuestionButton.addEventListener('click', duplicate);
 
-// Event Listener vai "ouvir" os cliques do nosso botão e chamar a função funcaoNova()
-botaoClicado.addEventListener('click', funcaoDuplicar);
-deletarClicado.addEventListener('click', funcaoDeletar);
-
-// Function to duplicate the code
-function funcaoDuplicar() {
-  // Clonar o node/parte do html que está em codParaCopiar e colocar em codigoDuplicado
-  codigoDuplicado = caixaDePerguntas.cloneNode(true);
-  codigoDuplicado.style.marginTop = '30px'; // Modifiquei mt para marginTop para corrigir o estilo
-
-  // Adicionar evento de clique para o botão de deletar na cópia
-  const deletarClicadoCopia = codigoDuplicado.querySelector('#deleteQuestionButton');
-
-  // Remover o evento de clique existente antes de adicionar um novo evento
-  deletarClicadoCopia.removeEventListener('click', funcaoDeletar);
-
-  deletarClicadoCopia.addEventListener('click', funcaoDeletar);
-
-  // Inserir a cópia antes da pergunta original
-  caixaDePerguntas.parentNode.insertBefore(codigoDuplicado, caixaDePerguntas);
-
-  // Adicionar novamente o evento de clique para o botão de deletar original
-  deletarClicado.addEventListener('click', funcaoDeletar);
+//define a posição da caixa de perguntas duplicada
+function duplicate() {
+  const duplicatedQuestionBox = cloneQuestionBox();
+  duplicatedQuestionBox.style.marginTop = '20px';
+  //define a posição da questionBox original para ficar no topo, antes da duplicado e dos botões imprimir e adicionar pergunta
+  questionBox.parentNode.insertBefore(duplicatedQuestionBox, submitButtons);
 }
 
-function funcaoDeletar() {
-  if (codigoDuplicado) {
-    codigoDuplicado.parentNode.removeChild(codigoDuplicado);
-    codigoDuplicado = null; // Resetar a variável para null após a remoção
+// Function to clone the question box
+function cloneQuestionBox() {
+  //cahama a função de id 
+  const newId = generateUniqueId();
+  const clonedQuestionBox = questionBox.cloneNode(true);
+  // atribui um id único para a questionBox duplicada, sem este id ao excluir uma as cópias de questionBox o botão de deletar das outras para de funcionar
+  clonedQuestionBox.setAttribute('id', 'questionBox' + newId);
+  clonedQuestionBox.classList.add('cloned-element');
+  // Adicionar evento de clique para o botão de deletar na cópia
+  const deletarClicadoCopia = clonedQuestionBox.querySelector('#deleteQuestionButton');
+  // adiciona um id único para o deleteQuestionButton duplicado, para quee ele funcione mesmo que outras cópias sejam excluidas
+  deletarClicadoCopia.setAttribute('id', 'deleteQuestionButton' + newId);
+  deletarClicadoCopia.addEventListener('click', functionDelete);
+  return clonedQuestionBox;
+}
+
+// Função para deletar a question box que o botão está inserido
+function functionDelete(event) {
+  const deleteButton = event.target;
+  const questionBox = deleteButton.closest('.cloned-element');
+  if (questionBox) {
+    questionBox.remove();
   }
+}
+
+// Gera um id único para que os elementos duplicados do código não conflitam entre si
+function generateUniqueId() {
+  return 'cloned-element-' + Math.random().toString(36).substr(2, 9);
 }
