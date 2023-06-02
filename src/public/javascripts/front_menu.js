@@ -28,8 +28,8 @@ function getData(route) {
             resolve(requested_data);
           } else {
             reject(new Error('Erro na solicitação. Status: ' + request.status));
-          }
-        }
+          };
+        };
       };
     });
   };

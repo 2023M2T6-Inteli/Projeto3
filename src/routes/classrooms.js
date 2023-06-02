@@ -4,30 +4,21 @@ var router = express.Router();
 
 // GET /classrooms
 router.get('/', (req, res, next) => {
-/*    const sql = 'SELECT * FROM classrooms'
-
-    req.db.all(sql, [], (err, rows) => {
-        if (err) {
-            return res.status(500).json({error: err.message});
-        }
-        res.status(200).json(rows);
-    });
-*/
     res.render('classrooms', { title: 'Gaba' });
 });
 
 // GET/classrooms/:id
-router.get('/:id', (req, res, next) => {
-    const sql = 'SELECT * FROM classrooms WHERE id = ?'
+router.get('/select', (req, res, next) => {
 
-    req.db.get(sql, [req.params.id], (err, row) => {
+    const userId = parseInt(req.query.userId);
+
+    const sql = `SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = ${userId};`
+
+    req.db.all(sql, [], (err, rows) => {
         if (err) {
             return res.status(400).json({error: err.message});
         }
-
-        if (row === undefined) return res.sendStatus(404);
-
-        res.status(200).json(row);
+        res.status(200).json(rows);
     });
 });
 
