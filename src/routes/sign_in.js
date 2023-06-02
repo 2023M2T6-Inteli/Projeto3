@@ -49,9 +49,9 @@ router.post('/sign_in',urlencodedParser, (req,res)=>{
               }
               console.log(rows);
               if(rows !== null){
-              res.render("/menu");}
+              res.render("menu");}
               {
-                  res.render("/menu");
+                  res.render("menu");
               }
           })
       }
