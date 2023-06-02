@@ -1,12 +1,16 @@
 let page_loaded = 0;
 let student_num = 1;
+const classroom_list = document.getElementById('classroomsList');
+const students_list = document.getElementById('studentsList');
 
+classroom_list.addEventListener('change', function(){
+    getClassroomsData(1, parseInt(classroom_list.value));
+});
 
 window.addEventListener("load", getClassroomsData())
 
 
 function getClassroomsData(user_id = 1, class_id = 1){
-
     let request = new XMLHttpRequest();
     request.open('GET', `classrooms/select?userId=${user_id}`, true);
     request.send();
@@ -28,7 +32,7 @@ function getClass(data, classroom_id){
     let class_names = data_arr[1];
     let std_ids = data_arr[2];
     let std_names = data_arr[3];
-    let std_index = 0
+    let std_index = 0;
     for(let i = 0; i < data.length; i++){
         if(i > 0 && data[i].class_id === data[i - 1].class_id){
             std_ids[std_index].push(data[i].std_id);
@@ -49,22 +53,32 @@ function getClass(data, classroom_id){
         };
     };
 
+    if(page_loaded != 0){
+        destroyElems(students_list);
+    }
+    else{
+        for(let i = 0; i < class_ids.length; i++){
+            let class_id = class_ids[i];
+            let class_name = class_names[i];
+            createSelectElem(class_id, class_name, classroom_list);
+        };
+        page_loaded++
+    };
     std_index = data_arr[0].indexOf(classroom_id);
 
-    const students_list = document.getElementById('studentsList');
     student_num = 1;
     for(let i = 0; i < std_ids[std_index].length; i++){
         let std_id = std_ids[std_index][i];
         let std_name = std_names[std_index][i];
         createListElem(std_id, std_name, students_list);
     };
+};
 
-    const classroom_list = document.getElementById('classroomsList')
-    for(let i = 0; i < class_ids.length; i++){
-        let class_id = class_ids[i];
-        let class_name = class_names[i];
-        createSelectElem(class_id, class_name, classroom_list);
-    }
+
+function destroyElems(list){
+    while(list.hasChildNodes()){
+        list.removeChild(list.firstChild);
+    };
 };
 
 
@@ -80,11 +94,9 @@ function createListElem(id, name, list){
 function createSelectElem(id, name, select){
 
     let option = document.createElement("option");
-    let a = document.createElement("a");
+    option.value = id;
+    option.innerHTML = `${name}`;
 
-    a.href = `javascript:getClassroomData(1, ${id});`;
-    a.innerHTML = `${name}`;
-
-    option.appendChild(a);
     select.appendChild(option);
-}
+};
+
