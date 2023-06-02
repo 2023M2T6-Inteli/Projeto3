@@ -39,6 +39,7 @@
     transition: all 0.4s ease-in-out;
   }
 }
+
 html {
   line-height: 1.5;
   /* 1 */
@@ -56,6 +57,7 @@ html {
   font-variation-settings: normal;
   /* 6 */
 }
+
 select{
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2316afb8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.5rem center;
@@ -63,18 +65,14 @@ select{
   background-size: 1.5em 1.5em;
   -webkit-appearance: none;
 }
+
 select:focus{
   outline: none;
 }
+
 input:focus{
   outline: none;
 }
-
-
-/*
-1. Remove the margin in all browsers.
-2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
-*/
 
 body {
   margin: 0;
@@ -1427,10 +1425,6 @@ video {
   padding-right: 0.5rem;
 }
 
-.pr-\[37\%\] {
-  padding-right: 37%;
-}
-
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -1834,10 +1828,9 @@ video {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-
-  .sm\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
+  .sm\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .sm\:py-4 {
@@ -1864,10 +1857,6 @@ video {
     padding-right: 1rem;
   }
 
-  .sm\:pr-\[60\%\] {
-    padding-right: 60%;
-  }
-
   .sm\:pt-8 {
     padding-top: 2rem;
   }
@@ -1880,6 +1869,11 @@ video {
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .sm\:text-sm {
