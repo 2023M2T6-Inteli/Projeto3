@@ -12,7 +12,7 @@ router.get('/select', (req, res, next) => {
 
     const userId = parseInt(req.query.userId);
 
-    const sql = `SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = ${userId};`
+    const sql = `SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = ${userId} ORDER BY reg.classroom_id;`
 
     req.db.all(sql, [], (err, rows) => {
         if (err) {
