@@ -63,8 +63,10 @@ router.post('/sign_up', urlencodedParser, (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   // Initialize the database
   var db = new sqlite3.Database(DBPATH);
+  // Encrypt the password using CryptoJS
+  var encryptedPassword = crypto.SHA256(req.body.encrypted_password).toString();
   // Variable to define the SQL statement
-  var sql = 'INSERT INTO users (id, first_name, last_name, email, encrypted_password) VALUES(null,"' + req.body.first_name + '","' + req.body.last_name + '","' + req.body.email + '","' + req.body.encrypted_password + '");';
+  var sql = 'INSERT INTO users (id, first_name, last_name, email, encrypted_password) VALUES(null,"' + req.body.first_name + '","' + req.body.last_name + '","' + req.body.email + '","' + encryptedPassword + '");';
   console.log(sql);
   db.run(sql, [], err => {
     if (err) {
