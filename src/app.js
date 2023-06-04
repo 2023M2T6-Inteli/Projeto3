@@ -40,7 +40,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', signInRouter);
 app.use('/menu', menuRouter);
 app.use('/sign_in', signInRouter);
 app.use('/sign_up', signUpRouter);
@@ -54,6 +53,7 @@ app.use('/students', studentsRouter);
 app.use('/tutorial', tutorialRouter);
 app.use('/exam', examRouter);
 app.use('/create', createRouter);
+app.use('/', signInRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
