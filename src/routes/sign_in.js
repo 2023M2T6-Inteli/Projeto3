@@ -23,7 +23,7 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
   // Initialize the database
   var db = new sqlite3.Database(DBPATH);
   // Variable to define the SQL statement
-  var sql = 'SELECT * FROM users WHERE EMAIL = "' + req.body.email + '" AND encrypted_password = "' + req.body.encrypted_password + '"';
+  var sql = 'SELECT * FROM users WHERE EMAIL = "' + req.body.email + '"';
   var sqlpasta = `SELECT * FROM users WHERE users.id = "`;
   console.log(sql);
   db.all(sql, [], (err, rows) => {
@@ -32,28 +32,33 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
       res.status(500).json({ error: 'An error occurred' });
     } else if (rows.length === 0) {
       res.status(401).json({ error: 'Invalid username or email' });
-    } else if (rows[0].encrypted_password !== req.body.encrypted_password) {
-      console.error(err);
-      console.log(rows);
-      res.status(401).json({ error: 'Invalid password' });
     } else {
-      name = rows[0].first_name;
-      sqlpasta += rows[0].id + `";`;
-      console.log(sqlpasta);
-      db.all(sqlpasta, [], (err, rows) => {
-        if (err) {
-          console.log(err);
-        }
+      // Compare the user-provided password with the encrypted password stored in the database
+      var encryptedPassword = crypto.SHA256(req.body.encrypted_password).toString();
+      if (rows[0].encrypted_password !== encryptedPassword) {
+        console.error(err);
         console.log(rows);
-        if (rows !== null) {
-          res.render("menu");
-        } else {
-          res.render("menu");
-        }
-      });
+        res.status(401).json({ error: 'Invalid password' });
+      } else {
+        name = rows[0].first_name;
+        sqlpasta += rows[0].id + `";`;
+        console.log(sqlpasta);
+        db.all(sqlpasta, [], (err, rows) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(rows);
+          if (rows !== null) {
+            res.render("menu");
+          } else {
+            res.render("menu");
+          }
+        });
+      }
     }
   });
 });
+
 
 // Create a new user
 router.post('/sign_up', urlencodedParser, (req, res) => {
