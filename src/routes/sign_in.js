@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
   res.render('sign_in', { title: 'Gaba' });
 });
 
+
 /* Login */
 router.post('/sign_in', urlencodedParser, (req, res) => {
   var name;
@@ -31,14 +32,14 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
       console.error(err);
       res.status(500).json({ error: 'An error occurred' });
     } else if (rows.length === 0) {
-      res.status(401).json({ error: 'Invalid username or email' });
+      res.status(401).send('<script>alert("Invalid username or email"); window.location.href = "/sign_in";</script>');
     } else {
       // Compare the user-provided password with the encrypted password stored in the database
       var encryptedPassword = crypto.SHA256(req.body.encrypted_password).toString();
       if (rows[0].encrypted_password !== encryptedPassword) {
         console.error(err);
         console.log(rows);
-        res.status(401).json({ error: 'Invalid password' });
+        res.status(401).send('<script>alert("Invalid password"); window.location.href = "/sign_in";</script>');
       } else {
         name = rows[0].first_name;
         sqlpasta += rows[0].id + `";`;
@@ -58,6 +59,7 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
     }
   });
 });
+
 
 
 // Create a new user
