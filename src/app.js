@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session  = require('express-session');
 
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./database.db');
@@ -23,6 +24,12 @@ var examRouter = require('./routes/exam');
 var createRouter = require('./routes/create');
 
 var app = express();
+
+app.use(session({
+	secret: 'secret-key-nv-int-321',
+	resave: true,
+	saveUninitialized: true
+}));
 
 // Connect to DB
 app.use(function (req, res, next) {
