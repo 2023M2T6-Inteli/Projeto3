@@ -1,6 +1,9 @@
+//-
+    Import public layout
 extends layouts/public.pug
 block content
-    form.flex.flex-col.items-center.justify-center.py-4.px-8.mx-auto(class='h-full w-full sm:py-14 sm:px-14h-[600px] sm:flex-row-reverse' action='/menu')
+    // Login form
+    form.flex.flex-col.items-center.justify-center.py-4.px-8.mx-auto(class='h-full w-full sm:py-8 sm:px-14h-[600px] sm:flex-row-reverse' method="post" action='/sign_in')
         .flex.items-center.rounded-t-xl.h-full.shadow(class="bg-[#16AFB8] xl:py-[11.84rem] lg:py-[12.35rem] sm:py-[13.57rem] md:py-[12.84rem] sm:rounded-none w-[290px] sm:w-4/12")
             .flex.justify-center.items-center.h-full(class="sm:my-auto mt-8 w-full")
                 img.mb-0(src='/images/gaba_png.png', alt='logo', class="h-14 sm:mb-12 sm:h-10 md:h-16 lg:h-20 xl:h-24")
@@ -8,14 +11,14 @@ block content
             p.mt-8 Login
             .text-left.items-stretch.w-full.px-10.py-0(class="sm:pt-8")
                 label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Email
-                input#email.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='sm:text-sm font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] focus:border-[#369398] p-2.50' placeholder='joao@exemplo.com' required='')
+                input#email.bg-gray-50.border.py-2.pl-2.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='border-[#646464] sm:text-sm font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] focus:border-[#369398]' placeholder='joao@exemplo.com' required='')
             .text-left.items-stretch.w-full.px-10
-                label.block.mb-2.text-sm.font-medium(for='password' class='sm:text-[#16afb8] text-[#F0F0F0]') Senha
-                input#password.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='password' placeholder='••••••••' class='sm:text-sm font-medium sm:focus:ring-[#16AFB8] focus:ring-[#369398] sm:sm:focus:border-[#16AFB8] focus:border-[#369398] p-2.5' required='')
+                label.block.mb-2.text-sm.font-medium(for='encrypted_password' class='sm:text-[#16afb8] text-[#F0F0F0]') Senha
+                input#password.bg-gray-50.border.text-gray-900.rounded-lg.block.w-full(type='password' name='encrypted_password' placeholder='••••••••' class='border-[#646464] sm:text-sm font-medium sm:focus:ring-[#16AFB8] focus:ring-[#369398] sm:sm:focus:border-[#16AFB8] focus:border-[#369398] py-2 pl-2' required='')
             .flex.items-center.justify-between
                 .flex.items-start
                     .flex.items-center.h-5
-                        input#remember.w-4.h-4.border.border-gray-300.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='focus:ring-3 focus:ring-primary-300')
+                        input#remember.w-4.h-4.border.rounded.bg-gray-50(aria-describedby='remember' type='checkbox' class='border-[#646464] focus:ring-3 focus:ring-primary-300')
                     .ml-3.text-sm
                         label(for='remember' class='sm:text-[#16afb8] text-[#F0F0F0]') Lembre minha senha
             button.font-medium.shadow.rounded-lg.text-sm.px-4.text-center(type='submit' class='bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] w-24 sm:w-64 hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5') Continuar
