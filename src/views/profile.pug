@@ -1,0 +1,28 @@
+extends layouts/logged_in.pug
+
+block content
+  .flex.flex-col.items-center.justify-center.mt-8
+    h1.text-6xl.mt-11.mb-14(class='text-[#16afb8]') Atualizar Informações
+    form.p-4.flex.items-center.justify-center.flex-col.rounded-2xl(class='min-w-[200px] w-9/12 bg-[#16afb8]')
+      div.w-full.flex.gap-4
+        div.flex.flex-col.ml-2(class='w-1/2')
+          label.text-2xl.mb-1(class='text-[#F0F0F0]') Nome
+          input.w-full.p-3.rounded-2xl.text-xl(class='bg-[#F0F0F0] text-[#16afb8] mb-2')
+
+          label.text-2xl.mb-1(class='text-[#F0F0F0]') Sobrenome
+          input.w-full.p-3.rounded-2xl.text-xl(class='bg-[#F0F0F0] text-[#16afb8] mb-2')
+
+        div.flex.flex-col.mr-2(class='w-1/2')
+            label.text-2xl.mb-1(class='text-[#F0F0F0]') Senha Atual
+            input.w-full.p-3.rounded-2xl.text-xl(class='bg-[#F0F0F0] text-[#16afb8] mb-2')
+
+            label.text-2xl.mb-1(class='text-[#F0F0F0]') Nova Senha
+            input.w-full.p-3.rounded-2xl.text-xl(class='bg-[#F0F0F0] text-[#16afb8] mb-2')
+
+      div.w-full.mr-4.ml-4
+        label.text-2xl.mb-1(class='text-[#F0F0F0]') Email
+        input.w-full.p-3.rounded-2xl.text-xl(class='bg-[#F0F0F0] text-[#16afb8] mb-2')
+
+      button.rounded-3xl.h-12.px-6.py-2.mt-5.text-2xl(class='text-[#F0F0F0] bg-white text-[#16afb8]') Salvar alterações
+
+  script(src='https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js')
