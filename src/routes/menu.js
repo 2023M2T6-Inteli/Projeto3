@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
+//for use user id (req.session.user_id)
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('menu', { title: 'Gaba' });
+  if(req.session.auth){
+    res.render('menu', { title: 'Gaba' });
+  } else{
+    res.redirect('/');
+  }
 });
 
 router.get('/graphs', function(req, res, next) {
