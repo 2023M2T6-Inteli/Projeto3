@@ -2,6 +2,7 @@ let page_loaded = 0;
 let student_num = 1;
 const classroom_list = document.getElementById('classroomsList');
 const students_list = document.getElementById('studentsList');
+const input = document.getElementById('studentName');
 
 classroom_list.addEventListener('change', function(){
     getClassroomsData(1, parseInt(classroom_list.value));
@@ -22,6 +23,23 @@ function getClassroomsData(user_id = 1, class_id = 1){
             getClass(requested_data, class_id);
         };
     }
+};
+
+
+function postClassroomsData(class_id = 1, name){
+    let post = new XMLHttpRequest();
+    post.open("POST", `classrooms/addStudent?stdName=${name}&classId=${class_id}`, true);
+    post.send()
+
+    post.onreadystatechange = function(){
+        if(post.readyState === 4 && post.status === 201){
+            input.value = '';
+            input.placeholder = 'Aluno adicionado!';
+            setTimeout(function(){
+                input.placeholder = 'Novo aluno';
+            }, 3000);
+        };
+    };
 };
 
 
@@ -100,3 +118,22 @@ function createSelectElem(id, name, select){
     select.appendChild(option);
 };
 
+const addBtn = document.getElementById("addStudent");
+addBtn.addEventListener("click", addStudent);
+
+function addStudent(){
+    const input = document.getElementById('studentName');
+    if(input.value.trim() != ''){
+        postClassroomsData(classroom_list.value, input.value.trim());
+        input.placeholder = '';
+        setTimeout(() => {
+            getClassroomsData(1, parseInt(classroom_list.value));
+        }, 100);
+    }
+    else{
+        input.placeholder = 'Insira um nome para adicionar';
+        setTimeout(() => {
+            input.placeholder = 'Novo aluno';
+        }, 3500);
+    }
+}

@@ -23,17 +23,33 @@ router.get('/select', (req, res, next) => {
 });
 
 // POST /classrooms
-router.post('/', (req, res, next) => {
-    const {name, user_id, subject} = req.body;
-    const sql = 'INSERT INTO classrooms(name, user_id, subject) VALUES (?, ?, ?)'
+router.post('/addStudent', (req, res, next) => {
+    const sql = `INSERT INTO students(name) VALUES ("${req.query.stdName}");`
+    const class_id = req.query.classId;
 
-    req.db.run(sql, [name, user_id, subject], function (err) {
+    let std_id = '';
+    req.db.run(sql, [], function (err) {
         if (err) {
             return res.status(400).json({error: err.message});
         }
-        res.status(201).json({id: this.lastID});
+        std_id = this.lastID;
+        secondPost(req, res, class_id, std_id);
+        res.status(201).json();
     });
 });
+
+function secondPost(req, res, class_id, std_id){
+    const sql = `INSERT INTO registrations(classroom_id, student_id) VALUES (${parseInt(class_id)}, ${std_id});`
+
+    req.db.run(sql, [], function (err) {
+        if (err) {
+            return res.status(400).json({error: err.message});
+        }
+        res.status(201).json();
+    });
+
+};
+
 
 // PUT /classrooms/:id
 router.put('/:id', (req, res, next) => {
