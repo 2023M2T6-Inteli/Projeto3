@@ -42,7 +42,7 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
         res.status(401).send('<script>alert("Invalid password"); window.location.href = "/sign_in";</script>');
       } else {
         req.session.user_id = rows[0].id;
-        req.session.name = rows[0].first_name;
+        req.session.name = rows[1].first_name;
         req.session.auth = true
         name = rows[0].first_name;
         sqlpasta += rows[0].id + `";`;
