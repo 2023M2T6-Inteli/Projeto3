@@ -3,21 +3,25 @@
 extends layouts/public.pug
 block content
     // Register form
-    form.flex.flex-col.items-center.justify-center.py-4.px-8.mx-auto(class='h-full w-full sm:py-8 sm:px-14h-[600px] sm:flex-row-reverse' action='/tutorial')
+    form.flex.flex-col.items-center.justify-center.py-4.px-8.mx-auto(class='h-full w-full sm:px-14h-[600px] sm:flex-row-reverse' method="post" action='/sign_up')
         .flex.items-center.rounded-t-xl.shadow.h-full(class="bg-[#16AFB8] xl:py-[11.88rem] lg:py-[12.36rem] sm:py-[13.62rem] md:py-[12.88rem] sm:rounded-none w-[290px] sm:w-4/12")
             .flex.justify-center.items-center.h-full(class="sm:my-auto mt-8 w-full")
                 img.mb-0(src='/images/gaba_png.png', alt='logo', class="h-14 sm:mb-12 sm:h-10 md:h-16 lg:h-20 xl:h-24")
         .flex.flex-col.space-y-6.items-center.shadow.px-0.py-4.text-center.rounded-b-xl.h-full.font-bold.text-3xl(class='bg-[#16AFB8] sm:bg-[#F0F0F0] w-[290px] sm:rounded-none sm:px-4 sm:py-4 sm:w-8/12 sm:text-[#16afb8] text-[#F0F0F0]')
             p.mt-8 Cadastro
             .text-left.items-stretch.w-full.px-10.py-0(class="sm:pt-8")
+                label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Primeir nome 
+                input#email.border.rounded-lg.py-2.pl-2.block.w-full(type='text' name='first_name' class='border-[#646464] sm:text-sm text-[#1F1F1F] font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] bg-[#f9f9f9] focus:border-[#369398]' placeholder='João' required='')
+            .text-left.items-stretch.w-full.px-10.py-0
+                label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Último nome
+                input#email.border.rounded-lg.py-2.pl-2.block.w-full(type='text' name='last_name' class='border-[#646464] sm:text-sm text-[#1F1F1F] font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] bg-[#f9f9f9] focus:border-[#369398]' placeholder='Guedes' required='')
+            .text-left.items-stretch.w-full.px-10.py-0
                 label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Email
                 input#email.border.rounded-lg.py-2.pl-2.block.w-full(type='email' name='email' class='border-[#646464] sm:text-sm text-[#1F1F1F] font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] bg-[#f9f9f9] focus:border-[#369398]' placeholder='joao@exemplo.com' required='')
             .text-left.items-stretch.w-full.px-10
                 label.block.mb-2.text-sm.font-medium(for='password' class='sm:text-[#16afb8] text-[#F0F0F0]') Senha
-                input#password.border.py-2.pl-2.rounded-lg.block.w-full(type='password' name='password' placeholder='Mínimo: 8 caracteres' class='border-[#646464] sm:text-sm font-medium sm:focus:ring-[#16AFB8] focus:ring-[#369398] sm:sm:focus:border-[#16AFB8] focus:border-[#369398] text-[#1F1F1F] bg-[#f9f9f9]' required='')
-            .text-left.items-stretch.w-full.px-10
-                label.block.mb-2.text-sm.font-medium(for='password' class='sm:text-[#16afb8] text-[#F0F0F0]') Repetir senha
-                input#password.border.py-2.pl-2.rounded-lg.block.w-full(type='password' name='password' placeholder='Mínimo: 8 caracteres' class='border-[#646464] sm:text-sm font-medium sm:focus:ring-[#16AFB8] focus:ring-[#369398] sm:sm:focus:border-[#16AFB8] focus:border-[#369398] text-[#1F1F1F] bg-[#f9f9f9]' required='')
+                input#password.border.py-2.pl-2.rounded-lg.block.w-full(type='password' name='encrypted_password' placeholder='Mínimo: 8 caracteres' class='border-[#646464] sm:text-sm font-medium sm:focus:ring-[#16AFB8] focus:ring-[#369398] sm:sm:focus:border-[#16AFB8] focus:border-[#369398] text-[#1F1F1F] bg-[#f9f9f9]' required='')
+            .text-left.items-stretch.w-full.px-10   
             button.font-medium.shadow.rounded-lg.text-sm.px-4.text-center(type='submit' class='bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] w-24 sm:w-64 hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5') Continuar
             p.text-sm.font-light(class='text-[#F0F0F0] sm:text-[#16AFB8]')
                 | Já tem uma conta?
