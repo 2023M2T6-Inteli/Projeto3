@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('menu', { title: 'Gaba' });
 });
 
+//getting graphs data
 router.get('/graphs', function(req, res, next) {
 
   const actv_id = parseInt(req.query.actvId);
@@ -20,6 +21,7 @@ router.get('/graphs', function(req, res, next) {
     });
   });
 
+//getting activities and classes data
 router.get('/classtivities', function(req, res, next) {
   const sql = 'SELECT actv.id as actv_id, actv.name as actv_name, actv.created_at, class.id as class_id, class.name as class_name FROM activities as actv INNER JOIN classrooms as class ON class.id = actv.classroom_id;'
     req.db.all(sql, [], (err, rows) => {
@@ -28,6 +30,7 @@ router.get('/classtivities', function(req, res, next) {
         }
         res.status(200).json(rows);
     });
-  });  
+  });
+
 module.exports = router;
 
