@@ -77,14 +77,24 @@ router.put('/:id', (req, res, next) => {
 });
 
 // DELETE /classrooms/:id
-router.delete('/:id', (req, res, next) => {
-    const sql = 'DELETE FROM classrooms WHERE id = ?'
+router.delete('/delete', (req, res, next) => {
+    const std_id = req.query.stdId;
+    const sql = `DELETE FROM registrations WHERE student_id = ${std_id}`;
 
     req.db.run(sql, req.params.id, function (err) {
         if (err) {
             return res.status(400).json({error: err.message});
         }
-        res.status(200).json({deleted: this.changes});
+        res.status(200).json();
+    });
+
+    const sql2 = `DELETE FROM students WHERE id = ${std_id}`;
+
+    req.db.run(sql2, req.params.id, function (err) {
+        if (err) {
+            return res.status(400).json({error: err.message});
+        }
+        res.status(200).json();
     });
 });
 
