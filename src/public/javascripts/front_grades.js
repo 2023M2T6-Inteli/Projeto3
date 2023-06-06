@@ -306,14 +306,14 @@ function buildModal(std_id, std_name, questions, questions_grades){
     let question_num = 1;
 
     let modal = document.createElement('div');
-    modal.classList.add("fixed", "inset-0", "z-50", "hidden", "w-full", "p-4", "overflow-x-hidden", "overflow-y-auto", "max-h-full", 'items-center', "md:inset-0", "h-[calc(100%-1rem)]");
+    modal.classList.add("fixed", "top-0","right-0","left-0", "z-50", "hidden", "w-9/12", "overflow-x-hidden", "overflow-y-auto", "max-h-screen", 'items-center', "mx-auto", "md:inset-0", "h-[calc(100%-1rem)]");
     modal.setAttribute("id", `student-${std_id}-modal`);
     modal.setAttribute("tabindex", "-1");
     modal.setAttribute("aria-hidden", "true")
     modal_list.push(modal.id)
 
     let modal_container = document.createElement('div');
-    modal_container.classList.add("w-fit", "mx-auto", "max-h-full", "max-w-[85%]");
+    modal_container.classList.add("w-fit","p-6", "mx-auto", "max-h-full", "max-w-[85%]");
 
     let modal_body = document.createElement('div');
     modal_body.classList.add("rounded-lg", "shadow", "bg-[#16AFB8]", "dark:shadow-[#7A7A7A]");
@@ -322,7 +322,7 @@ function buildModal(std_id, std_name, questions, questions_grades){
     modal_upper_body.classList.add("flex", "items-center", "justify-between", "p-5", "border-b", "rounded-t");
 
     let modal_title = document.createElement("h3");
-    modal_title.classList.add("text-xl", "font-medium", "text-[#F0F0F0]");
+    modal_title.classList.add("text-xl", "font-medium", "pt-6", "pl-6", "text-[#F0F0F0]");
     modal_title.innerHTML = `${std_name}`
 
     let radios_div = document.createElement("div");
@@ -344,14 +344,14 @@ function buildModal(std_id, std_name, questions, questions_grades){
     let rd2_list = [];
     for(let i = 0; i < questions.length; i++){
         let rdiv_scndcomponent = document.createElement("div");
-        rdiv_scndcomponent.classList.add("flex", "items-center", "p-6", "rounded-b", "flex-wrap", "justify-center", "border-[#F0F0F0]");
+        rdiv_scndcomponent.classList.add("flex", "items-center", "p-6", "rounded-b", "flex-row", "flex-wrap", "justify-center", "border-[#F0F0F0]");
         rd2_list.push(rdiv_scndcomponent);
     };
 
     let rd3_list = [];
     for(let i = 0; i < questions.length; i++){
         let rdiv_thrdcomponent = document.createElement("div");
-        rdiv_thrdcomponent.classList.add("flex", "p-2", "rounded", "hover:bg-[#D9D9D9]", "dark:hover:bg-[#333333]");
+        rdiv_thrdcomponent.classList.add("flex", "flex-row", "flex-wrap", "space-y-1", "gap-x-2", "rounded", "hover:bg-[#D9D9D9]", "dark:hover:bg-[#333333]", "items-center", "justify-center");
         rdiv_thrdcomponent.setAttribute("id", `radios-div-${radio_num}`);
         rd3_list.push(rdiv_thrdcomponent);
         radio_num++;
@@ -370,7 +370,7 @@ function buildModal(std_id, std_name, questions, questions_grades){
             radio.setAttribute("value", `${grade}`);
 
             let label_div = document.createElement("div");
-            label_div.classList.add("ml-2", "mr-2", "text-sm");
+            label_div.classList.add("text-sm");
 
             let label = document.createElement("label");
             label.classList.add("font-medium", "text-[#16AFB8]");
@@ -393,14 +393,14 @@ function buildModal(std_id, std_name, questions, questions_grades){
         let modal = document.getElementById(`student-${std_id}-modal`);
         modal.classList.toggle("hidden");
     });
-    modal_save.classList.add("text-[#16AFB8]", "bg-[#F0F0F0]", "dark:bg-[#1F1F1F]", "hover:bg-[#D9D9D9]", "dark:hover:bg-[#333333]", "font-medium", "rounded-lg", "text-sm", "px-5", "py-2.5", "text-center");
+    modal_save.classList.add("text-[#16AFB8]", "bg-[#F0F0F0]", "dark:bg-[#1F1F1F]", "hover:bg-[#D9D9D9]", "dark:hover:bg-[#333333]", "font-medium", "rounded-lg", "text-sm", "px-5", "py-3", "text-center");
     modal_save.innerHTML = "Salvar";
 
     let modal_cancel = document.createElement("button");
     modal_cancel.setAttribute("type", "button");
     modal_cancel.setAttribute("id", `cancel-${std_id}`);
 
-    modal_cancel.classList.add("text-[#F0F0F0]", "bg-[#f74444]", "hover:bg-[#be3232]", "rounded-lg", "text-sm", "font-medium", "px-4", "py-2.5", "hover:text-[#D9D9D9]");
+    modal_cancel.classList.add("text-[#F0F0F0]", "bg-[#f74444]", "hover:bg-[#be3232]", "rounded-lg", "text-sm", "font-medium", "px-4", "py-3", "hover:text-[#D9D9D9]");
     modal_cancel.innerHTML = "Cancelar";
 
     modal_bot_buttons_div.appendChild(modal_save);
@@ -434,21 +434,19 @@ function buildModal(std_id, std_name, questions, questions_grades){
     modal_container.appendChild(modal_body);
     modal.appendChild(modal_container);
     let main = document.getElementById("main");
-    main.prepend(modal);
+    main.appendChild(modal);
 
     let cancel_list = [];
     for(let i = 0; i < questions.length; i++){
         const radios_div = document.getElementById(`radios-div-${cancel_num}`);
         const childs = radios_div.childNodes;
         cancel_list = cancel_list.concat(Array.from(childs));
-        console.log(cancel_list)
         cancel_num++;
     };
 
     modal_cancel.addEventListener("click", function(){
         for(let i = 0; i < cancel_list.length; i++){
             if(cancel_list[i].checked === true){
-                console.log(i)
                 cancel_list[i].checked = false; 
             };
         };
