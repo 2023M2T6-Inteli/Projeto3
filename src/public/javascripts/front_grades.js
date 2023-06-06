@@ -26,7 +26,7 @@ window.addEventListener('load', getData);
 
 function getData(){
     getSelectActvData();
-    getClassData();
+    getClassData(0);
 };
 
 
@@ -59,7 +59,7 @@ function getSelectActvData(){
 };
 
 
-function getClassData(class_id = 1){
+function getClassData(class_id){
     let request = new XMLHttpRequest;
     request.open('GET', 'grades/selectclass', true); // 
     request.send();
