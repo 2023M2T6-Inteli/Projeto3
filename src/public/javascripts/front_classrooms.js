@@ -1,17 +1,24 @@
 let page_loaded = 0;
 let student_num = 1;
+
 const classroom_list = document.getElementById('classroomsList');
 const students_list = document.getElementById('studentsList');
-const input = document.getElementById('studentName');
+const stdInput = document.getElementById('studentName');
+const className = document.getElementById("classroomName");
+const classSubject = document.getElementById("classroomSubject");
+const classYear = document.getElementById("classroomYear");
+
 
 classroom_list.addEventListener('change', function(){
     getClassroomsData(1, parseInt(classroom_list.value));
 });
 
-window.addEventListener("load", getClassroomsData())
+
+window.addEventListener('load', getClassroomsData(1, 0))
 
 
-function getClassroomsData(user_id = 1, class_id = 1){
+function getClassroomsData(user_id, class_id){
+
     let request = new XMLHttpRequest();
     request.open('GET', `classrooms/select?userId=${user_id}`, true);
     request.send();
@@ -26,18 +33,37 @@ function getClassroomsData(user_id = 1, class_id = 1){
 };
 
 
-function postClassroomsData(class_id = 1, name){
+function postStudentData(class_id = 1, name){
     let post = new XMLHttpRequest();
     post.open("POST", `classrooms/addStudent?stdName=${name}&classId=${class_id}`, true);
     post.send()
 
     post.onreadystatechange = function(){
         if(post.readyState === 4 && post.status === 201){
-            input.value = '';
-            input.placeholder = 'Aluno adicionado!';
+            stdInput.value = '';
+            stdInput.placeholder = 'Aluno adicionado!';
+            getClassroomsData(1, parseInt(classroom_list.value));
             setTimeout(function(){
-                input.placeholder = 'Novo aluno';
+                stdInput.placeholder = 'Novo aluno';
             }, 3000);
+        };
+    };
+};
+
+
+function postClassData(name, subject, year){
+    let post = new XMLHttpRequest();
+    post.open("POST", `classrooms/addClass?className=${name}&subject=${subject}&year=${year}`, true);
+    post.send()
+
+    post.onreadystatechange = function(){
+        if(post.readyState === 4 && post.status === 201){
+            alert('Turma adicionada!');
+            classroom_list.value = 0;
+            className.value = '';
+            classSubject.value = '';
+            classYear.value = '';
+            getClassroomsData(1, 0);
         };
     };
 };
@@ -73,16 +99,20 @@ function getClass(data, classroom_id){
 
     if(page_loaded != 0){
         destroyElems(students_list);
+        destroyElems(classroom_list)
+        createSelectElem(0, 'Turma', classroom_list)
     }
     else{
-        for(let i = 0; i < class_ids.length; i++){
-            let class_id = class_ids[i];
-            let class_name = class_names[i];
-            createSelectElem(class_id, class_name, classroom_list);
-        };
         page_loaded++
     };
+    
+    for(let i = 0; i < class_ids.length; i++){
+        let class_id = class_ids[i];
+        let class_name = class_names[i];
+        createSelectElem(class_id, class_name, classroom_list);
+    };
     std_index = data_arr[0].indexOf(classroom_id);
+    classroom_list.value = classroom_id;
 
     student_num = 1;
     for(let i = 0; i < std_ids[std_index].length; i++){
@@ -103,7 +133,9 @@ function destroyElems(list){
 function createListElem(id, name, list){
 
     let li = document.createElement("li");
-    li.innerHTML = `${student_num}. ${name}`
+    if(name != null){
+        li.innerHTML = `${student_num}. ${name}`
+    }
     student_num++
     list.appendChild(li)
 };
@@ -118,22 +150,48 @@ function createSelectElem(id, name, select){
     select.appendChild(option);
 };
 
-const addBtn = document.getElementById("addStudent");
-addBtn.addEventListener("click", addStudent);
+
+const addStd = document.getElementById("addStudent");
+addStd.addEventListener("click", addStudent);
+
+let stdTime;
 
 function addStudent(){
-    const input = document.getElementById('studentName');
-    if(input.value.trim() != ''){
-        postClassroomsData(classroom_list.value, input.value.trim());
-        input.placeholder = '';
-        setTimeout(() => {
-            getClassroomsData(1, parseInt(classroom_list.value));
-        }, 100);
+    if(stdTime){
+        clearTimeout(stdTime)
+    };
+
+    if(stdInput.value.trim() != ''){
+        postStudentData(classroom_list.value, stdInput.value.trim());
+        stdInput.placeholder = '';
     }
     else{
-        input.placeholder = 'Insira um nome para adicionar';
-        setTimeout(() => {
-            input.placeholder = 'Novo aluno';
+        stdInput.placeholder = 'Insira um nome para adicionar';
+        stdTime = setTimeout(() => {
+            stdInput.placeholder = 'Novo aluno';
         }, 3500);
+    };
+};
+
+
+const addClass = document.getElementById("addClass");
+addClass.addEventListener("click", addClassroom);
+
+
+function addClassroom(){
+
+    className.value = className.value.trim();
+    classSubject.value = classSubject.value.trim();
+    classYear.value = classYear.value.trim();
+
+    let name = className.value;
+    let subject = classSubject.value;
+    let year = classYear.value;
+
+    if(name != '' && subject != '' && year != ''){
+        postClassData(name, subject, year);
     }
-}
+    else{
+        alert("Preencha todos os campos para adicionar uma turma!")
+    };
+};

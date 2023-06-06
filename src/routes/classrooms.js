@@ -12,7 +12,7 @@ router.get('/select', (req, res, next) => {
 
     const userId = parseInt(req.query.userId);
 
-    const sql = `SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = ${userId} ORDER BY reg.classroom_id;`
+    const sql = `SELECT class.id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM classrooms AS class LEFT OUTER JOIN registrations AS reg ON reg.classroom_id = class.id  LEFT OUTER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = ${userId} ORDER BY class.id;`
 
     req.db.all(sql, [], (err, rows) => {
         if (err) {
@@ -51,6 +51,18 @@ function secondPost(req, res, class_id, std_id){
 };
 
 
+
+router.post('/addClass', (req, res, next) => {
+    const sql = `INSERT INTO classrooms(name, user_id, subject, year) VALUES ("${req.query.className}", 1, "${req.query.subject}", ${req.query.year});`
+
+    req.db.run(sql, [], function (err) {
+        if (err) {
+            console.log(err)
+            return res.status(400).json({error: err.message});
+        }
+        res.status(201).json();
+    });
+});
 // PUT /classrooms/:id
 router.put('/:id', (req, res, next) => {
     const {name, user_id, subject} = req.body;

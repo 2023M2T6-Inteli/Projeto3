@@ -6,19 +6,21 @@ block content
     .flex.flex-col.items-center.justify-center.mt-8
         //Section Filter-classes
         .p-4.flex.items-center.justify-center.rounded-2xl(class='min-w-[200px] w-9/12 bg-[#16afb8]')
-            select#classroomsList.w-full.p-3.rounded-2xl.pr-2.text-2xl(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F]')
-                option Turma
+            select#classroomsList.w-full.p-3.shadow.rounded-2xl.pr-2.text-2xl(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F]')
+                option(value='0') Turma
         //Section classes
+        .flex.flex-row.items-center.w-full.flex-wrap.gap-3(class='sm:flex-nowrap')
+            input#classroomName.text-sm.mt-5.shadow.rounded-3xl.py-2.ml-12.text-center.pr-8.pl-2(type='text' placeholder='Nome' class='text-[#16afb8] bg-[#F0F0F0] w-[158.5px] sm:w-4/12 dark:bg-[#1F1F1F] sm:ml-12 sm:text-xl')
+            input#classroomSubject.text-sm.mt-5.shadow.ml-12.rounded-3xl.py-2.text-center.pr-8.pl-2(type='text' placeholder='Disciplina' class='text-[#16afb8] bg-[#F0F0F0] w-[158.5px] sm:w-4/12 dark:bg-[#1F1F1F] sm:ml-0 sm:text-xl')
+            input#classroomYear.text-sm.mt-5.shadow.rounded-3xl.py-2.ml-12.text-center.pr-8.pl-2(type='text' placeholder='Ano (número)' class='text-[#16afb8] bg-[#F0F0F0] w-[158.5px] sm:w-4/12 dark:bg-[#1F1F1F] sm:ml-0 sm:text-xl')
+            .w-44(class="sm:mr-10 mr-0")
+                button#addClass.h-10.shadow.rounded-3xl.ml-12.mt-5.text-sm.text-center(class='text-[#F0F0F0] bg-[#16afb8] sm:text-xl sm:rounded-3xl sm:px-4 sm:h-12 px-6 sm:ml-0') Adicionar
         .flex.flex-col.mt-5.rounded-2xl.p-3(class='bg-[#16afb8] min-w-[250px] w-11/12')
             .flex.flex-row.gap-2.items-center(class='sm:gap-5')
                 .relative.flex(class='w-11/12 min-w-[98px]')
-                    input#studentName.w-full.text-sm.rounded-3xl.py-2.text-center.pr-8.pl-2(type='text' placeholder='Novo aluno' class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl')
-                button#addStudent.rounded-3xl.px-2.py-2(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:px-4') Adicionar
+                    input#studentName.w-full.text-sm.shadow.rounded-3xl.py-2.text-center.pr-8.pl-2(type='text' placeholder='Novo aluno' class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl')
+                button#addStudent.rounded-3xl.shadow.px-2.py-2(class='text-[#16afb8] bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:px-4') Adicionar
             .rounded-2xl.mt-5.shadow.p-3.text-2xl.mb-2(class='dark:shadow-[#7A7A7A] sm:text-3xl bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
                 ul#studentsList
-        //Submit button
-        .flex.items-center.w-full.justify-end
-            .w-44.mr-6
-                button#addClass.h-12.rounded-3xl.mt-5.text-lg.text-center(class='text-[#F0F0F0] bg-[#16afb8] sm:text-xl sm:rounded-3xl pb-4 px-4') Nova turma
     script(src='https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js')
     script(src="./javascripts/front_classrooms.js") 

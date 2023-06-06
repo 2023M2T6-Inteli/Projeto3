@@ -74,6 +74,7 @@ input:focus{
   outline: none;
 }
 
+
 /*
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
@@ -638,6 +639,10 @@ video {
   z-index: 40;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -716,6 +721,14 @@ video {
   margin-left: 5rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-0 {
+  margin-right: 0px;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -788,6 +801,10 @@ video {
   display: none;
 }
 
+.h-10 {
+  height: 2.5rem;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -820,6 +837,10 @@ video {
   height: 24rem;
 }
 
+.h-\[calc\(100\%-1rem\)\] {
+  height: calc(100% - 1rem);
+}
+
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -835,6 +856,10 @@ video {
 
 .max-h-64 {
   max-height: 16rem;
+}
+
+.max-h-full {
+  max-height: 100%;
 }
 
 .max-h-screen {
@@ -905,6 +930,10 @@ video {
   width: 75%;
 }
 
+.w-\[158\.5px\] {
+  width: 158.5px;
+}
+
 .w-\[290px\] {
   width: 290px;
 }
@@ -915,6 +944,11 @@ video {
 
 .w-\[90\%\] {
   width: 90%;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .w-full {
@@ -953,6 +987,10 @@ video {
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
+}
+
+.max-w-\[80\%\] {
+  max-width: 80%;
 }
 
 .flex-initial {
@@ -1076,6 +1114,12 @@ video {
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .space-x-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
@@ -1122,6 +1166,10 @@ video {
   overflow-y: auto;
 }
 
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1146,6 +1194,11 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-b {
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
 .rounded-b-lg {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -1154,6 +1207,11 @@ video {
 .rounded-b-xl {
   border-bottom-right-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
+}
+
+.rounded-t {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
 
 .rounded-t-lg {
@@ -1178,13 +1236,31 @@ video {
   border-width: 0px;
 }
 
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .border-r {
   border-right-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
 }
 
 .border-\[\#646464\] {
   --tw-border-opacity: 1;
   border-color: rgb(100 100 100 / var(--tw-border-opacity));
+}
+
+.border-\[\#D9D9D9\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(217 217 217 / var(--tw-border-opacity));
+}
+
+.border-\[\#F0F0F0\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(240 240 240 / var(--tw-border-opacity));
 }
 
 .border-transparent {
@@ -1211,6 +1287,11 @@ video {
   background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#f74444\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 68 68 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#f9f9f9\] {
   --tw-bg-opacity: 1;
   background-color: rgb(249 249 249 / var(--tw-bg-opacity));
@@ -1226,6 +1307,10 @@ video {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1233,6 +1318,14 @@ video {
 
 .p-0 {
   padding: 0px;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-1\.5 {
+  padding: 0.375rem;
 }
 
 .p-2 {
@@ -1251,6 +1344,14 @@ video {
   padding: 1rem;
 }
 
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
@@ -1264,11 +1365,6 @@ video {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
 }
 
 .px-3 {
@@ -1291,6 +1387,11 @@ video {
   padding-right: 1.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1301,14 +1402,14 @@ video {
   padding-bottom: 0px;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .py-3 {
@@ -1334,16 +1435,12 @@ video {
   padding-left: 0.5rem;
 }
 
-.pr-10 {
-  padding-right: 2.5rem;
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .pr-8 {
   padding-right: 2rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .pt-2 {
@@ -1492,9 +1589,19 @@ video {
   background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#be3232\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(190 50 50 / var(--tw-bg-opacity));
+}
+
 .hover\:text-\[\#369398\]:hover {
   --tw-text-opacity: 1;
   color: rgb(54 147 152 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#D9D9D9\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(217 217 217 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-500:hover {
@@ -1607,6 +1714,14 @@ video {
     margin-bottom: 3rem;
   }
 
+  .sm\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .sm\:ml-12 {
+    margin-left: 3rem;
+  }
+
   .sm\:ml-14 {
     margin-left: 3.5rem;
   }
@@ -1651,6 +1766,10 @@ video {
     height: 2.5rem;
   }
 
+  .sm\:h-12 {
+    height: 3rem;
+  }
+
   .sm\:h-20 {
     height: 5rem;
   }
@@ -1675,10 +1794,6 @@ video {
     width: 33.333333%;
   }
 
-  .sm\:w-40 {
-    width: 10rem;
-  }
-
   .sm\:w-64 {
     width: 16rem;
   }
@@ -1695,6 +1810,10 @@ video {
 
   .sm\:flex-row-reverse {
     flex-direction: row-reverse;
+  }
+
+  .sm\:flex-nowrap {
+    flex-wrap: nowrap;
   }
 
   .sm\:gap-5 {
@@ -1729,11 +1848,6 @@ video {
     padding: 2.5rem;
   }
 
-  .sm\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
   .sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -1743,14 +1857,10 @@ video {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
+
   .sm\:py-3 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-  }
-
-  .sm\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
   }
 
   .sm\:py-4 {
@@ -1845,6 +1955,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:inset-0 {
+    inset: 0px;
+  }
+
   .md\:mr-8 {
     margin-right: 2rem;
   }
@@ -1875,10 +1989,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:mr-12 {
-    margin-right: 3rem;
-  }
-
   .lg\:mr-16 {
     margin-right: 4rem;
   }
