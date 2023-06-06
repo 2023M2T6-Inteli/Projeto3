@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('menu', { title: 'Gaba' });
+  if(req.session.auth){
+    res.render('menu', { title: 'Gaba' });
+    console.log(req.session.user_id); //exemple import id variable by session
+  } else{
+    res.redirect('/');
+  }
 });
 
 //getting graphs data

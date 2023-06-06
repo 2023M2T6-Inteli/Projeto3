@@ -41,6 +41,9 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
         console.log(rows);
         res.status(401).send('<script>alert("Invalid password"); window.location.href = "/sign_in";</script>');
       } else {
+        req.session.user_id = rows[0].id;
+        req.session.name = rows[0].first_name;
+        req.session.auth = true
         name = rows[0].first_name;
         sqlpasta += rows[0].id + `";`;
         console.log(sqlpasta);
@@ -50,9 +53,9 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
           }
           console.log(rows);
           if (rows !== null) {
-            res.render("menu");
+            res.redirect("menu");
           } else {
-            res.render("menu");
+            res.redirect("menu");
           }
         });
       }
@@ -86,5 +89,20 @@ router.post('/sign_up', urlencodedParser, (req, res) => {
   res.render("tutorial");
   res.end();
 });
+
+// Logout
+router.get('/logout', (req, res) => {
+  // Clear the session variables
+  req.session.destroy(err => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      // Redirect the user to the home page or any other desired page
+      res.redirect('/');
+    }
+  });
+});
+
 
 module.exports = router;
