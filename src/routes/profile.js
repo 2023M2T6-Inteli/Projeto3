@@ -61,7 +61,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-// GET form data
+// GET form data (user's info)
 router.get('/getData', function(req, res, next) {
 
   const sql = 'SELECT * FROM users WHERE id = 1';

@@ -1,6 +1,8 @@
+//"has the page already loaded?" variable and number of students variable
 let page_loaded = 0;
 let student_num = 1;
 
+//DOM elements
 const classroom_list = document.getElementById('classroomsList');
 const students_list = document.getElementById('studentsList');
 const stdInput = document.getElementById('studentName');
@@ -9,14 +11,16 @@ const classSubject = document.getElementById("classroomSubject");
 const classYear = document.getElementById("classroomYear");
 
 
+//changing the page content when the user selects a classroom
 classroom_list.addEventListener('change', function(){
     getClassroomsData(1, parseInt(classroom_list.value));
 });
 
-
+//executes once the page is loaded
 window.addEventListener('load', getClassroomsData(1, 0))
 
 
+//gets classrooms data via ajax
 function getClassroomsData(user_id, class_id){
 
     let request = new XMLHttpRequest();
@@ -33,6 +37,7 @@ function getClassroomsData(user_id, class_id){
 };
 
 
+//posts data on the students related tables on the database
 function postStudentData(class_id = 1, name){
     let post = new XMLHttpRequest();
     post.open("POST", `classrooms/addStudent?stdName=${name}&classId=${class_id}`, true);
@@ -51,6 +56,7 @@ function postStudentData(class_id = 1, name){
 };
 
 
+//posts data on the classrooms related tables on the database
 function postClassData(name, subject, year){
     let post = new XMLHttpRequest();
     post.open("POST", `classrooms/addClass?className=${name}&subject=${subject}&year=${year}`, true);
@@ -69,6 +75,7 @@ function postClassData(name, subject, year){
 };
 
 
+//filters the data from the endpoint to render the page properly
 function getClass(data, classroom_id){
     
     let data_arr = [[],[],[],[]];
@@ -77,6 +84,7 @@ function getClass(data, classroom_id){
     let std_ids = data_arr[2];
     let std_names = data_arr[3];
     let std_index = 0;
+
     for(let i = 0; i < data.length; i++){
         if(i > 0 && data[i].class_id === data[i - 1].class_id){
             std_ids[std_index].push(data[i].std_id);
@@ -98,6 +106,7 @@ function getClass(data, classroom_id){
     };
 
     if(page_loaded != 0){
+        //destroying outdated elements
         destroyElems(students_list);
         destroyElems(classroom_list)
         createSelectElem(0, 'Turma', classroom_list)
@@ -111,6 +120,8 @@ function getClass(data, classroom_id){
         let class_name = class_names[i];
         createSelectElem(class_id, class_name, classroom_list);
     };
+    
+    //getting the students from the current selected class
     std_index = data_arr[0].indexOf(classroom_id);
     classroom_list.value = classroom_id;
 
@@ -123,6 +134,7 @@ function getClass(data, classroom_id){
 };
 
 
+//destroying elements to build new updated ones
 function destroyElems(list){
     while(list.hasChildNodes()){
         list.removeChild(list.firstChild);
@@ -130,6 +142,7 @@ function destroyElems(list){
 };
 
 
+//creating the students list
 function createListElem(id, name, list){
 
     let li = document.createElement("li");
@@ -161,6 +174,7 @@ function createListElem(id, name, list){
 };
 
 
+//creating the select options
 function createSelectElem(id, name, select){
 
     let option = document.createElement("option");
@@ -171,17 +185,22 @@ function createSelectElem(id, name, select){
 };
 
 
+//button used to add a new student to a classroom
 const addStd = document.getElementById("addStudent");
 addStd.addEventListener("click", addStudent);
 
+//variable to store the timeout id so it is cancelled once the button is pressed
 let stdTime;
 
+//executes once the button is pressed
 function addStudent(){
     if(stdTime){
+        //cleaning existing timers
         clearTimeout(stdTime)
     };
 
     if(stdInput.value.trim() != ''){
+        //posting to the database only if the field is filled up
         postStudentData(classroom_list.value, stdInput.value.trim());
         stdInput.placeholder = '';
     }
@@ -194,10 +213,11 @@ function addStudent(){
 };
 
 
+//button used to create a new classroom
 const addClass = document.getElementById("addClass");
 addClass.addEventListener("click", addClassroom);
 
-
+//executes once the button is pressed
 function addClassroom(){
 
     className.value = className.value.trim();
@@ -209,6 +229,7 @@ function addClassroom(){
     let year = classYear.value;
 
     if(name != '' && subject != '' && year != ''){
+        //posting to the database only if all the fields are filled up
         postClassData(name, subject, year);
     }
     else{
@@ -217,6 +238,7 @@ function addClassroom(){
 };
 
 
+//removes students from classrooms if the user clicks on the red "X"
 function removeStudent(id){
     let request = new XMLHttpRequest();
     request.open('DELETE', `classrooms/delete?stdId=${id}`, true);

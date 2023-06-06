@@ -1,5 +1,8 @@
+//executes once the page is loaded
 window.addEventListener('load', getData);
 
+
+//gets user's register informations
 function getData(){
     let request = new XMLHttpRequest;
     request.open('GET', 'profile/getData', true);
@@ -13,8 +16,9 @@ function getData(){
     };
 };
 
+
+//fills the form fields with the user's info
 function buildForm(data){
-    console.log(data)
     const firstName = document.getElementById("firstName");
     const lastName = document.getElementById("lastName");
     const userEmail = document.getElementById("email");

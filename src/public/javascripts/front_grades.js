@@ -1,57 +1,68 @@
+//"has the page already loaded?" variable and number of students variable
 let page_loaded = 0;
 let student_num = 1;
+
+//variable that stores the DOM students list element
 const students_list = document.getElementById('studentsList');
+
+//auxiliary variables to remove elements
 let modal_list = []
+//or create unique ids / elements
 let radio_group = 0;
 let radio_num = 0;
 let cancel_num = 0;
 
+//variable that stores the DOM activities select element
 const actvSelect = document.getElementById('activities');
+
+//variable that stores the DOM classrooms select element
 const classSelect = document.getElementById('classrooms');
 
-
+//changing the page content when the user selects a classroom
 classSelect.addEventListener('change', function(){
     getClassData(parseInt(classSelect.value));
     getModalData(parseInt(actvSelect.value), parseInt(classSelect.value));
 });
 
-
+//changing the page content when the user selects a activity
 actvSelect.addEventListener('change', function(){
     getModalData(parseInt(actvSelect.value), parseInt(classSelect.value));
 });
 
-
+//executes once the page is loaded
 window.addEventListener('load', getData);
 
-
+//auxiliary function to render data on pageload
 function getData(){
     getSelectActvData();
     getClassData(0);
 };
 
 
+//gets the data to write the modals' content
 function getModalData(actv_id, class_id){
     let request = new XMLHttpRequest;
-    request.open('GET', `grades/modal?actvId=${actv_id}&classId=${class_id}`, true); // 
+    request.open('GET', `grades/modal?actvId=${actv_id}&classId=${class_id}`, true); 
     request.send();
-    request.onreadystatechange = function(){ // se a requisição foi enviada e recebida
-        if(request.readyState === 4 && request.status === 200){ // se a requisição pode ser lida
-            let requestData = request.responseText; // qual a requisição
-            requestData = JSON.parse(requestData); //transforma o conteúdo da requisição em json
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            let requestData = request.responseText;
+            requestData = JSON.parse(requestData);
             buildModalData(requestData, actv_id);
         };
     };
 };
 
 
+//gets the data to write the activity select's data
 function getSelectActvData(){
     let request = new XMLHttpRequest;
-    request.open('GET', 'grades/selectactv', true); // 
+    request.open('GET', 'grades/selectactv', true); 
     request.send();
-    request.onreadystatechange = function(){ // se a requisição foi enviada e recebida
-        if(request.readyState === 4 && request.status === 200){ // se a requisição pode ser lida
-            let requestData = request.responseText; // qual a requisição
-            requestData = JSON.parse(requestData); //transforma o conteúdo da requisição em json
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            let requestData = request.responseText;
+            requestData = JSON.parse(requestData);
             buildSelectActivities(requestData);
 
         };
@@ -59,20 +70,22 @@ function getSelectActvData(){
 };
 
 
+//gets the data to write the classroom select's data
 function getClassData(class_id){
     let request = new XMLHttpRequest;
-    request.open('GET', 'grades/selectclass', true); // 
+    request.open('GET', 'grades/selectclass', true);
     request.send();
-    request.onreadystatechange = function(){ // se a requisição foi enviada e recebida
-        if(request.readyState === 4 && request.status === 200){ // se a requisição pode ser lida
-            let requestData = request.responseText // qual a requisição
-            requestData = JSON.parse(requestData); //transforma o conteúdo da requisição em json
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            let requestData = request.responseText
+            requestData = JSON.parse(requestData);
             buildClassroomsData(requestData, class_id);
         };
     };
 };
 
 
+//filters and organizes the data used to construct the modals' content 
 function buildModalData(data, actv_id){
     dataArray = [[],[],[],[]];
 
@@ -81,6 +94,7 @@ function buildModalData(data, actv_id){
     let questIds = dataArray[2];
     let questMaxGs = dataArray[3];
     let stdIndex = 0;
+
     for(let i = 0; i < data.length; i++){
         if(i > 0 && data[i].std_id != data[i-1].std_id){
             stdIds.push(data[i].std_id);
@@ -99,6 +113,7 @@ function buildModalData(data, actv_id){
         };
     };
 
+    //creating the possible grade values
     let possible_grades = [];
     for(let i = 0; i < questMaxGs.length; i++){
         let max = questMaxGs[i];
@@ -122,6 +137,8 @@ function buildModalData(data, actv_id){
     };
 };
 
+
+//calculating the possible grade values and the intervals
 function calculateGrades(num){
     let grades_array = []
     let interval = 0;
@@ -159,6 +176,7 @@ function calculateGrades(num){
 };
 
 
+//builds the activity select's content
 function buildSelectActivities(data){
 
     dataArray = [[],[]];
@@ -178,6 +196,7 @@ function buildSelectActivities(data){
 };
 
 
+//builds the page's content related to the selected classroom
 function buildClassroomsData(data, classroom_id){
  
     dataArray = [[],[],[],[]];
@@ -220,7 +239,8 @@ function buildClassroomsData(data, classroom_id){
     }
     page_loaded++
 
-    stdIndex = classIds.indexOf(classroom_id); // 0
+    //getting the students from the selected classroom
+    stdIndex = classIds.indexOf(classroom_id);
 
     student_num = 1;
     for(let i = 0; i < stdIds[stdIndex].length; i++){
@@ -231,6 +251,7 @@ function buildClassroomsData(data, classroom_id){
 };
 
 
+//builds the selects' content
 function buildSelect(id, name, element){
     let option = document.createElement('option');
     option.innerHTML = `${name}`;
@@ -240,6 +261,7 @@ function buildSelect(id, name, element){
 };
 
 
+//writes the students list
 function createListElem(id, name, list){
 
     let li = document.createElement('li');
@@ -261,6 +283,7 @@ function createListElem(id, name, list){
     list.appendChild(li)
 };
 
+//destroys the students list when the user selects another classroom
 function deleteNames(list){
     while(list.hasChildNodes()){
         list.removeChild(list.firstChild)
@@ -268,6 +291,7 @@ function deleteNames(list){
 };
 
 
+//destroys the existing modals when the user selects another activity or classroom
 function deleteModals(){
     for(let i = 0; i < modal_list.length; i++){
         const modal = document.getElementById(modal_list[i]);
@@ -276,6 +300,8 @@ function deleteModals(){
     modal_list = [];
 };
 
+
+//builds the modals' content
 function buildModal(std_id, std_name, questions, questions_grades){
     let question_num = 1;
 
@@ -330,9 +356,6 @@ function buildModal(std_id, std_name, questions, questions_grades){
         rd3_list.push(rdiv_thrdcomponent);
         radio_num++;
     };
-
-//    let single_radio_div = document.createElement("div");
-//    single_radio_div.classList.add("flex", "items-center", "h-5");
 
     let radios_labels_list = [[]];
     let rl_index = 0;
