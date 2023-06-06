@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-//for use user id (req.session.user_id)
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.auth){
