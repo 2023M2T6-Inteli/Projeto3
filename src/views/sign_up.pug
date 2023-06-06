@@ -4,13 +4,13 @@ extends layouts/public.pug
 block content
     // Register form
     form.flex.flex-col.items-center.justify-center.py-4.px-8.mx-auto(class='h-full w-full sm:px-14h-[600px] sm:flex-row-reverse' method="post" action='/sign_up')
-        .flex.items-center.rounded-t-xl.shadow.h-full(class="bg-[#16AFB8] xl:py-[11.88rem] lg:py-[12.36rem] sm:py-[13.62rem] md:py-[12.88rem] sm:rounded-none w-[290px] sm:w-4/12")
+        .flex.items-center.rounded-t-xl.shadow.h-full(class="bg-[#16AFB8] xl:py-[15.15rem] lg:py-[15.36rem] sm:py-[13.62rem] md:py-[12.88rem] sm:rounded-none w-[290px] sm:w-4/12")
             .flex.justify-center.items-center.h-full(class="sm:my-auto mt-8 w-full")
                 img.mb-0(src='/images/gaba_png.png', alt='logo', class="h-14 sm:mb-12 sm:h-10 md:h-16 lg:h-20 xl:h-24")
         .flex.flex-col.space-y-6.items-center.shadow.px-0.py-4.text-center.rounded-b-xl.h-full.font-bold.text-3xl(class='bg-[#16AFB8] sm:bg-[#F0F0F0] w-[290px] sm:rounded-none sm:px-4 sm:py-4 sm:w-8/12 sm:text-[#16afb8] text-[#F0F0F0]')
             p.mt-8 Cadastro
             .text-left.items-stretch.w-full.px-10.py-0(class="sm:pt-8")
-                label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Primeir nome 
+                label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Primeiro nome 
                 input#email.border.rounded-lg.py-2.pl-2.block.w-full(type='text' name='first_name' class='border-[#646464] sm:text-sm text-[#1F1F1F] font-medium focus:ring-[#16AFB8] sm:focus:border-[#16AFB8] bg-[#f9f9f9] focus:border-[#369398]' placeholder='João' required='')
             .text-left.items-stretch.w-full.px-10.py-0
                 label.block.mb-2.text-sm.font-medium(for='email' class='sm:text-[#16afb8] text-[#F0F0F0]') Último nome
