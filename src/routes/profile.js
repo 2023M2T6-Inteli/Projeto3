@@ -61,6 +61,20 @@ router.get('/', function(req, res, next) {
 });
 
 
+// GET form data
+router.get('/getData', function(req, res, next) {
+
+  const sql = 'SELECT * FROM users WHERE id = 1';
+    req.db.all(sql, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({error: err.message});
+        }
+        res.status(200).json(rows);
+    });
+});
+
+
+
 //User is fixed for testing purposes
 /* POST update profile */
 router.post('/', urlencodedParser, function(req, res, next) {
