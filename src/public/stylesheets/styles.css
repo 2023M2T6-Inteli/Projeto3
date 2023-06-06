@@ -603,6 +603,10 @@ video {
   position: relative;
 }
 
+.inset-0 {
+  inset: 0px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -1874,6 +1878,10 @@ video {
     padding-right: 1.25rem;
   }
 
+  .sm\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
   .sm\:py-3 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
