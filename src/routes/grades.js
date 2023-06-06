@@ -4,15 +4,27 @@ var router = express.Router();
 
 // GET /grades
 router.get('/', (req, res, next) => {
-    const sql = 'SELECT * FROM grades'
-/*
+    res.render('grades', {title: 'Gaba'})
+});
+
+router.get('/selectactv', (req, res, next) => {
+    const sql = 'SELECT actv.id AS actv_id, actv.name AS actv_name FROM activities AS actv ORDER BY actv.id;'
     req.db.all(sql, [], (err, rows) => {
         if (err) {
             return res.status(500).json({error: err.message});
         }
         res.status(200).json(rows);
-    });*/
-    res.render('grades', {title: 'Gaba'})
+    });
+});
+
+router.get('/selectclass', (req, res, next) => {
+    const sql = 'SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = 1 ORDER BY reg.classroom_id;';
+    req.db.all(sql, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({error: err.message});
+        }
+        res.status(200).json(rows);
+    });
 });
 
 // GET/grades/:id
