@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   if(req.session.auth){
     res.render('menu', { title: 'Gaba' });
+    console.log(req.session.user_id); //exemple import id variable by session
   } else{
     res.redirect('/');
   }
