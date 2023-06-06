@@ -9,13 +9,18 @@
                 //Icons
                 ul.mt-0.tracking-wide.space-y-2
                     li.min-w-max
+                        a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='/menu', aria-label='dashboard', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22")
+                                path(fill="#f0f0f0" d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z")
+                            span.font-medium Menu
                     li.min-w-max
-                        a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='/create', aria-label='dashboard', class='text-[#F0F0F0] hover:bg-[#369398]')
+                        a.group.flex.items-center.space-x-6.px-4.py-3(href='/create', class='text-[#F0F0F0] hover:bg-[#369398]')
                             svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 24 24', fill='currentColor')
                                 path(fill-rule="evenodd", clip-rule="evenodd", class='group-hover:text-[#6DC9CE]', d="M5 19V5h7v7h7v1c.7 0 1.37.13 2 .35V9l-6-6H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h8.35c-.22-.63-.35-1.3-.35-2H5m9-14.5l5.5 5.5H14V4.5M23 18v2h-3v3h-2v-3h-3v-2h3v-3h2v3h3Z")
                             span.font-medium Criar atividade
-                        a.bg.group.flex.items-center.space-x-6.px-4.py-3(href='/grades', class='text-[#F0F0F0] hover:bg-[#369398]')
-                            svg.h-6.w-6(class="ml-[2px]", viewBox='0 0 28 28', fill='currentColor')
+                    li.min-w-max
+                        a.group.flex.items-center.space-x-6.px-4.py-3(href='/grades', class='text-[#F0F0F0] hover:bg-[#369398]')
+                            svg.h-5.w-6(class="ml-[2px]", viewBox='0 0 28 28', fill='currentColor')
                                 path(fill-rule="evenodd", clip-rule="evenodd",class='group-hover:text-[#6DC9CE]', d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z")
                             span.font-medium.-ml-1 Correção
                     li.min-w-max
@@ -33,7 +38,7 @@
                             svg.h-5.w-6(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 24 24', fill='currentColor')
                                 path(fill-rule="evenodd", clip-rule="evenodd", class='group-hover:text-[#6DC9CE]', d="M17.5 14.33c.79 0 1.63.08 2.5.24v1.5c-.62-.16-1.46-.24-2.5-.24c-1.9 0-3.39.33-4.5.99v-1.69c1.17-.53 2.67-.8 4.5-.8M13 12.46c1.29-.53 2.79-.79 4.5-.79c.79 0 1.63.07 2.5.23v1.5c-.62-.16-1.46-.24-2.5-.24c-1.9 0-3.39.34-4.5.99m4.5-3.65c-1.9 0-3.39.32-4.5 1V9.84c1.23-.56 2.73-.84 4.5-.84c.79 0 1.63.08 2.5.23v1.55c-.74-.19-1.59-.28-2.5-.28m3.5 8V7c-1.04-.33-2.21-.5-3.5-.5c-2.05 0-3.88.5-5.5 1.5v11.5c1.62-1 3.45-1.5 5.5-1.5c1.19 0 2.36.16 3.5.5m-3.5-14c2.35 0 4.19.5 5.5 1.5v14.56c0 .12-.05.24-.16.35c-.11.09-.23.17-.34.17c-.11 0-.19-.02-.25-.05c-1.28-.69-2.87-1.03-4.75-1.03c-2.05 0-3.88.5-5.5 1.5c-1.34-1-3.17-1.5-5.5-1.5c-1.66 0-3.25.36-4.75 1.07c-.03.01-.07.01-.12.03c-.04.01-.08.02-.13.02c-.11 0-.23-.04-.34-.12a.475.475 0 0 1-.16-.35V6c1.34-1 3.18-1.5 5.5-1.5c2.33 0 4.16.5 5.5 1.5c1.34-1 3.17-1.5 5.5-1.5Z")
                             span.font-medium Avaliações
-                ul.mt-48.tracking-wide
+                ul.mt-36.tracking-wide
                     li.ml-2.min-w-max
                         //Darkmode button
                         button#theme-toggle.rounded-lg.text-sm(type='button', class='text-[#F0F0F0] hover:bg-[#369398] p-2.5')

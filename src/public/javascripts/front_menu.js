@@ -28,8 +28,8 @@ function getData(route) {
             resolve(requested_data);
           } else {
             reject(new Error('Erro na solicitação. Status: ' + request.status));
-          }
-        }
+          };
+        };
       };
     });
   };
@@ -142,13 +142,13 @@ function roundNums(num){
 function defineColors(grade){
 
     if(grade < 5){
-        return 'rgb(247,68,68,0.85)'; //returning red for bad grades
+        return 'rgb(247,68,68,1)'; //returning red for bad grades
     }
     else if(grade >= 5 && grade <= 7){
-        return 'rgb(237,212,79,0.85)'; //returning yellow for median grades
+        return 'rgb(237,212,79,1)'; //returning yellow for median grades
     }
     else{
-        return 'rgb(49,179,85,0.85)'; //returning green for good grades
+        return 'rgb(49,179,85,1)'; //returning green for good grades
     };
 };
 
@@ -325,7 +325,7 @@ function buildGraphTwo(arr){
             datasets: [{
                 label: `Nota em ${subjects[min_index]}`,
                 pointBackgroundColor: colors,
-                borderColor: 'rgb(22, 175, 184, 0.85)',
+                borderColor: 'rgb(22, 175, 184, 1)',
                 data: worst_grades,
                 pointRadius: 6,
                 pointBorderWidth: 0,
