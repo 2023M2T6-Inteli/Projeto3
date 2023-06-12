@@ -79,58 +79,116 @@ CREATE TABLE IF NOT EXISTS "grades"
 CREATE INDEX "index_grades_on_question_id" ON "grades" ("question_id");
 CREATE INDEX "index_grades_on_student_id" ON "grades" ("student_id");
 
-INSERT INTO users (id, first_name, last_name, email, accepted_terms_at, admin, encrypted_password)
-VALUES (1, 'Angelita', 'Silva', 'admin@example.com', 0, true, '$2a$1');
-INSERT INTO classrooms (id, name, user_id, subject,year)
-VALUES (1, 'Português da Angelita', 1, 'Português', 2);
-INSERT INTO classrooms (id, name, user_id, subject, year)
-VALUES (2, 'Matemática da Angelita', 1, 'Matemática', 2);
-INSERT INTO students (id, name)
-VALUES (1, 'Joãozinho');
-INSERT INTO students (id, name)
-VALUES (2, 'Mariazinha');
-INSERT INTO students (id, name)
-VALUES (3, 'Pedrinho');
-INSERT INTO registrations (id, classroom_id, student_id)
-VALUES (1, 1, 1);
-INSERT INTO registrations (id, classroom_id, student_id)
-VALUES (2, 1, 2);
-INSERT INTO registrations (id, classroom_id, student_id)
-VALUES (3, 1, 3);
-INSERT INTO activities (id, name, created_at, user_id, classroom_id)
-VALUES (1, 'Prova 1', '2023-05-18 09:48:53', 1, 1);
-INSERT INTO activities (id, name, created_at, user_id, classroom_id)
-VALUES (2, 'Prova 2', '2023-05-19 13:32:24', 1, 1);
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
-VALUES (1, 1, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
-VALUES (2, 1, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description)
-VALUES (3, 1, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
-INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
-VALUES (1, 'Questão 1', 1, 1, 100);
-INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
-VALUES (2, 'Questão 2', 1, 2, 100);
-INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent)
-VALUES (3, 'Questão 3', 1, 3, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (1, 1, 1, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (2, 1, 2, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (3, 1, 3, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (4, 2, 1, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (5, 2, 2, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (6, 2, 3, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (7, 3, 1, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (8, 3, 2, 100);
-INSERT INTO grades (id, question_id, student_id, grade_percent)
-VALUES (9, 3, 3, 100);
+-- User EmaiL: global@example.com, Password: password
+INSERT INTO users (id, first_name, last_name, email, accepted_terms_at, admin, encrypted_password) VALUES (1, 'Angelita', 'Silva', 'global@example.com', 0, true, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
+
+-- Classroom
+INSERT INTO classrooms (id, name, user_id, subject, year) VALUES (1, 'Português da Angelita', 1, 'Português', 3);
+INSERT INTO classrooms (id, name, user_id, subject, year) VALUES (2, 'Matemática da Angelita', 1, 'Matemática', 3);
+
+-- Student
+INSERT INTO students (id, name) VALUES (1, 'Joãozinho');
+INSERT INTO students (id, name) VALUES (2, 'Mariazinha');
+INSERT INTO students (id, name) VALUES (3, 'Pedrinho');
+INSERT INTO students (id, name) VALUES (4, 'Jerson');
+INSERT INTO students (id, name) VALUES (5, 'Sueles');
+INSERT INTO students (id, name) VALUES (6, 'Alberto');
+INSERT INTO students (id, name) VALUES (7, 'Gerônimo');
+INSERT INTO students (id, name) VALUES (8, 'Júlia');
+INSERT INTO students (id, name) VALUES (9, 'Bruna');
+
+-- Registration
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (1, 1, 1);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (2, 1, 2);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (3, 1, 3);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (4, 2, 4);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (5, 2, 5);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (6, 2, 6);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (7, 2, 7);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (8, 2, 8);
+INSERT INTO registrations (id, classroom_id, student_id) VALUES (9, 2, 9);
+
+-- Activities
+INSERT INTO activities (id, name, created_at, user_id, classroom_id) VALUES (1, 'Prova 1', '2023-05-18 09:48:53', 1, 1);
+INSERT INTO activities (id, name, created_at, user_id, classroom_id) VALUES (2, 'Prova 2', '2023-05-19 13:32:24', 1, 2);
+
+-- Criteria
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (1, 3, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (2, 3, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (3, 3, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (4, 3, 'EF03MA05', 'Math', 'Operações', 'Lorem Ipsim');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (5, 3, 'EF03MA06', 'Math', 'Operações', 'Demo');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (6, 3, 'EF03PT01', 'Português', 'Língua Portuguesa', 'Formas geométricas');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (7, 3, 'EF03PT02', 'Português', 'Literatura', 'Lorem Ipsum');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (8, 3, 'EF03PT03', 'Português', 'Redação', 'Dolor sit');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (9, 3, 'EF03PT04', 'Português', 'Gramática', 'Amet consectur');
+INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (10, 3, 'EF03PT05', 'Português', 'Gramática', 'Bla bla');
+
+-- Questions
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (1, 'Questão 1', 1, 1, 100);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (2, 'Questão 2', 1, 2, 100);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (3, 'Questão 3', 1, 3, 100);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (4, 'Questão 4', 1, 4, 100);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (5, 'Questão 5', 1, 5, 100);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (6, 'Questão 1', 2, 9, 40);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (7, 'Questão 2', 2, 6, 40);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (8, 'Questão 3', 2, 8, 30);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (9, 'Questão 4', 2, 7, 5);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (10, 'Questão 5', 2, 10, 70);
+INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (11, 'Questão 6', 2, 6, 20);
+
+-- Grades
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (1,1,1,100);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (2,1,2,100);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (3,1,3,100);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (4,2,1,90);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (5,2,2,70);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (6,2,3,90);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (7,3,1,90);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (8,3,2,90);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (9,3,3,80);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (10,4,1,50);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (11,4,2,40);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (12,4,3,10);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (13,5,1,70);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (14,5,2,80);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (15,5,3,60);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (16,6,4,20);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (17,6,5,39);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (18,6,6,30);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (19,7,4,38);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (20,7,5,14);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (21,7,6,17);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (22,8,4,20);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (23,8,5,10);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (24,8,6,3);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (25,9,4,4);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (26,9,5,5);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (27,9,6,4);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (28,10,4,50);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (29,10,5,60);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (30,10,6,63);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (31,11,4,17);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (32,11,5,13);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (33,11,6,15);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (34,6,7,23);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (35,6,8,12);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (36,6,9,26);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (37,7,7,30);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (38,7,8,27);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (39,7,9,33);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (40,8,7,15);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (41,8,8,28);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (42,8,9,23);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (43,9,7,1);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (44,9,8,5);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (45,9,9,4);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (46,10,7,32);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (47,10,8,56);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (48,10,9,49);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (49,11,7,19);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (50,11,8,8);
+INSERT INTO grades (id, question_id, student_id, grade_percent) VALUES (51,11,9,20);
 
 
 COMMIT;

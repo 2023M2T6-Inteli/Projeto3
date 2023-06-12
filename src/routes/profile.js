@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const crypto = require('crypto-js');
 
-const DBPATH = './database.db'; // Path to the database file
+const DBPATH = './database.sqlite'; // Path to the database file
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 

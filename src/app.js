@@ -6,7 +6,7 @@ var logger = require('morgan');
 const session  = require('express-session');
 
 const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('./database.db');
+let db = new sqlite3.Database('./database.sqlite');
 
 var indexRouter = require('./routes/sign_in');
 var menuRouter = require('./routes/menu');

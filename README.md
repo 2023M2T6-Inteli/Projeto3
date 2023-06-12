@@ -1,4 +1,4 @@
-# Inteli - Instituto de Tecnologia e Liderança 
+# Inteli - Instituto de Tecnologia e Liderança
 
 <p align="center">
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
@@ -11,7 +11,7 @@
 ## Apex <img align="left" alt="Apex Logo" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
 
 
-## Integrantes: 
+## Integrantes:
 <div align="center">
   <table>
     <tr>
@@ -45,7 +45,7 @@ A documentação da API foi feita no Postman e pode ser encontrada [aqui](https:
   &emsp;|--> routes<br>
   &emsp;|--> views<br>
   &emsp;| app.js<br>
-  &emsp;| database.db<br>
+  &emsp;| database.sqlite<br>
   &emsp;| database.sql<br>
   &emsp;| package.json<br>
   &emsp;| package-lock.json<br>
@@ -62,13 +62,13 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 
 - <b>imagens</b>: imagens relacionadas ao projeto como um todo (por exemplo imagens do sistema, do grupo, logotipos e afins).
 
-- <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema, principalmente no arquivo "app.js", referente ao código principal do sistema. Sobre os arquivos: "database.db" e "database.sql" fazem referência ao banco de dados da plataforma; "package.json" e "package-lock.json" são algumas configurações padrão da aplicação; "styles.css" e "tailwind.config.js" são usados para importação da ferramenta "tailwind css". Sobre as subpastas: "bin" e "node_modules" são referentes a arquivos para o funcionamento da aplicação e da sua conexão com servidor; "public" é onde se encontram todos os arquivos relacionados diretamente ao frontend que não são as páginas em si (inclui principalmente códigos em javascript); "routes" guarda as rotas de endpoints da aplicação; "views" é onde estão as páginas do frontend.(existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
+- <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema, principalmente no arquivo "app.js", referente ao código principal do sistema. Sobre os arquivos: "database.sqlite" e "database.sql" fazem referência ao banco de dados da plataforma; "package.json" e "package-lock.json" são algumas configurações padrão da aplicação; "styles.css" e "tailwind.config.js" são usados para importação da ferramenta "tailwind css". Sobre as subpastas: "bin" e "node_modules" são referentes a arquivos para o funcionamento da aplicação e da sua conexão com servidor; "public" é onde se encontram todos os arquivos relacionados diretamente ao frontend que não são as páginas em si (inclui principalmente códigos em javascript); "routes" guarda as rotas de endpoints da aplicação; "views" é onde estão as páginas do frontend.(existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
 
 ## 💻 Configuração para desenvolvimento
 
 Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
 
-> Nota: Quando você cria uma base de dados à partir do `database.sql`, são inseridos dados de seed. 
+> Nota: Quando você cria uma base de dados à partir do `database.sql`, são inseridos dados de seed.
 
 1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
