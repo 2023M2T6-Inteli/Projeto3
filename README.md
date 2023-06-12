@@ -35,13 +35,22 @@ A documentação da API foi feita no Postman e pode ser encontrada [aqui](https:
 ## 📁 Estrutura de pastas
 
 |--> documentos<br>
-  &emsp;| --> outros <br>
-  &emsp;| WAD.pdf<br>
   &emsp;| WAD.docx<br>
+  &emsp;| WAD.pdf<br>
 |--> imagens<br>
 |--> src<br>
-  &emsp;|--> Backend<br>
-  &emsp;|--> Frontend<br>
+  &emsp;|--> bin<br>
+  &emsp;|--> node_modules<br>
+  &emsp;|--> public<br>
+  &emsp;|--> routes<br>
+  &emsp;|--> views<br>
+  &emsp;| app.js<br>
+  &emsp;| database.db<br>
+  &emsp;| database.sql<br>
+  &emsp;| package.json<br>
+  &emsp;| package-lock.json<br>
+  &emsp;| styles.css<br>
+  &emsp;| tailwind.config.js<br>
 | readme.md<br>
 | license.txt
 
@@ -53,7 +62,7 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 
 - <b>imagens</b>: imagens relacionadas ao projeto como um todo (por exemplo imagens do sistema, do grupo, logotipos e afins).
 
-- <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
+- <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema, principalmente no arquivo "app.js", referente ao código principal do sistema. Sobre os arquivos: "database.db" e "database.sql" fazem referência ao banco de dados da plataforma; "package.json" e "package-lock.json" são algumas configurações padrão da aplicação; "styles.css" e "tailwind.config.js" são usados para importação da ferramenta "tailwind css". Sobre as subpastas: "bin" e "node_modules" são referentes a arquivos para o funcionamento da aplicação e da sua conexão com servidor; "public" é onde se encontram todos os arquivos relacionados diretamente ao frontend que não são as páginas em si (inclui principalmente códigos em javascript); "routes" guarda as rotas de endpoints da aplicação; "views" é onde estão as páginas do frontend.(existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
 
 ## 💻 Configuração para desenvolvimento
 
@@ -63,7 +72,7 @@ Aqui encontram-se todas as instruções necessárias para a instalação de todo
 
 1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
-3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src" no diretório raiz do repositório clonado e digite o segundo comando:
 
 ```sh
 npm install
@@ -74,23 +83,8 @@ Isso instalará todas as dependências definidas no arquivo <b>package.json</b> 
 ```sh
 npm start
 ```
-5. Agora você pode acessar a aplicação através do link http://localhost:1234/
+5. Agora você pode acessar a aplicação através do link http://localhost:3000/
 6. O servidor está online.
-
-
-```
-Alunos inteli (remover essa observação do readme.md após leitura e execução):
-
-1. Certifique-se que há um arquivo "package.json" na pasta backend do projeto.
-
-2. Dentro deste arquivo, encontre a propriedade "scripts", e adicione um atributo de nome "start"
-com o valor "node <CAMINHO_DO_ARQUIVO_DO_SERVIDOR>." Atenção: "<CAMINHO_DO_ARQUIVO_DO_SERVIDOR>" 
-deve ser substituído pelo caminho para o arquivo principal da aplicação, utilizado para subir o
-servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
-deve possuir o valor "node app.js".
-
-3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
-````
 
 ## 🗃 Histórico de lançamentos
 
@@ -109,12 +103,10 @@ deve possuir o valor "node app.js".
 
 ## 📋 Licença/License
 
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Spidus/Teste_Final_1">MODELO GIT INTELI</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">Inteli, Nome do integrante 1, Nome do integrante 2, Nome do integrante 3, Nome do integrante 4, Nome do integrante 5, Nome do integrante 6, Nome do integrante 7</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T6-Inteli/Projeto3">GABA</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">Inteli, Bruna Brasil, Felipe Fuchs, João Cauê, Lucas Nunes, Rafaela Rojas, Rafael Coutinho</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
 
 ## 🎓 Referências
 
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
-
-> Nota: O ChatGPT foi utilizado para deixar o código mais conciso na partes dos CRUDs.
