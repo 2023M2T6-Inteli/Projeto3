@@ -3,7 +3,7 @@
 extends layouts/logged_in.pug
 block content
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
-        h1.text-white Olá
+        input(placeholder="Título da Atividade" class="w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
         //- RichTextEditor Imports
         link(rel='stylesheet', href='/richtexteditor/rte_theme_default.css')
@@ -11,5 +11,18 @@ block content
         script(src="/richtexteditor/plugins/all_plugins.js")
 
         //- RichTextEditors
-        div#div_editor_1.rounded-2xl.p-4
+        div#editors
+
+        //- Edit Bar
+        div(class="flex justify-between rounded-2xl flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-white")
+            div.flex.space-x-4
+                div(id="btn_add_editor" class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                    p Adicionar Pergunta
+                button(class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                    p Imprimir
+            div.flex.space-x-4
+                a(href="/activities" class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                    p Cancelar
+                button(class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                    p Salvar
     script(src='/javascripts/front_create.js')
