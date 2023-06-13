@@ -7,8 +7,9 @@ router.get('/', (req, res, next) => {
     res.render('grades', {title: 'Gaba'})
 });
 
+//returns data to construct the activities select element
 router.get('/selectactv', (req, res, next) => {
-    const sql = 'SELECT actv.id AS actv_id, actv.name AS actv_name FROM activities AS actv ORDER BY actv.id;'
+    const sql = 'SELECT actv.id AS actv_id, actv.name AS actv_name FROM activities AS actv ORDER BY actv.name;'
     req.db.all(sql, [], (err, rows) => {
         if (err) {
             return res.status(500).json({error: err.message});
@@ -17,6 +18,8 @@ router.get('/selectactv', (req, res, next) => {
     });
 });
 
+
+//returns data to construct the classrooms select element
 router.get('/selectclass', (req, res, next) => {
     const sql = 'SELECT reg.classroom_id AS class_id, class.name AS class_name, reg.student_id AS std_id, std.name AS std_name FROM registrations AS reg INNER JOIN classrooms AS class ON class.id = reg.classroom_id INNER JOIN students AS std ON std.id = reg.student_id WHERE class.user_id = 1 ORDER BY reg.classroom_id;';
     req.db.all(sql, [], (err, rows) => {
@@ -27,6 +30,8 @@ router.get('/selectclass', (req, res, next) => {
     });
 });
 
+
+//returns data to construct the grading modals
 router.get('/modal', (req, res, next) => {
     
     const actv_id = parseInt(req.query.actvId);
@@ -41,7 +46,8 @@ router.get('/modal', (req, res, next) => {
     });
 });
 
-// GET/grades/verify
+
+//verifies if an activity is associated with a classroom or not
 router.get('/verify', (req, res, next) => {
     let actv_id = parseInt(req.query.actvId);
     let class_id = parseInt(req.query.classId);
@@ -58,6 +64,8 @@ router.get('/verify', (req, res, next) => {
     });
 });
 
+
+//adds grades to the database
 router.post('/addGrade', (req, res, next) => {
     const quest_id = parseInt(req.query.questId);
     const std_id = parseInt(req.query.stdId);
@@ -74,6 +82,8 @@ router.post('/addGrade', (req, res, next) => {
     });
 });
 
+
+//duplicates activities to associate them with new classrooms
 router.post('/duplicate', (req, res, next) => {
     const actv_id = parseInt(req.query.actvId);
     const class_id = parseInt(req.query.classId);
@@ -91,6 +101,7 @@ router.post('/duplicate', (req, res, next) => {
 });
 
 
+//clones questions from duplicated activities
 router.post('/clone', (req, res, next) => {
     const quest_id = parseInt(req.query.questId);
     const actv_id = parseInt(req.query.actvId);
@@ -105,42 +116,21 @@ router.post('/clone', (req, res, next) => {
         res.status(201).send({id: this.lastID});
     });
 });
-// POST /grades
-router.post('/', (req, res, next) => {
-    const {question_id, student_id, grade_percent} = req.body;
-    const sql = 'INSERT INTO grades(question_id, student_id, grade_percent) VALUES (?, ?, ?)'
 
-    req.db.run(sql, [question_id, student_id, grade_percent], function (err) {
+
+//returns data to export a csv file
+router.get('/export', (req, res, next) => {
+    let actv_id = parseInt(req.query.actvId);
+
+    const sql = `SELECT actv.name AS Atividade, std.name AS Estudante, SUM(g.grade_percent) AS Nota FROM questions AS quest INNER JOIN grades AS g ON g.question_id = quest.id INNER JOIN registrations AS reg ON reg.classroom_id = actv.classroom_id INNER JOIN activities AS actv ON actv.id = quest.activity_id INNER JOIN students AS std ON std.id = g.student_id AND std.id = reg.student_id WHERE actv.id = ${actv_id} GROUP BY std.id;`;
+
+    req.db.all(sql, [], (err, rows) => {
         if (err) {
-            return res.status(400).json({error: err.message});
+            return res.status(500).json({error: err.message});
         }
-        res.status(201).json({id: this.lastID});
+        res.status(200).json(rows);
     });
 });
 
-// PUT /grades/:id
-router.put('/:id', (req, res, next) => {
-    const {question_id, student_id, grade_percent} = req.body;
-    const sql = "UPDATE grades SET question_id = ?, student_id = ?, grade_percent = ? WHERE id = ?";
-
-    req.db.run(sql, [question_id, student_id, grade_percent, req.params.id], function (err) {
-        if (err) {
-            return res.status(400).json({error: err.message});
-        }
-        res.status(200).json({changes: this.changes});
-    });
-});
-
-// DELETE /grades/:id
-router.delete('/:id', (req, res, next) => {
-    const sql = 'DELETE FROM grades WHERE id = ?'
-
-    req.db.run(sql, req.params.id, function (err) {
-        if (err) {
-            return res.status(400).json({error: err.message});
-        }
-        res.status(200).json({deleted: this.changes});
-    });
-});
 
 module.exports = router;

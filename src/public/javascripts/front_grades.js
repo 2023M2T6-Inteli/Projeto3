@@ -450,6 +450,7 @@ function buildModal(std_id, std_name, questions, questions_grades){
         cancel_num++;
     };
 
+    //making the cancel button erase any marked option inside the modal and close the modal
     modal_cancel.addEventListener("click", function(){
         for(let i = 0; i < cancel_list.length; i++){
             if(cancel_list[i].checked === true){
@@ -467,24 +468,32 @@ function buildModal(std_id, std_name, questions, questions_grades){
         save_list = save_list.concat(Array.from(childs));
         save_num++;
     };
+
+    //making the save button save every grade for each question for each student
     modal_save.addEventListener("click", async function(){
         for(let i = 0; i < save_list.length; i++){
             let radio = save_list[i];
+
             if(radio.checked === true){
                 await verifyToSave(radio.name, std_id, radio.value);
             };
         };
+
         let modal = document.getElementById(`student-${std_id}-modal`);
         modal.classList.toggle("hidden");
         if(cloning === 1){
-            getModalData(parseInt(actvSelect.value), parseInt(classSelect.value));
+            //rebuilding modals after saving the grades of the first student
+            getModalData(parseInt(new_actv_id), parseInt(classSelect.value));
+
             cloning = 0;
         };
+
         alert('Notas computadas com sucesso!');
     });
 };
 
 
+//verifies if the activity is associated a certain classroom in the database 
 async function verifyToSave(quest_id, std_id, grade){
     return new Promise(function(resolve, reject){
         let request = new XMLHttpRequest();
@@ -492,10 +501,12 @@ async function verifyToSave(quest_id, std_id, grade){
         request.send()
 
         request.onreadystatechange = async function(){
+            //if it is associated, just save the grades
             if(request.readyState === 4 && request.status === 200 && cloning === 0){
                 await saveGrade(quest_id, std_id, grade);
                 resolve();
             }
+            //if it isn't associated, duplicate it, associate the new actvity, clone the questions and save the grades
             else if(request.readyState === 4 && request.status === 404 && cloning === 0){
                 cloning = 1;
                 new_actv_id = await duplicateActv(actvSelect.value);
@@ -503,6 +514,7 @@ async function verifyToSave(quest_id, std_id, grade){
                 await saveGrade(cloned, std_id, grade);
                 resolve();
             }
+            //cloning new questions and saving new grades of a recently duplicated activity
             else if(request.readyState === 4 && request.status === 200 && cloning === 1){
                 let cloned = await cloneQuestion(quest_id, new_actv_id);
                 await saveGrade(cloned, std_id, grade);
@@ -513,6 +525,7 @@ async function verifyToSave(quest_id, std_id, grade){
 };
 
 
+//saves grades in the database
 async function saveGrade(quest_id, std_id, grade){
     return new Promise(function(resolve, reject){
         let post = new XMLHttpRequest();
@@ -528,6 +541,7 @@ async function saveGrade(quest_id, std_id, grade){
 };
 
 
+//duplicates activities in the database
 async function duplicateActv(actv_id){
     return new Promise(function(resolve, reject){
         let post = new XMLHttpRequest();
@@ -544,6 +558,7 @@ async function duplicateActv(actv_id){
 };
 
 
+//clones questions from duplicated activities in the database
 async function cloneQuestion(quest_id, actv_id){
     return new Promise(function(resolve, reject){
         let post = new XMLHttpRequest();
@@ -557,4 +572,59 @@ async function cloneQuestion(quest_id, actv_id){
             };
         };
     });
+};
+
+
+//exporting the grades as a csv file
+const exportBtn = document.getElementById('export');
+exportBtn.addEventListener('click', getCSVData);
+
+//getting the data from the database to build a csv file
+function getCSVData(){
+    let request = new XMLHttpRequest();
+    request.open("GET", `grades/export?actvId=${new_actv_id}`, true);
+    request.send()
+
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){
+            let requested_data = JSON.parse(request.responseText);
+            buildCSV(requested_data);
+        };
+    };
+};
+
+
+//builds the csv file (formats the data)
+function buildCSV(csv_data){
+    //column names
+    const headers = Object.keys(csv_data[0]).toString();
+
+    //rows
+    const body = csv_data.map((elem) => {
+        return Object.values(elem).toString();
+    });
+
+    //formatting
+    const csv = [headers, ...body].join('\n');
+
+    downloadCSV(csv);
+};
+
+
+//downloads the csv file with the total grades of each student
+function downloadCSV(csv){
+    //storaging the data in a blob
+    const blob = new Blob([csv], { type: 'application/csv' });
+
+    //creating an URL for it
+    const url = URL.createObjectURL(blob);
+
+    //downloading it with html elements and properties
+    const a = document.getElementById('download');
+    a.download = 'notas-gaba.csv';
+    a.href = url;
+
+    a.click();
+    //removing the created url from memory
+    URL.revokeObjectURL(url);
 };
