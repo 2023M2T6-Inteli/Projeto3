@@ -41,6 +41,7 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
         console.log(rows);
         res.status(401).send('<script>alert("Invalid password"); window.location.href = "/sign_in";</script>');
       } else {
+         // Authenticate user and redirect to menu
         req.session.user_id = rows[0].id;
         req.session.name = rows[0].first_name;
         req.session.auth = true
