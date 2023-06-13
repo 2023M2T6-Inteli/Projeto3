@@ -41,6 +41,7 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
         console.log(rows);
         res.status(401).send('<script>alert("Invalid password"); window.location.href = "/sign_in";</script>');
       } else {
+         // Authenticate user and redirect to menu
         req.session.user_id = rows[0].id;
         req.session.name = rows[0].first_name;
         req.session.auth = true
@@ -64,7 +65,6 @@ router.post('/sign_in', urlencodedParser, (req, res) => {
 });
 
 
-
 // Create a new user
 router.post('/sign_up', urlencodedParser, (req, res) => {
   // Ensure the request has the correct initial code
@@ -78,17 +78,24 @@ router.post('/sign_up', urlencodedParser, (req, res) => {
   // Variable to define the SQL statement
   var sql = 'INSERT INTO users (id, first_name, last_name, email, encrypted_password) VALUES(null,"' + req.body.first_name + '","' + req.body.last_name + '","' + req.body.email + '","' + encryptedPassword + '");';
   console.log(sql);
-  db.run(sql, [], err => {
+  db.run(sql, [], function (err) {
     if (err) {
       console.log("Error inserting data");
       // Log the error to the console to prevent a general crash
       throw err;
+    } else {
+      // Get the last inserted row ID
+      var userId = this.lastID;
+      // Authenticate user and redirect to tutorial
+      req.session.user_id = userId;
+      req.session.name = req.body.first_name;
+      req.session.auth = true;
+      res.redirect('/tutorial'); 
     }
   });
   db.close();
-  res.render("tutorial");
-  res.end();
 });
+
 
 // Logout
 router.get('/logout', (req, res) => {
