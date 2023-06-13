@@ -8,9 +8,15 @@ const students_list = document.getElementById('studentsList');
 //auxiliary variables to remove elements
 let modal_list = []
 //or create unique ids / elements
-let radio_group = 0;
 let radio_num = 0;
 let cancel_num = 0;
+let save_num = 0;
+
+//variable that stores the ids of duplicated activities
+let new_actv_id = 0;
+
+//variable that tells when the code is cloning questions or if they've been cloned
+let cloning = 0;
 
 //variable that stores the DOM activities select element
 const actvSelect = document.getElementById('activities');
@@ -57,14 +63,14 @@ function getModalData(actv_id, class_id){
 //gets the data to write the activity select's data
 function getSelectActvData(){
     let request = new XMLHttpRequest;
-    request.open('GET', 'grades/selectactv', true); 
+    request.open('GET', 'grades/selectactv', true);
     request.send();
-    request.onreadystatechange = function(){
+    request.onreadystatechange = async function(){
         if(request.readyState === 4 && request.status === 200){
             let requestData = request.responseText;
             requestData = JSON.parse(requestData);
             buildSelectActivities(requestData);
-
+                
         };
     };
 };
@@ -178,14 +184,18 @@ function calculateGrades(num){
 
 //builds the activity select's content
 function buildSelectActivities(data){
-
     dataArray = [[],[]];
 
     let actvIds = dataArray[0];
     let actvNames = dataArray[1];
     for(let i = 0; i < data.length; i++){
-        actvIds.push(data[i].actv_id);
-        actvNames.push(data[i].actv_name);
+        if(i > 0 && data[i - 1].actv_name === data[i].actv_name){
+            continue;
+        }
+        else{
+            actvIds.push(data[i].actv_id);
+            actvNames.push(data[i].actv_name);
+        };
     };
 
     for(let i = 0; i < actvIds.length; i++){
@@ -360,13 +370,14 @@ function buildModal(std_id, std_name, questions, questions_grades){
     let radios_labels_list = [[]];
     let rl_index = 0;
     for(let i = 0; i < questions_grades.length; i++){
+        let quest_id = questions[i];
         for(let g = 0; g < questions_grades[i].length; g++){
             let grade = questions_grades[i][g];
 
             let radio = document.createElement("input");
             radio.classList.add("w-4", "h-4", "text-[#16afb8]", "bg-[#F0F0F0]", "border-[#D9D9D9]", "focus:ring-[#369398]");
             radio.setAttribute("type", "radio");
-            radio.setAttribute("name", `${radio_group}`);
+            radio.setAttribute("name", `${quest_id}`);
             radio.setAttribute("value", `${grade}`);
 
             let label_div = document.createElement("div");
@@ -381,7 +392,6 @@ function buildModal(std_id, std_name, questions, questions_grades){
         };
         rl_index++;
         radios_labels_list.push([]);
-        radio_group++
     };
 
     let modal_bot_buttons_div = document.createElement("div");
@@ -389,10 +399,6 @@ function buildModal(std_id, std_name, questions, questions_grades){
 
     let modal_save = document.createElement("button");
     modal_save.setAttribute("type", "button");
-    modal_save.addEventListener("click", function(){
-        let modal = document.getElementById(`student-${std_id}-modal`);
-        modal.classList.toggle("hidden");
-    });
     modal_save.classList.add("text-[#16AFB8]", "bg-[#F0F0F0]", "dark:bg-[#1F1F1F]", "hover:bg-[#D9D9D9]", "dark:hover:bg-[#333333]", "font-medium", "rounded-lg", "text-sm", "px-5", "py-3", "text-center");
     modal_save.innerHTML = "Salvar";
 
@@ -452,5 +458,103 @@ function buildModal(std_id, std_name, questions, questions_grades){
         };
         const modal = document.getElementById(`student-${std_id}-modal`);
         modal.classList.toggle("hidden");
+    });
+
+    let save_list = [];
+    for(let i = 0; i < questions.length; i++){
+        const radios_div = document.getElementById(`radios-div-${save_num}`);
+        const childs = radios_div.childNodes;
+        save_list = save_list.concat(Array.from(childs));
+        save_num++;
+    };
+    modal_save.addEventListener("click", async function(){
+        for(let i = 0; i < save_list.length; i++){
+            let radio = save_list[i];
+            if(radio.checked === true){
+                await verifyToSave(radio.name, std_id, radio.value);
+            };
+        };
+        let modal = document.getElementById(`student-${std_id}-modal`);
+        modal.classList.toggle("hidden");
+        if(cloning === 1){
+            getModalData(parseInt(actvSelect.value), parseInt(classSelect.value));
+            cloning = 0;
+        };
+        alert('Notas computadas com sucesso!');
+    });
+};
+
+
+async function verifyToSave(quest_id, std_id, grade){
+    return new Promise(function(resolve, reject){
+        let request = new XMLHttpRequest();
+        request.open("GET", `grades/verify?actvId=${actvSelect.value}&classId=${classSelect.value}`, true);
+        request.send()
+
+        request.onreadystatechange = async function(){
+            if(request.readyState === 4 && request.status === 200 && cloning === 0){
+                await saveGrade(quest_id, std_id, grade);
+                resolve();
+            }
+            else if(request.readyState === 4 && request.status === 404 && cloning === 0){
+                cloning = 1;
+                new_actv_id = await duplicateActv(actvSelect.value);
+                let cloned = await cloneQuestion(quest_id, new_actv_id);
+                await saveGrade(cloned, std_id, grade);
+                resolve();
+            }
+            else if(request.readyState === 4 && request.status === 200 && cloning === 1){
+                let cloned = await cloneQuestion(quest_id, new_actv_id);
+                await saveGrade(cloned, std_id, grade);
+                resolve();
+            };
+        };
+    });
+};
+
+
+async function saveGrade(quest_id, std_id, grade){
+    return new Promise(function(resolve, reject){
+        let post = new XMLHttpRequest();
+        post.open("POST", `grades/addGrade?questId=${quest_id}&stdId=${std_id}&grade=${grade}`, true);
+        post.send()
+
+        post.onreadystatechange = function(){
+            if(post.readyState === 4 && post.status === 201){
+                resolve();
+            };
+        };       
+    });
+};
+
+
+async function duplicateActv(actv_id){
+    return new Promise(function(resolve, reject){
+        let post = new XMLHttpRequest();
+        post.open("POST", `grades/duplicate?actvId=${actv_id}&classId=${classSelect.value}`, true);
+        post.send()
+
+        post.onreadystatechange = function(){
+            if(post.readyState === 4 && post.status === 201){
+                response = JSON.parse(post.responseText);
+                resolve(`${response.id}`);
+            };
+        };
+    });
+};
+
+
+async function cloneQuestion(quest_id, actv_id){
+    return new Promise(function(resolve, reject){
+        let post = new XMLHttpRequest();
+        post.open("POST", `grades/clone?questId=${quest_id}&actvId=${actv_id}`, true);
+        post.send()
+
+        post.onreadystatechange = function(){
+            if(post.readyState === 4 && post.status === 201){
+                response = JSON.parse(post.responseText);
+                resolve(`${response.id}`);
+            };
+        };
     });
 };
