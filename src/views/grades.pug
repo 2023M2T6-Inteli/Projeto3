@@ -7,7 +7,7 @@ block content
         //Section Filter-class
         .p-4.flex.flex-row.gap-4.items-center.justify-center.rounded-2xl(class='min-w-[200px] w-[90%] bg-[#16afb8]')
             select#activities.p-3.rounded-2xl.text-2xl(class='w-2/3 bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
-                option Atividade
+                option(value = 0) Atividade
             select#classrooms.p-3.rounded-2xl.text-2xl(class='w-1/3 bg-[#F0F0F0] dark:bg-[#1F1F1F] text-[#16afb8]')
                 option Turma
         //Section Classes
@@ -21,7 +21,8 @@ block content
                 ul#studentsList
     
         .flex.items-center.w-full.justify-end
-            button.h-12.w-20.rounded-xl.mt-5.text-white.text-lg.text-center.mr-6(class='bg-[#16afb8] sm:w-24 sm:text-xl sm:mr-10 lg:mr-16')
-                | Exportar
+            a#download
+                button#export.h-12.w-20.rounded-xl.mt-5.text-white.text-lg.text-center.mr-6(class='bg-[#16afb8] sm:w-24 sm:text-xl sm:mr-10 lg:mr-16')
+                    | Exportar
     //Container Students
     script(src="./javascripts/front_grades.js")
