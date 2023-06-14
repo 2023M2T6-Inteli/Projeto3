@@ -13,7 +13,7 @@ const classYear = document.getElementById("classroomYear");
 
 //changing the page content when the user selects a classroom
 classroom_list.addEventListener('change', function(){
-    getClassroomsData(1, parseInt(classroom_list.value));
+    getClassroomsData(parseInt(classroom_list.value));
 });
 
 //executes once the page is loaded
@@ -21,10 +21,10 @@ window.addEventListener('load', getClassroomsData(1, 0))
 
 
 //gets classrooms data via ajax
-function getClassroomsData(user_id, class_id){
+function getClassroomsData(class_id){
 
     let request = new XMLHttpRequest();
-    request.open('GET', `classrooms/select?userId=${user_id}`, true);
+    request.open('GET', `classrooms/select`, true);
     request.send();
   
     request.onreadystatechange = function() {
