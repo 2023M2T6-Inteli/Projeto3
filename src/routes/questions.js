@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 // GET /questions
-router.get('/', (req, res, next) => {
+router.get('/api/', (req, res, next) => {
     const sql = 'SELECT * FROM questions'
 
     req.db.all(sql, [], (err, rows) => {
@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 // GET/questions/:id
-router.get('/:id', (req, res, next) => {
+router.get('/api/:id', (req, res, next) => {
     const sql = 'SELECT * FROM questions WHERE id = ?'
 
     req.db.get(sql, [req.params.id], (err, row) => {
@@ -30,7 +30,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // POST /questions
-router.post('/', (req, res, next) => {
+router.post('/api/', (req, res, next) => {
     const {content, activity_id, criterium_id, max_grade_percent} = req.body;
     const sql = 'INSERT INTO questions(content, activity_id, criterium_id, max_grade_percent) VALUES (?, ?, ?, ?)'
 
@@ -43,7 +43,7 @@ router.post('/', (req, res, next) => {
 });
 
 // PUT /questions/:id
-router.put('/:id', (req, res, next) => {
+router.put('/api/:id', (req, res, next) => {
     const {content, activity_id, criterium_id, max_grade_percent} = req.body;
     const sql = "UPDATE questions SET content = ?, activity_id = ?, criterium_id = ?, max_grade_percent = ? WHERE id = ?";
 
@@ -56,7 +56,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // DELETE /questions/:id
-router.delete('/:id', (req, res, next) => {
+router.delete('/api/:id', (req, res, next) => {
     const sql = 'DELETE FROM questions WHERE id = ?'
 
     req.db.run(sql, req.params.id, function (err) {

@@ -11,7 +11,24 @@ function createRichTextEditor() {
     editors.push(new RichTextEditor("#div_editor_" + id));
 }
 
+function saveActivity() {
+    let activityId = createActivity(title);
+
+    editors.forEach(editor => {
+        createQuestion(activityId)
+    });
+}
+
+function createQuestion(activityId) {
+    alert("Created question with Activity ID: " + activityId);
+}
+
+function createActivity(title) {
+    return 1
+}
+
 createRichTextEditor();
 document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
+document.getElementById("btn_save").addEventListener("click", saveActivity);
 
 //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
