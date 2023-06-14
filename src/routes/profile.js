@@ -46,7 +46,12 @@ function updateUser(userId, firstName, lastName, email, encryptedPassword) {
 }
 /* GET profile page. */
 router.get('/', function(req, res, next) {
-  res.render('profile', { title: 'Gaba' });
+  if(req.session.auth){
+    res.render('profile', { title: 'Gaba' });
+    }
+    else{
+    res.redirect('/');
+  }
 });
 // GET form data (user's info)
 router.get('/getData', function(req, res, next) {
