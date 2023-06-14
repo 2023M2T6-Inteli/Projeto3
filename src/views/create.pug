@@ -3,7 +3,7 @@
 extends layouts/logged_in.pug
 block content
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
-        input(placeholder="Título da Atividade" class="w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
+        input#input_title(placeholder="Título da Atividade" class="w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
         //- RichTextEditor Imports
         link(rel='stylesheet', href='/richtexteditor/rte_theme_default.css')
