@@ -3,16 +3,42 @@ let editors = [];
 createRichTextEditor();
 document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
 document.getElementById("btn_save").addEventListener("click", saveActivity);
-document.getElementById("btn_home_page").addEventListener("click", () => {window.location.href = "/activities"});
+document.getElementById("btn_home_page").addEventListener("click", () => { window.location.href = "/activities" });
+
+function criteriaDropdown(id) {
+    let criteriaDropdown = document.createElement("select");
+    criteriaDropdown.setAttribute("id", "select_criteria_" + id);
+    criteriaDropdown.setAttribute("class", "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500");
+
+    var placeholder = document.createElement('option');
+    placeholder.innerHTML = "Selecione um critério da BNCC";
+    placeholder.setAttribute("disabled", "true");
+    placeholder.setAttribute("selected", "true");
+    criteriaDropdown.appendChild(placeholder);
+
+    for (var i = 0; i <= 5; i++) {
+        var opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = i;
+        criteriaDropdown.appendChild(opt);
+    }
+
+    return criteriaDropdown
+}
 
 function createRichTextEditor() {
     let id = editors.length.toString();
 
+    let editorContainer = document.createElement("div");
+    editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white");
+
+    editorContainer.appendChild(criteriaDropdown(id));
+
     let editor = document.createElement("div");
     editor.setAttribute("id", "div_editor_" + id);
-    editor.setAttribute("class", "mb-4 p-4 rounded-2xl");
-    document.getElementById("editors").appendChild(editor);
+    editorContainer.appendChild(editor);
 
+    document.getElementById("editors").appendChild(editorContainer);
     editors.push(new RichTextEditor("#div_editor_" + id));
 }
 
@@ -20,20 +46,20 @@ async function saveActivity() {
     let title = document.getElementById("input_title").value;
     let activityId = await createActivity(title);
 
-    editors.forEach(editor => {
-        createQuestion(activityId, editor)
+    editors.forEach((editor, index) => {
+        createQuestion(activityId, editor, index)
     });
 
     document.getElementById("saved_modal").classList.toggle("hidden");
 }
 
-async function createQuestion(activityId, editor) {
+async function createQuestion(activityId, editor, index) {
     const response = await fetch("http://127.0.0.1:3000/questions/api", {
         method: "POST",
         body: JSON.stringify({
             // TODO: Remove static params
             activity_id: activityId,
-            criterium_id: 1,
+            criterium_id: document.getElementById("select_criteria_" + index).value,
             max_grade_percent: 50,
             content: editor.getHTMLCode()
         }),
