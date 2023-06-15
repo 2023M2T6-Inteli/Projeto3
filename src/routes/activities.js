@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET exam page. */
 router.get('/', function(req, res, next) {
-  res.render('activities', { title: 'Gaba' });
+  if(req.session.auth){
+    res.render('activities', { title: 'Gaba' });
+    }
+    else{
+    res.redirect('/');
+  }
 });
 
 // GET/activities/api/:id

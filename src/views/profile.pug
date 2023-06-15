@@ -7,15 +7,15 @@ block content
       div.w-full.flex.gap-4
         div.flex.flex-col.ml-2(class='w-1/2')
           label.text-2xl.mb-1(for= "first_name" class='text-[#F0F0F0]') Primeiro Nome
-          input#firstName.w-full.p-3.rounded-2xl.text-xl(name="first_name" class='bg-[#F0F0F0] text-[#16afb8] mb-2' required='')
+          input#firstName.w-full.p-3.rounded-2xl.text-xl(name="first_name" class=' text-[#16afb8] bg-[#F0F0F0] dark:bg-[#333333] font-bold sm:text-base mb-2' required='')
           label.text-2xl.mb-1(for= "last_name" class='text-[#F0F0F0]') Último Nome
-          input#lastName.w-full.p-3.rounded-2xl.text-xl(name="last_name" class='bg-[#F0F0F0] text-[#16afb8] mb-2' required='')
+          input#lastName.w-full.p-3.rounded-2xl.text-xl(name="last_name" class=' text-[#16afb8] bg-[#F0F0F0] dark:bg-[#333333] font-bold sm:text-base mb-2' required='')
           label.text-2xl.mb-1(for= "encrypted_password" class='text-[#F0F0F0]') Nova Senha
-          input.w-full.p-3.rounded-2xl.text-xl(name="encrypted_password" class='bg-[#F0F0F0] text-[#16afb8] mb-2' required='')
+          input.w-full.p-3.rounded-2xl.text-xl(name="encrypted_password" class=' text-[#16afb8] bg-[#F0F0F0] dark:bg-[#333333] font-bold sm:text-base mb-2' required='')
       div.w-full.ml-4
         label.text-2xl.mb-1(for= "email" class='text-[#F0F0F0]') Email
-        input#email.w-full.pl-3.py-3.mr-4.rounded-2xl.text-xl(type='email' name="email" class='bg-[#F0F0F0] text-[#16afb8] mb-2')
-      button.rounded-3xl.h-12.px-6.py-2.mt-5.text-2xl(type='submit' class='bg-[#16afb8] sm:bg-[#F0F0F0] text-[#F0F0F0] sm:text-[#16AFB8] w-24 sm:w-64 sm:px-5') Salvar alterações
+        input#email.w-full.pl-3.py-3.mr-4.rounded-2xl.text-xl(type='email' name="email" class=' text-[#16afb8] bg-[#F0F0F0] dark:bg-[#333333] font-bold sm:text-base mb-2')
+      button.rounded-3xl.h-12.px-6.py-2.mt-5.text-2xl(type='submit' class='bg-[#F0F0F0] dark:shadow-[#7A7A7A] dark:bg-[#333333] bg-[#16afb8] sm:bg-[#F0F0F0] text-[#F0F0F0] sm:text-[#16AFB8] w-24 sm:w-64 sm:px-5') Salvar alterações
 
   script(src='https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js')
   script(src="./javascripts/front_profile.js") 
