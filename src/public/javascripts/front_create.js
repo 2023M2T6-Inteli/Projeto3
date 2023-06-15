@@ -69,7 +69,7 @@ async function createRichTextEditor() {
 */
 async function saveActivity() {
     let title = document.getElementById("input_title").value;
-    let activityId = await createActivity(title);
+    let activityId = await createActivity(await title);
 
     editors.forEach((editor, index) => {
         createQuestion(activityId, editor, index)
@@ -115,7 +115,7 @@ async function createActivity(title) {
             // TODO: Remove these IDs
             user_id: 1,
             classroom_id: 1,
-            title: title
+            name: title
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"

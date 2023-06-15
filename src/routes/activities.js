@@ -11,6 +11,18 @@ router.get('/', function(req, res, next) {
   }
 });
 
+// GET/activities/api
+router.get('/api', (req, res, next) => {
+  const sql = 'SELECT * FROM activities'
+
+  req.db.all(sql, [], (err, rows) => {
+      if (err) {
+          return res.status(500).json({error: err.message});
+      }
+      res.status(200).json(rows);
+  });
+});
+
 // GET/activities/api/:id
 router.get('/api/:id', (req, res, next) => {
   const sql = 'SELECT * FROM activities WHERE id = ?'
