@@ -1,5 +1,10 @@
 let editors = [];
 
+createRichTextEditor();
+document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
+document.getElementById("btn_save").addEventListener("click", saveActivity);
+document.getElementById("btn_home_page").addEventListener("click", () => {window.location.href = "/activities"});
+
 function createRichTextEditor() {
     let id = editors.length.toString();
 
@@ -18,6 +23,8 @@ async function saveActivity() {
     editors.forEach(editor => {
         createQuestion(activityId, editor)
     });
+
+    document.getElementById("saved_modal").classList.toggle("hidden");
 }
 
 async function createQuestion(activityId, editor) {
@@ -67,9 +74,3 @@ async function createActivity(title) {
         throw new Error("HTTP-Error: " + response.status);
     }
 }
-
-createRichTextEditor();
-document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
-document.getElementById("btn_save").addEventListener("click", saveActivity);
-
-//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");

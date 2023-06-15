@@ -2,6 +2,14 @@
     Import logged_in layout
 extends layouts/logged_in.pug
 block content
+    //- Saved Modal
+    div#saved_modal(class="hidden fixed top-0 right-0 left-0 h-screen w-screen" style="z-index: 50; background-color: rgba(0,0,0,0.7); padding: 15%;")
+        .bg-white.rounded-2xl.p-4.flex(style="padding-top: 15%; padding-bottom: 15%;")
+            div(style="margin: auto")
+                h2(class="text-2xl") Atividade Criada com Sucesso!
+                .w-full.text-center.mt-8
+                    button#btn_home_page(class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                        p Voltar para a página inicial
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
         input#input_title(placeholder="Título da Atividade" class="w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
     div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
@@ -25,4 +33,6 @@ block content
                     p Cancelar
                 button#btn_save(class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
                     p Salvar
+
+
     script(src='/javascripts/front_create.js')
