@@ -1,45 +1,133 @@
-// Pegar do pug o botão, posições e o conteúdo a ser duplicado
-const addQuestionButton = document.getElementById('addQuestionButton');
-const questionBox = document.getElementById('questionBox');
-const submitButtons = document.getElementById('submitButtons');
+let editors = [];
 
-// Event Listener vai "ouvir" os cliques do nosso botão e chamar a função duplicate()
-addQuestionButton.addEventListener('click', duplicate);
+createRichTextEditor();
+document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
+document.getElementById("btn_save").addEventListener("click", saveActivity);
+document.getElementById("btn_home_page").addEventListener("click", () => { window.location.href = "/activities" });
 
-//define a posição da caixa de perguntas duplicada
-function duplicate() {
-  const duplicatedQuestionBox = cloneQuestionBox();
-  duplicatedQuestionBox.style.marginTop = '20px';
-  //define a posição da questionBox original para ficar no topo, antes da duplicado e dos botões imprimir e adicionar pergunta
-  questionBox.parentNode.insertBefore(duplicatedQuestionBox, submitButtons);
+
+/**
+ * Fetched all criteria from the database
+ * @return {[Array]}     Array with Criteria objects
+ */
+async function criteria() {
+    let response = await fetch("http://127.0.0.1:3000/criteria", {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+
+    return await response.json();
 }
 
-// Function to clone the question box
-function cloneQuestionBox() {
-  //cahama a função de id 
-  const newId = generateUniqueId();
-  const clonedQuestionBox = questionBox.cloneNode(true);
-  // atribui um id único para a questionBox duplicada, sem este id ao excluir uma as cópias de questionBox o botão de deletar das outras para de funcionar
-  clonedQuestionBox.setAttribute('id', 'questionBox' + newId);
-  clonedQuestionBox.classList.add('cloned-element');
-  // Adicionar evento de clique para o botão de deletar na cópia
-  const deletarClicadoCopia = clonedQuestionBox.querySelector('#deleteQuestionButton');
-  // adiciona um id único para o deleteQuestionButton duplicado, para quee ele funcione mesmo que outras cópias sejam excluidas
-  deletarClicadoCopia.setAttribute('id', 'deleteQuestionButton' + newId);
-  deletarClicadoCopia.addEventListener('click', functionDelete);
-  return clonedQuestionBox;
+/**
+* Builds the criteria dropdown
+*/
+async function criteriaDropdown(id) {
+    let criteriaDropdown = document.createElement("select");
+    criteriaDropdown.setAttribute("id", "select_criteria_" + id);
+    criteriaDropdown.setAttribute("class", "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500");
+
+    var placeholder = document.createElement('option');
+    placeholder.innerHTML = "Selecione um critério da BNCC";
+    placeholder.setAttribute("disabled", "true");
+    placeholder.setAttribute("selected", "true");
+    criteriaDropdown.appendChild(placeholder);
+
+    (await criteria()).forEach(criterium => {
+        var opt = document.createElement('option');
+        opt.value = criterium.id;
+        opt.innerHTML = criterium.synthesis;
+        criteriaDropdown.appendChild(opt);
+    });
+
+    return criteriaDropdown
 }
 
-// Função para deletar a question box que o botão está inserido
-function functionDelete(event) {
-  const deleteButton = event.target;
-  const questionBox = deleteButton.closest('.cloned-element');
-  if (questionBox) {
-    questionBox.remove();
-  }
+/**
+* Creates a new RichTextEditor
+*/
+async function createRichTextEditor() {
+    let id = editors.length.toString();
+
+    let editorContainer = document.createElement("div");
+    editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white");
+
+    editorContainer.appendChild(await criteriaDropdown(id));
+
+    let editor = document.createElement("div");
+    editor.setAttribute("id", "div_editor_" + id);
+    editorContainer.appendChild(editor);
+
+    document.getElementById("editors").appendChild(editorContainer);
+    editors.push(new RichTextEditor("#div_editor_" + id));
 }
 
-// Gera um id único para que os elementos duplicados do código não conflitam entre si
-function generateUniqueId() {
-  return 'cloned-element-' + Math.random().toString(36).substr(2, 9);
+/**
+* Saves everything on screen
+*/
+async function saveActivity() {
+    let title = document.getElementById("input_title").value;
+    let activityId = await createActivity(title);
+
+    editors.forEach((editor, index) => {
+        createQuestion(activityId, editor, index)
+    });
+
+    document.getElementById("saved_modal").classList.toggle("hidden");
+}
+
+/**
+* Creates a question on the DB
+*/
+async function createQuestion(activityId, editor, index) {
+    const response = await fetch("http://127.0.0.1:3000/questions/api", {
+        method: "POST",
+        body: JSON.stringify({
+            // TODO: Remove static params
+            activity_id: activityId,
+            criterium_id: document.getElementById("select_criteria_" + index).value,
+            max_grade_percent: 50,
+            content: editor.getHTMLCode()
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+
+    if (response.ok) {
+        // Show success modal
+    }
+    else {
+        alert("Erro!")
+        throw new Error("HTTP-Error: " + response.status);
+    }
+}
+
+/**
+* Creates an activity on the DB
+*/
+async function createActivity(title) {
+    const response = await fetch("http://127.0.0.1:3000/activities/api", {
+        method: "POST",
+        body: JSON.stringify({
+            // TODO: Remove these IDs
+            user_id: 1,
+            classroom_id: 1,
+            title: title
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+
+    if (response.ok) {
+        const json = await response.json();
+        return json.id;
+    }
+    else {
+        alert("Erro!")
+        throw new Error("HTTP-Error: " + response.status);
+    }
 }
