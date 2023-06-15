@@ -19,7 +19,7 @@ function getData(route) {
       let request = new XMLHttpRequest();
       request.open('GET', route, true);
       request.send();
-  
+
       request.onreadystatechange = function() {
         if (request.readyState === 4) {
           if (request.status === 200) {
@@ -33,7 +33,7 @@ function getData(route) {
       };
     });
   };
-  
+
 //gets the required json data to build the dropdown button's content
 function getClasstivitiesData() {
     getData('menu/classtivities')
@@ -48,7 +48,7 @@ function getClasstivitiesData() {
 
 //filters the received json object, organizing it and using arrays to store the data
 function buildClasstivitiesText(json){
-    
+
     let text = [[],[],[],[],[]]
     let actv_ids = text[0];
     let actv_names = text[1];
@@ -162,6 +162,7 @@ function destroyChart(chart){
 
 //formats date strings from the database so javascript can read them correctly
 function dateFormat(date){
+    if (date == null) date = ""
     return date.replace(' ', 'T');
 };
 
@@ -205,7 +206,7 @@ function filterGraphData(graph_data){
             subjects.push(description);
         };
     };
-    
+
     //creating the array which will be filled up with the filtered and organized data
     let avg_result = [subjects,[],[],names,grades]
 
@@ -225,7 +226,7 @@ function filterGraphData(graph_data){
 };
 
 //builds the first graph
-function buildGraphOne(arr){  
+function buildGraphOne(arr){
     //getting from the argument (filtered data) only the elements that will be used in the graph
     const subjects = arr[0];
     const colors = arr[1];
@@ -319,7 +320,7 @@ function buildGraphTwo(arr){
     let graphWorst = new Chart(canvasWorst, {
 
         type: 'line',
-    
+
         data: {
             labels: names,
             datasets: [{
@@ -363,7 +364,7 @@ function buildGraphTwo(arr){
                         boxWidth: 0
                     }
                 }
-            }       
+            }
         }
     });
 };
