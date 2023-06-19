@@ -368,3 +368,37 @@ function buildGraphTwo(arr){
         }
     });
 };
+const SUBJECT = 'EF01GE05'  // Assunto para pesquisar
+const HITS = 5              // Número de hits a retornar (6 hits significam 6 conteúdos sugeridos)
+
+/**
+ * @param {string} Assunto para pesquisar
+ * @param {number} Número de hits a retornar
+ * 
+ * @returns {array} - Array de hits
+ *
+ */
+async function getContents(subject, hits) {
+    // fetch na URL de busca do Algolia com query params
+    const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${subject}&hitsPerPage=${hits}`, {
+        method: 'GET',
+        headers: {
+            // Headers necessários para autenticação no Algolia
+            'X-Algolia-Application-Id': '6I7NDWQ9YU',
+            'X-Algolia-API-Key': '459b8ac86fdd4dc47c31095c2dd12e2f'
+        }
+    });
+    // Transforma a resposta em JSON
+    const json = await response.json();
+    // Retorna o array de hits
+    return json.hits;
+}
+
+// Chama a função getContents com os parâmetros SUBJECT e HITS
+getContents(SUBJECT, HITS).then((contents) => {
+    // Para cada elemento do array contents, imprime o título e a URL
+    contents.forEach(element => {
+        console.log(element.titulo);
+        console.log(element.url);
+    });
+});
