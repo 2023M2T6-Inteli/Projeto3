@@ -394,7 +394,7 @@ async function getContents(subject, hits) {
     return json.hits;
 }
 
-// Chama a função getContents com os parâmetros SUBJECT e HITS
+// Chama a função getContents com os parâmetros SUBJECT e HIT
 getContents(SUBJECT, HITS).then((contents) => {
     // Para cada elemento do array contents, imprime o título e a URL
     contents.forEach(element => {
