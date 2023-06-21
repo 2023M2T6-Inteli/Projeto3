@@ -1,9 +1,11 @@
 let editors = [];
+let activityId = null;
 
 createRichTextEditor();
 document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
 document.getElementById("btn_save").addEventListener("click", saveActivity);
 document.getElementById("btn_home_page").addEventListener("click", () => { window.location.href = "/activities" });
+document.getElementById("btn_print").addEventListener("click", saveAndPrint);
 
 
 /**
@@ -69,7 +71,7 @@ async function createRichTextEditor() {
 */
 async function saveActivity() {
     let title = document.getElementById("input_title").value;
-    let activityId = await createActivity(title);
+    activityId = await createActivity(await title);
 
     editors.forEach((editor, index) => {
         createQuestion(activityId, editor, index)
@@ -115,7 +117,7 @@ async function createActivity(title) {
             // TODO: Remove these IDs
             user_id: 1,
             classroom_id: 1,
-            title: title
+            name: title
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -130,4 +132,14 @@ async function createActivity(title) {
         alert("Erro!")
         throw new Error("HTTP-Error: " + response.status);
     }
+}
+
+/**
+* Saves the activity and redirects to print page
+*/
+function saveAndPrint() {
+    // Espera salvar a atividade e redireciona para a página de impressão
+    saveActivity().then(() => {
+        window.location.href = "/print?id=" + activityId;
+    });
 }
