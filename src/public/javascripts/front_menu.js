@@ -417,6 +417,10 @@ async function showCarousel() {
         slide.classList.add('relative', 'hidden', 'w-full', 'transition-transform', 'ease-in-out', 'duration-[600ms]', 'motion-reduce:transition-none');
         slide.id = index.toString();
   
+        const a = document.createElement('a');
+        a.href = content.url;
+        a.target = '_blank';
+
         const image = document.createElement('img');
         image.classList.add('block', 'w-[80%]','opacity-50', 'rounded-2xl', 'max-h-96', 'mx-auto');
         image.src = content.thumbnail;
@@ -435,7 +439,8 @@ async function showCarousel() {
         // Adicionar os elementos ao carrossel
         contentContainer.appendChild(heading);
         contentContainer.appendChild(paragraph);
-        slide.appendChild(image);
+        a.appendChild(image);
+        slide.appendChild(a);
         slide.appendChild(contentContainer);
         carouselContainer.appendChild(slide);
 
