@@ -29,7 +29,7 @@ async function criteria() {
 async function criteriaDropdown(id) {
     let criteriaDropdown = document.createElement("select");
     criteriaDropdown.setAttribute("id", "select_criteria_" + id);
-    criteriaDropdown.setAttribute("class", "mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500");
+    criteriaDropdown.setAttribute("class", "mb-4 bg-gray-50 dark:bg-[#1F1F1F] border border-gray-300 text-[#16afb8] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500");
 
     var placeholder = document.createElement('option');
     placeholder.innerHTML = "Selecione um critério da BNCC";
@@ -54,7 +54,7 @@ async function createRichTextEditor() {
     let id = editors.length.toString();
 
     let editorContainer = document.createElement("div");
-    editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white");
+    editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white dark:bg-[#1F1F1F]");
 
     editorContainer.appendChild(await criteriaDropdown(id));
 
