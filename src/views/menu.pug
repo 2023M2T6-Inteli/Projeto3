@@ -15,88 +15,7 @@ block content
             .mt-4.ml-0.flex.h-72.items-center
                 canvas#graphWorst.mr-2.rounded-lg.shadow(class='dark:shadow-[#7A7A7A] bg-[#F0F0F0] dark:bg-[#333333] md:mr-8')
         //Section habilities
-        .w-full.flex-none.h-full
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        .w-full.flex-none.h-full.h-120
             .mt-4.flex.mr-2.h-full.items-center(class="md:mr-8")
                 .flex-none.w-full.h-full.mb-12.rounded-lg.shadow(class='dark:shadow-[#7A7A7A] min-w-[260px] bg-[#F0F0F0] dark:bg-[#333333]')
                     .grid.grid-cols-2.grid-rows-1.justify-items-end
@@ -105,37 +24,15 @@ block content
                             br
                             br
                     .relative
-                        #bottomCarouselButtons.absolute.bottom-0.left-0.right-0.mb-4.flex.list-none.justify-center.p-0(class='z-[2] mx-[15%]' data-te-carousel-indicators='')
-                            button.box-content.flex-initial.border-0.border-solid.border-transparent.bg-white.bg-clip-padding.p-0.opacity-50.transition-opacity(type='button' class='mx-[3px] h-[3px] w-[30px] border-y-[10px] -indent-[999px] duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none')
-                            button.box-content.flex-initial.border-0.border-solid.border-transparent.bg-white.bg-clip-padding.p-0.opacity-50.transition-opacity(type='button' class='mx-[3px] h-[3px] w-[30px] border-y-[10px] -indent-[999px] duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none' aria-label='Slide 2')
-                            button.box-content.flex-initial.border-0.border-solid.border-transparent.bg-white.bg-clip-padding.p-0.opacity-50.transition-opacity(type='button' class='mx-[3px] h-[3px] w-[30px] border-y-[10px] -indent-[999px] duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none' aria-label='Slide 3')
+                        #bottomCarouselButtons.absolute.bottom-0.left-0.right-0.mb-4.flex.list-none.justify-center.p-0(class='z-[2] mx-[15%]')
                         // Carousel items
                         #carouselItems.relative.w-full.overflow-hidden
-                            #0.relative.hidden.w-full.transition-transform.ease-in-out(class='duration-[600ms] motion-reduce:transition-none')
-                                img.block.w-full.rounded-2xl.opacity-50(src='https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg')
-                                .absolute.bottom-5.hidden.py-5.text-center.text-white(class='inset-x-[15%] md:block')
-                                    h5.text-xl First slide label
-                                    p
-                                    | Some representative placeholder content for the first slide.
-                            #1.relative.hidden.w-full.transition-transform.ease-in-out(class='duration-[600ms] motion-reduce:transition-none')
-                                img.block.w-full.rounded-2xl.opacity-50(src='https://tecdn.b-cdn.net/img/Photos/Slides/img%20(23).jpg')
-                                .absolute.bottom-5.hidden.py-5.text-center.text-white(class='inset-x-[15%] md:block')
-                                    h5.text-xl second slide label
-                                    p
-                                    | Some representative placeholder content for the second slide.
-                            #2.relative.hidden.w-full.transition-transform.ease-in-out(class='duration-[600ms] motion-reduce:transition-none')
-                                img.block.w-full.rounded-2xl.opacity-50(src='https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg')
-                                .absolute.bottom-5.hidden.py-5.text-center.text-white(class='inset-x-[15%] md:block')
-                                    h5.text-xl Tirthy slide label
-                                    p
-                                    | Some representative placeholder content for the tirthy slide.
-                    
-                        button#prev.absolute.bottom-0.left-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.text-white.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
+                        button#prev.absolute.bottom-0.left-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] text-[#16afb8] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-[#16afb8] hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
                             span.inline-block.h-8.w-8
                                 svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 20 20' stroke-width='1.5' stroke='currentColor')
                                     path(stroke-linecap='round' stroke-linejoin='round' d='M15.75 19.5L8.25 12l7.5-7.5')
                     
-                        button#next.absolute.bottom-0.right-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.text-white.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
+                        button#next.absolute.bottom-0.right-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] text-[#16afb8] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-[#16afb8] hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
                             span
                                 svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 20 20' stroke-width='1.5' stroke='currentColor')
                                     path(stroke-linecap='round' stroke-linejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5')

@@ -11,7 +11,7 @@ window.addEventListener("load", function(){
     Chart.defaults.backgroundColor = '#7A7A7A';
 
     getClasstivitiesData();
-    setActiveItem();
+    showCarousel();
 });
 
 //gets json data from the specified endpoint and returns it
@@ -414,22 +414,23 @@ async function showCarousel() {
       contents.forEach((content, index) => {
         // Criar os elementos do carrossel (imagem, texto, etc.)
         const slide = document.createElement('div');
-        slide.className = 'relative hidden w-full transition-transform ease-in-out duration-[600ms] motion-reduce:transition-none';
+        slide.classList.add('relative', 'hidden', 'w-full', 'transition-transform', 'ease-in-out', 'duration-[600ms]', 'motion-reduce:transition-none');
         slide.id = index.toString();
   
         const image = document.createElement('img');
-        image.className = 'block w-full rounded-2xl opacity-50';
-        image.src = content.imageUrl;
+        image.classList.add('block', 'w-[80%]','opacity-50', 'rounded-2xl', 'max-h-96', 'mx-auto');
+        image.src = content.thumbnail;
   
         const contentContainer = document.createElement('div');
-        contentContainer.className = 'absolute bottom-5 hidden py-5 text-center text-white inset-x-[15%] md:block';
+        contentContainer.classList.add('absolute', 'bottom-5', 'hidden', 'py-5', 'text-center', 'text-[#333333]', 'inset-x-[15%]', 'md:block');
   
         const heading = document.createElement('h5');
-        heading.className = 'text-xl';
-        heading.textContent = content.title;
+        heading.classList.add('text-xl');
+        console.log(content.titulo)
+        heading.textContent = content.titulo;
   
         const paragraph = document.createElement('p');
-        paragraph.textContent = content.description;
+        paragraph.textContent = content.descricaoSEO;
   
         // Adicionar os elementos ao carrossel
         contentContainer.appendChild(heading);
@@ -437,14 +438,14 @@ async function showCarousel() {
         slide.appendChild(image);
         slide.appendChild(contentContainer);
         carouselContainer.appendChild(slide);
+
+        createBottomButton();
       });
     } catch (error) {
       console.error('erro', error);
     }
+    setActiveItem();
   }
-  
-  // Chamar a função para popular o carrossel
-  showCarousel();
   
 
 // Chama a função getContents com os parâmetros SUBJECT e HIT
@@ -535,6 +536,16 @@ function darkenBottomButton(button){
 
     buttons[button].classList.remove('opactity-100');
     buttons[button].classList.add('opacity-50');
+};
+
+
+function createBottomButton(){
+    const btn = document.createElement('button');
+    btn.classList.add('box-content', 'flex-initial', 'border-0', 'border-solid', 'border-transparent', 'bg-[#16afb8]', 'bg-clip-padding', 'p-0', 'opacity-50', 'transition-opacity', 'mx-[3px]', 'h-[3px]', 'w-[30px]', 'border-y-[10px]', '-indent-[999px]', 'duration-[600ms]', 'ease-[cubic-bezier(0.25,0.1,0.25,1.0)]', 'motion-reduce:transition-none');
+    btn.setAttribute('type', 'button');
+
+    bottomBtnDiv = document.getElementById('bottomCarouselButtons');
+    bottomBtnDiv.appendChild(btn);
 };
 
 
