@@ -395,6 +395,58 @@ async function getContents(subject, hits) {
     return json.hits;
 }
 
+// Função para obter os dados e adicionar ao carrossel
+async function showCarousel() {
+    const subject = 'EF01GE05'; // Assunto para pesquisar
+    const hits = 5; // Número de hits a retornar
+  
+    try {
+      // Obter os hits do servidor
+      const contents = await getContents(subject, hits);
+        console.log(contents)
+      // Selecionar o contêiner do carrossel
+      const carouselContainer = document.querySelector('#carouselItems');
+  
+      // Limpar o conteúdo atual do carrossel
+      carouselContainer.innerHTML = '';
+  
+      // Iterar sobre os hits e adicionar ao carrossel
+      contents.forEach((content, index) => {
+        // Criar os elementos do carrossel (imagem, texto, etc.)
+        const slide = document.createElement('div');
+        slide.className = 'relative hidden w-full transition-transform ease-in-out duration-[600ms] motion-reduce:transition-none';
+        slide.id = index.toString();
+  
+        const image = document.createElement('img');
+        image.className = 'block w-full rounded-2xl opacity-50';
+        image.src = content.imageUrl;
+  
+        const contentContainer = document.createElement('div');
+        contentContainer.className = 'absolute bottom-5 hidden py-5 text-center text-white inset-x-[15%] md:block';
+  
+        const heading = document.createElement('h5');
+        heading.className = 'text-xl';
+        heading.textContent = content.title;
+  
+        const paragraph = document.createElement('p');
+        paragraph.textContent = content.description;
+  
+        // Adicionar os elementos ao carrossel
+        contentContainer.appendChild(heading);
+        contentContainer.appendChild(paragraph);
+        slide.appendChild(image);
+        slide.appendChild(contentContainer);
+        carouselContainer.appendChild(slide);
+      });
+    } catch (error) {
+      console.error('erro', error);
+    }
+  }
+  
+  // Chamar a função para popular o carrossel
+  showCarousel();
+  
+
 // Chama a função getContents com os parâmetros SUBJECT e HIT
 getContents(SUBJECT, HITS).then((contents) => {
     // Para cada elemento do array contents, imprime o título e a URL
