@@ -8,6 +8,7 @@ async function activities() {
 let activitiesSelect = document.getElementById("activities_select");
 let questions_div = document.getElementById("questions_div");
 
+// Preenche o Dropwdown com as atividades
 activities().then(data => {
     data.forEach(activity => {
         let option = document.createElement("option");
@@ -23,6 +24,7 @@ async function fetchQuestion() {
     return await response.json();
 }
 
+// Função para renderizar a atividade
 async function loadActivity() {
     questions_div.innerHTML = ""; // Limpa as perguntas
 
@@ -37,4 +39,10 @@ async function loadActivity() {
     }
 }
 
+// Renderizar a atividade quando btn_view for clicado
 document.getElementById("btn_view").addEventListener("click", loadActivity);
+
+// Redirecionamento para a página de impressão
+document.getElementById("btn_print").addEventListener("click", () => {
+    window.location.href = "/print?id=" + activitiesSelect.value;
+});

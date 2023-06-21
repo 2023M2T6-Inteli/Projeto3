@@ -11,6 +11,7 @@ let db = new sqlite3.Database('./database.sqlite');
 var indexRouter = require('./routes/sign_in');
 var menuRouter = require('./routes/menu');
 var profileRouter = require('./routes/profile');
+var printRouter = require('./routes/print');
 var signInRouter = require('./routes/sign_in');
 var signUpRouter = require('./routes/sign_up');
 var activitiesRouter = require('./routes/activities');
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/menu', menuRouter);
 app.use('/profile', profileRouter);
+app.use('/print', printRouter);
 app.use('/sign_in', signInRouter);
 app.use('/sign_up', signUpRouter);
 app.use('/activities', activitiesRouter);
