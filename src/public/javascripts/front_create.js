@@ -54,6 +54,7 @@ async function createRichTextEditor() {
     let id = editors.length.toString();
 
     let editorContainer = document.createElement("div");
+    editorContainer.setAttribute("id", "div_editor_container_" + id);
     editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white dark:bg-[#1F1F1F]");
 
     editorContainer.appendChild(await criteriaDropdown(id));
@@ -62,8 +63,15 @@ async function createRichTextEditor() {
     editor.setAttribute("id", "div_editor_" + id);
     editorContainer.appendChild(editor);
 
+    let remove_editor = document.createElement("button");
+    remove_editor.setAttribute("id", "button_remove_editor_" + id);
+    remove_editor.setAttribute("class", "mt-4 mr-auto font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5");
+    remove_editor.innerHTML = "Remover questão";
+    remove_editor.addEventListener("click", () => {editors[id].deleted = true; document.getElementById("div_editor_container_" + id).remove()});
+    editorContainer.appendChild(remove_editor);
+
     document.getElementById("editors").appendChild(editorContainer);
-    editors.push(new RichTextEditor("#div_editor_" + id));
+    editors.push({deleted: false, editor: new RichTextEditor("div_editor_" + id)});
 }
 
 /**
@@ -74,7 +82,7 @@ async function saveActivity() {
     activityId = await createActivity(await title);
 
     editors.forEach((editor, index) => {
-        createQuestion(activityId, editor, index)
+        createQuestion(activityId, editor.editor, index)
     });
 
     document.getElementById("saved_modal").classList.toggle("hidden");
