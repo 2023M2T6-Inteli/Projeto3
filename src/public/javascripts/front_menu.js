@@ -11,7 +11,6 @@ window.addEventListener("load", function(){
     Chart.defaults.backgroundColor = '#7A7A7A';
 
     getClasstivitiesData();
-    showCarousel();
 });
 
 //gets json data from the specified endpoint and returns it
@@ -175,6 +174,7 @@ function filterGraphData(graph_data){
     let avg_denominator = [];
     let avg_index = 0;
     let subjects = [];
+    let questions = [];
 
     //storing the data in specific arrays, filtering it and making some average calculations
     for(let i = 0; i < graph_data.length; i++){
@@ -182,6 +182,7 @@ function filterGraphData(graph_data){
         let grade = graph_data[i].grade_percent;
         let description = graph_data[i].description;
         let name = graph_data[i].name;
+        let question = graph_data[i].id;
 
         if(i > 0 && description === graph_data[i-1].description){
             sum_per_subject[avg_index] += grade * equalizer;
@@ -197,6 +198,7 @@ function filterGraphData(graph_data){
             grades.push([roundNums(grade * equalizer)]);
             avg_denominator.push(1);
             subjects.push(description);
+            questions.push(question);
 
         }
         else if(i === 0){
@@ -205,11 +207,12 @@ function filterGraphData(graph_data){
             names.push(name)
             avg_denominator.push(1);
             subjects.push(description);
+            questions.push(question);
         };
     };
 
     //creating the array which will be filled up with the filtered and organized data
-    let avg_result = [subjects,[],[],names,grades]
+    let avg_result = [subjects,[],[],names,grades, questions]
 
     //calculating averages
     for(let sum = 0; sum <= sum_per_subject.length; sum++){
@@ -293,6 +296,7 @@ function buildGraphTwo(arr){
     const averages = arr[2];
     const names = arr[3];
     const grades = arr[4];
+    const questions = arr[5];
 
     //calculating the smallest average
     let min = averages[0];
@@ -303,6 +307,10 @@ function buildGraphTwo(arr){
             min_index = i;
         };
     };
+
+    //recommending the Nova Escola content for the criterium of the question that has the smallest average
+    console.log(questions[min_index]);
+    recommend(questions[min_index]);
 
     //getting the grades that form the smallest average
     let worst_grades = grades[min_index];
@@ -369,8 +377,6 @@ function buildGraphTwo(arr){
         }
     });
 };
-const SUBJECT = 'EF01GE05'  // Assunto para pesquisar
-const HITS = 5              // Número de hits a retornar (6 hits significam 6 conteúdos sugeridos)
 
 /**
  * @param {string} Assunto para pesquisar
@@ -379,9 +385,24 @@ const HITS = 5              // Número de hits a retornar (6 hits significam 6 c
  * @returns {array} - Array de hits
  *
  */
-async function getContents(subject, hits) {
+
+//recommends Nova Escola content based on the MEC criterium of a question
+function recommend(id){
+    getData(`menu/recommend?questId=${id}`)
+    .then(function(request) {
+        const mec_code = request[0].code;
+        console.log(mec_code);
+        showCarousel(mec_code);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+}
+
+
+async function getContents(mec_code) {
     // fetch na URL de busca do Algolia com query params
-    const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${subject}&hitsPerPage=${hits}`, {
+    const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${mec_code}&hitsPerPage=6`, {
         method: 'GET',
         headers: {
             // Headers necessários para autenticação no Algolia
@@ -396,19 +417,15 @@ async function getContents(subject, hits) {
 }
 
 // Função para obter os dados e adicionar ao carrossel
-async function showCarousel() {
-    const subject = 'EF01GE05'; // Assunto para pesquisar
-    const hits = 5; // Número de hits a retornar
-  
+async function showCarousel(subject) {
+    destroyCarousel();
+
     try {
       // Obter os hits do servidor
-      const contents = await getContents(subject, hits);
-        console.log(contents)
+      const contents = await getContents(subject);
+
       // Selecionar o contêiner do carrossel
-      const carouselContainer = document.querySelector('#carouselItems');
-  
-      // Limpar o conteúdo atual do carrossel
-      carouselContainer.innerHTML = '';
+      const carouselContainer = document.getElementById('carouselItems');
   
       // Iterar sobre os hits e adicionar ao carrossel
       contents.forEach((content, index) => {
@@ -430,7 +447,6 @@ async function showCarousel() {
   
         const heading = document.createElement('h5');
         heading.classList.add('text-xl');
-        console.log(content.titulo)
         heading.textContent = content.titulo;
   
         const paragraph = document.createElement('p');
@@ -451,16 +467,17 @@ async function showCarousel() {
     }
     setActiveItem();
   }
-  
 
-// Chama a função getContents com os parâmetros SUBJECT e HIT
-getContents(SUBJECT, HITS).then((contents) => {
-    // Para cada elemento do array contents, imprime o título e a URL
-    contents.forEach(element => {
-        console.log(element.titulo);
-        console.log(element.url);
-    });
-});
+//destroys carousel items and buttons
+function destroyCarousel(){
+    let carousel = document.getElementById('carouselItems');
+    let carouselButtons = document.getElementById('bottomCarouselButtons');
+
+    while(carousel.hasChildNodes()){
+        carousel.firstChild.remove();
+        carouselButtons.firstChild.remove();
+    };
+};
 
 
 const carousel = document.getElementById("carouselItems");
