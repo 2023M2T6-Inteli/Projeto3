@@ -59,16 +59,33 @@ async function createRichTextEditor() {
 
     editorContainer.appendChild(await criteriaDropdown(id));
 
+    // Editor de Texto
     let editor = document.createElement("div");
     editor.setAttribute("id", "div_editor_" + id);
     editorContainer.appendChild(editor);
 
+    // Barra de ferramentas inferior
+    let toolbar = document.createElement("div");
+    toolbar.setAttribute("class", "flex mt-4 ");
+
+    // Caixa com valor da questão
+    let grade_box = document.createElement("input");
+    grade_box.setAttribute("id", "input_grade_" + id);
+    grade_box.setAttribute("placeholder", "Máximo de Pontos");
+    grade_box.setAttribute("type", "number");
+    grade_box.setAttribute("min", "0");
+    grade_box.setAttribute("class", "mr-4 w-1/3 bg-gray-50 dark:bg-[#1F1F1F] border border-gray-300 text-[#16afb8] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500");
+    toolbar.appendChild(grade_box);
+
+    // Botão de remover a questão
     let remove_editor = document.createElement("button");
     remove_editor.setAttribute("id", "button_remove_editor_" + id);
-    remove_editor.setAttribute("class", "mt-4 mr-auto font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5");
+    remove_editor.setAttribute("class", "mr-auto font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5");
     remove_editor.innerHTML = "Remover questão";
     remove_editor.addEventListener("click", () => {editors[id].deleted = true; document.getElementById("div_editor_container_" + id).remove()});
-    editorContainer.appendChild(remove_editor);
+    toolbar.appendChild(remove_editor);
+
+    editorContainer.appendChild(toolbar);
 
     document.getElementById("editors").appendChild(editorContainer);
     editors.push({deleted: false, editor: new RichTextEditor("div_editor_" + id)});
@@ -98,7 +115,7 @@ async function createQuestion(activityId, editor, index) {
             // TODO: Remove static params
             activity_id: activityId,
             criterium_id: document.getElementById("select_criteria_" + index).value,
-            max_grade_percent: 50,
+            max_grade_percent: document.getElementById("input_grade_" + index).value,
             content: editor.getHTMLCode()
         }),
         headers: {
