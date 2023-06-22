@@ -174,6 +174,7 @@ function filterGraphData(graph_data){
     let avg_denominator = [];
     let avg_index = 0;
     let subjects = [];
+    let questions = [];
 
     //storing the data in specific arrays, filtering it and making some average calculations
     for(let i = 0; i < graph_data.length; i++){
@@ -181,6 +182,7 @@ function filterGraphData(graph_data){
         let grade = graph_data[i].grade_percent;
         let description = graph_data[i].description;
         let name = graph_data[i].name;
+        let question = graph_data[i].id;
 
         if(i > 0 && description === graph_data[i-1].description){
             sum_per_subject[avg_index] += grade * equalizer;
@@ -196,6 +198,7 @@ function filterGraphData(graph_data){
             grades.push([roundNums(grade * equalizer)]);
             avg_denominator.push(1);
             subjects.push(description);
+            questions.push(question);
 
         }
         else if(i === 0){
@@ -204,11 +207,12 @@ function filterGraphData(graph_data){
             names.push(name)
             avg_denominator.push(1);
             subjects.push(description);
+            questions.push(question);
         };
     };
 
     //creating the array which will be filled up with the filtered and organized data
-    let avg_result = [subjects,[],[],names,grades]
+    let avg_result = [subjects,[],[],names,grades, questions]
 
     //calculating averages
     for(let sum = 0; sum <= sum_per_subject.length; sum++){
@@ -292,6 +296,7 @@ function buildGraphTwo(arr){
     const averages = arr[2];
     const names = arr[3];
     const grades = arr[4];
+    const questions = arr[5];
 
     //calculating the smallest average
     let min = averages[0];
@@ -302,6 +307,10 @@ function buildGraphTwo(arr){
             min_index = i;
         };
     };
+
+    //recommending the Nova Escola content for the criterium of the question that has the smallest average
+    console.log(questions[min_index]);
+    recommend(questions[min_index]);
 
     //getting the grades that form the smallest average
     let worst_grades = grades[min_index];
@@ -367,4 +376,205 @@ function buildGraphTwo(arr){
             }
         }
     });
+};
+
+/**
+ * @param {string} Assunto para pesquisar
+ * @param {number} Número de hits a retornar
+ * 
+ * @returns {array} - Array de hits
+ *
+ */
+
+//recommends Nova Escola content based on the MEC criterium of a question
+function recommend(id){
+    getData(`menu/recommend?questId=${id}`)
+    .then(function(request) {
+        const mec_code = request[0].code;
+        console.log(mec_code);
+        showCarousel(mec_code);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+}
+
+
+async function getContents(mec_code) {
+    // fetch na URL de busca do Algolia com query params
+    const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${mec_code}&hitsPerPage=6`, {
+        method: 'GET',
+        headers: {
+            // Headers necessários para autenticação no Algolia
+            'X-Algolia-Application-Id': '6I7NDWQ9YU',
+            'X-Algolia-API-Key': '459b8ac86fdd4dc47c31095c2dd12e2f'
+        }
+    });
+    // Transforma a resposta em JSON
+    const json = await response.json();
+    // Retorna o array de hits
+    return json.hits;
+}
+
+// Função para obter os dados e adicionar ao carrossel
+async function showCarousel(subject) {
+    destroyCarousel();
+
+    try {
+      // Obter os hits do servidor
+      const contents = await getContents(subject);
+
+      // Selecionar o contêiner do carrossel
+      const carouselContainer = document.getElementById('carouselItems');
+  
+      // Iterar sobre os hits e adicionar ao carrossel
+      contents.forEach((content, index) => {
+        // Criar os elementos do carrossel (imagem, texto, etc.)
+        const slide = document.createElement('div');
+        slide.classList.add('relative', 'hidden', 'w-full', 'transition-transform', 'ease-in-out', 'duration-[600ms]', 'motion-reduce:transition-none');
+        slide.id = index.toString();
+  
+        const a = document.createElement('a');
+        a.href = content.url;
+        a.target = '_blank';
+
+        const image = document.createElement('img');
+        image.classList.add('block', 'w-[80%]','opacity-50', 'rounded-2xl', 'min-h-40','max-h-96', 'mx-auto');
+        image.src = content.thumbnail;
+  
+        const contentContainer = document.createElement('div');
+        contentContainer.classList.add('absolute', 'bottom-5', 'hidden', 'py-5', 'text-center', 'text-[#333333]', 'inset-x-[15%]', 'mini:block');
+  
+        const heading = document.createElement('h5');
+        heading.classList.add('md:text-xl', 'sm:text-lg', 'text-xs', 'dark:text-white');
+        heading.textContent = content.titulo;
+  
+        const paragraph = document.createElement('p');
+        paragraph.classList.add('md:text-lg', 'sm:text-sm', 'text-2xs', 'dark:text-white')
+        paragraph.textContent = content.descricaoSEO;
+  
+        // Adicionar os elementos ao carrossel
+        contentContainer.appendChild(heading);
+        contentContainer.appendChild(paragraph);
+        a.appendChild(image);
+        slide.appendChild(a);
+        slide.appendChild(contentContainer);
+        carouselContainer.appendChild(slide);
+
+        createBottomButton();
+      });
+    } catch (error) {
+      console.error('erro', error);
+    }
+    setActiveItem();
+  }
+
+//destroys carousel items and buttons
+function destroyCarousel(){
+    let carousel = document.getElementById('carouselItems');
+    let carouselButtons = document.getElementById('bottomCarouselButtons');
+
+    while(carousel.hasChildNodes()){
+        carousel.firstChild.remove();
+        carouselButtons.firstChild.remove();
+    };
+};
+
+
+const carousel = document.getElementById("carouselItems");
+let items = carousel.children;
+
+
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+
+prevBtn.addEventListener('click', showPreviousItem);
+nextBtn.addEventListener('click', showNextItem);
+
+
+function showPreviousItem(){
+    const currentItem = document.getElementsByClassName('active')[0];
+    const currentItemIndex = parseInt(currentItem.id);
+
+    currentItem.classList.remove('active');
+    currentItem.classList.toggle('hidden');
+
+    darkenBottomButton(currentItemIndex);
+
+    if(currentItemIndex === 0){
+        const lastItemIndex = items.length - 1;
+        items[lastItemIndex].classList.add('active');
+        items[lastItemIndex].classList.toggle('hidden');
+
+        lightUpBottomButton(lastItemIndex);
+    }
+    else{
+        const nextItemIndex = currentItemIndex - 1;
+        items[nextItemIndex].classList.add('active');
+        items[nextItemIndex].classList.toggle('hidden');
+
+        lightUpBottomButton(nextItemIndex);
+    };
+};
+
+
+function showNextItem(){
+    const currentItem = document.getElementsByClassName('active')[0];
+    const currentItemIndex = parseInt(currentItem.id);
+
+    currentItem.classList.remove('active');
+    currentItem.classList.toggle('hidden');
+
+    darkenBottomButton(currentItemIndex);
+
+    if(currentItemIndex === items.length - 1){
+        items[0].classList.add('active');
+        items[0].classList.toggle('hidden');
+
+        lightUpBottomButton(0);
+    }
+    else{
+        const nextItemIndex = currentItemIndex + 1;
+        items[nextItemIndex].classList.add('active');
+        items[nextItemIndex].classList.toggle('hidden');
+
+        lightUpBottomButton(nextItemIndex);
+    };
+};
+
+
+function lightUpBottomButton(button){
+    const bottomCarouselBtns = document.getElementById('bottomCarouselButtons');
+    const buttons = bottomCarouselBtns.children;
+
+    buttons[button].classList.remove('opacity-50');
+    buttons[button].classList.remove('opacity-100');
+};
+
+
+function darkenBottomButton(button){
+    const bottomCarouselBtns = document.getElementById('bottomCarouselButtons');
+    const buttons = bottomCarouselBtns.children;
+
+    buttons[button].classList.remove('opactity-100');
+    buttons[button].classList.add('opacity-50');
+};
+
+
+function createBottomButton(){
+    const btn = document.createElement('button');
+    btn.classList.add('box-content', 'flex-initial', 'border-0', 'border-solid', 'border-transparent', 'bg-[#16afb8]', 'dark:bg-white', 'bg-clip-padding', 'p-0', 'opacity-50', 'transition-opacity', 'mx-[3px]', 'h-[3px]', 'w-[30px]', 'border-y-[10px]', '-indent-[999px]', 'duration-[600ms]', 'ease-[cubic-bezier(0.25,0.1,0.25,1.0)]', 'motion-reduce:transition-none');
+    btn.setAttribute('type', 'button');
+
+    bottomBtnDiv = document.getElementById('bottomCarouselButtons');
+    bottomBtnDiv.appendChild(btn);
+};
+
+
+function setActiveItem(){
+    items[0].classList.add("active");
+    items[0].classList.toggle('hidden');
+
+    lightUpBottomButton(0);
 };

@@ -15,10 +15,27 @@ block content
             .mt-4.ml-0.flex.h-72.items-center
                 canvas#graphWorst.mr-2.rounded-lg.shadow(class='dark:shadow-[#7A7A7A] bg-[#F0F0F0] dark:bg-[#333333] md:mr-8')
         //Section habilities
-        .w-full.flex-none.h-full
+        .w-full.flex-none.h-auto
             .mt-4.flex.mr-2.h-full.items-center(class="md:mr-8")
                 .flex-none.w-full.h-full.mb-12.rounded-lg.shadow(class='dark:shadow-[#7A7A7A] min-w-[260px] bg-[#F0F0F0] dark:bg-[#333333]')
-                    .grid.grid-cols-2.grid-rows-1.justify-items-end
+                    .grid.grid-cols-1.grid-rows-1.justify-items-start
                         p.text-xl.font-bold.ml-4.mt-4.justify-self-start(class='sm:text-3xl sm:mt-6 text-[#16afb8] sm:ml-8')
                             | Planos de aula recomendados
+                            br
+                            br
+                    .relative
+                        #bottomCarouselButtons.absolute.bottom-0.left-0.right-0.mb-4.flex.list-none.justify-center.p-0(class='z-[2] mx-[15%]')
+                        // Carousel items
+                        #carouselItems.relative.w-full.overflow-hidden
+                        button#prev.absolute.bottom-0.left-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] text-[#16afb8] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-[#16afb8] hover:no-underline hover:opacity-90 hover:outline-none focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
+                            span.inline-block.h-8.w-8
+                                svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 20 20' stroke-width='1.5' stroke='currentColor')
+                                    path(stroke-linecap='round' stroke-linejoin='round' d='M15.75 19.5L8.25 12l7.5-7.5')
+                    
+                        button#next.absolute.bottom-0.right-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] text-[#16afb8] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-[#16afb8] hover:no-underline hover:opacity-90 hover:outline-none focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button')
+                            span
+                                svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 20 20' stroke-width='1.5' stroke='currentColor')
+                                    path(stroke-linecap='round' stroke-linejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5')
+
     script(src="./javascripts/front_menu.js") 
+    script(src="src/public/javascripts/front_menu.js")
