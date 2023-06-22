@@ -85,77 +85,86 @@ npm start
 
 ## 🗃 Histórico de lançamentos
 
-* 0.0.0 - 14/06/2023
+* 0.5.4 - 22/06/2023
+    * integração com o algolia
+    * add carrousel no menu
+* 0.5.3 - 15/06/2023
+    * modal após a atividade ser criada
+    * mostrar nome das atividades
+    * modo imprimir atividade
+* 0.5.2 - 14/06/2023
     * integração tela de atividades
     * api endpoints para atividades 
-* 0.0.0 - 13/06/2023
+* 0.5.1 - 13/06/2023
     * sistema de classificação  
-* 0.0.0 - 12/06/2023
+* 0.5.0 - 12/06/2023
     * update seed do banco de dados para refletir os dados
     * importando rich text editor 
-* 0.0.0 - 06/06/2023
+* 0.4.7 - 06/06/2023
     * integração completa 
-* 0.0.0 - 05/06/2023
+* 0.4.6 - 05/06/2023
     * add cores nos gráficos
     * add tela de perfil
     * add logout
     * integração tela de perfil
     * criar sala e adicionar aluno 
-* 0.0.0 - 04/06/2023
+* 0.4.5 - 04/06/2023
     * criptografia da senha
     *  gerando modais dinamicamente
-* 0.0.0 - 02/06/2023
+* 0.4.4 - 02/06/2023
     * integração tela de turmas
     * adicionar e deletar questão
-* 0.3.3 - 01/06/2023
+* 0.4.3 - 01/06/2023
     * finalização tela de menu
     * validação do login
     * pegando dados do banco de dados
     * arrumando tela de criar atividade
-* 0.3.2 - 31/05/2023
+* 0.4.2 - 31/05/2023
     * add dropdown em classrooms
     * algoritmos database 
-* 0.3.1 - 30/05/2023
+* 0.4.1 - 30/05/2023
     * algoritmo dos gráficos do menu
     * mudando base de dados
-* 0.3.0 - 29/05/2023
+* 0.4.0 - 29/05/2023
     * arrumando design dos botões
     * integração tela de menu
-* 0.2.5 - 26/05/2023
+* 0.3.5 - 26/05/2023
     * linking screens
     * arrumando login e registro
     * atualização da documentação  
-* 0.2.4 - 25/05/2023
+* 0.3.4 - 25/05/2023
     * tela de turmas
     * classrooms pug
     * tela criar atividades
     * tela de testes
-* 0.2.3 - 24/05/2023
+* 0.3.3 - 24/05/2023
     * add signin/up
     * back tela de menu 
-* 0.2.2 - 23/05/2023
+* 0.3.2 - 23/05/2023
     * add darkmode (modo escuro)
     * setup pug
-* 0.2.1 - 17/05/2023
+* 0.3.1 - 17/05/2023
     * templeta padrão para telas do site
     * add navbar e sidebar
     * tela de tutorial
     * base da tela de menu
     * add dashboard no menu
-* 0.2.0 - 16/05/2023
+* 0.3.0 - 16/05/2023
     * configurações básicas Flowbite
     * atualização documentação
-* 0.1.2 - 11/05/2023
+* 0.2.2 - 11/05/2023
     * manter a conexão DB aberta
     * enviar erros como JSON
     * CRUD da tela "atividades"
-* 0.1.1 - 10/05/2023
+* 0.2.1 - 10/05/2023
     * add seed data no script .SQL
     * criação do endpoint da tela "classrooms"
     * CRUD da tela "classrooms"
-* 0.1.0 - 09/05/2023
+* 0.2.0 - 09/05/2023
     * aplicativo scaffold usando gerador express
     * add DB script
+* 0.1.0 - 18/04/2023
+    * add template
       
 
 ## 📋 Licença/License
