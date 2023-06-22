@@ -84,7 +84,43 @@ npm start
 6. O servidor está online.
 
 ## 🗃 Histórico de lançamentos
+
+* 0.0.0 - 14/06/2023
+    * integração tela de atividades
+    * api endpoints para atividades 
+* 0.0.0 - 13/06/2023
+    * sistema de classificação  
+* 0.0.0 - 12/06/2023
+    * update seed do banco de dados para refletir os dados
+    * importando rich text editor 
+* 0.0.0 - 06/06/2023
+    * integração completa 
+* 0.0.0 - 05/06/2023
+    * add cores nos gráficos
+    * add tela de perfil
+    * add logout
+    * integração tela de perfil
+    * criar sala e adicionar aluno 
+* 0.0.0 - 04/06/2023
+    * criptografia da senha
+    *  gerando modais dinamicamente
+* 0.0.0 - 02/06/2023
+    * integração tela de turmas
+    * adicionar e deletar questão
+* 0.3.3 - 01/06/2023
+    * finalização tela de menu
+    * validação do login
+    * pegando dados do banco de dados
+    * arrumando tela de criar atividade
+* 0.3.2 - 31/05/2023
+    * add dropdown em classrooms
+    * algoritmos database 
+* 0.3.1 - 30/05/2023
+    * algoritmo dos gráficos do menu
+    * mudando base de dados
 * 0.3.0 - 29/05/2023
+    * arrumando design dos botões
+    * integração tela de menu
 * 0.2.5 - 26/05/2023
     * linking screens
     * arrumando login e registro
