@@ -1,19 +1,36 @@
 let editors = [];
 let activityId = null;
+let year = null;
+let subject = null;
 
-createRichTextEditor();
 document.getElementById("btn_add_editor").addEventListener("click", createRichTextEditor);
 document.getElementById("btn_save").addEventListener("click", saveActivity);
 document.getElementById("btn_home_page").addEventListener("click", () => { window.location.href = "/activities" });
 document.getElementById("btn_print").addEventListener("click", saveAndPrint);
+document.getElementById("btn_continue").addEventListener("click", renderFirstEditor);
 
+
+/**
+ * Renderiza o primeiro editor de texto
+ */
+
+function renderFirstEditor() {
+    year = document.getElementById("select_year").value;
+    subject = document.getElementById("select_subject").value;
+
+    createRichTextEditor();
+
+    document.getElementById("editors_and_nav").classList.remove("hidden");
+    document.getElementById("btn_continue").classList.add("hidden");
+}
 
 /**
  * Pega critérios da Base de Dados
  * @return {[Array]}     Array com critérios da BNCC
  */
-async function criteria() {
-    let response = await fetch("http://127.0.0.1:3000/criteria", {
+async function criteria(id) {
+    // let year = await document.getElementById(`select_year_${id}`).value;
+    let response = await fetch(`http://127.0.0.1:3000/criteria?year=${year}&subject=${subject}`, {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -37,7 +54,7 @@ async function criteriaDropdown(id) {
     placeholder.setAttribute("selected", "true");
     criteriaDropdown.appendChild(placeholder);
 
-    (await criteria()).forEach(criterium => {
+    (await criteria(id)).forEach(criterium => {
         var opt = document.createElement('option');
         opt.value = criterium.id;
         opt.innerHTML = criterium.synthesis;
@@ -84,6 +101,7 @@ async function createRichTextEditor() {
     editorContainer.setAttribute("id", "div_editor_container_" + id);
     editorContainer.setAttribute("class", "mb-4 p-4 rounded-2xl bg-white dark:bg-[#1F1F1F]");
     editorContainer.appendChild(await criteriaDropdown(id));
+
 
     // Editor de Texto
     let editor = document.createElement("div");

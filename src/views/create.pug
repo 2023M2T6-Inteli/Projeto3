@@ -10,9 +10,28 @@ block content
                 .w-full.text-center.mt-8
                     button#btn_home_page(class="font-medium shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] sm:bg-[#16afb8] text-[#16AFB8] sm:text-[#F0F0F0] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
                         p Voltar para a página inicial
-    div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
+    div(class="rounded-2xl mr-6 gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
         input#input_title(placeholder="Título da Atividade" class="w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
-    div(class="flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
+        .flex.mt-4
+            div
+                p Série
+                select#select_year(placeholder="Série" class="py-2 rounded-3xl text-sm text-left bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8] mr-4" style="padding-left: 1rem; padding-right: 80px;")
+                    option 6
+                    option 7
+                    option 8
+                    option 9
+            div.mr-4
+             p Matéria
+                select#select_subject(placeholder="Matéria" class="mr-4 w-full py-2 rounded-3xl text-sm text-left px-4 bg-[#F0F0F0] dark:bg-[#1F1F1F] sm:text-xl text-[#16afb8]")
+                    option Matemática
+                    option Português
+                    option Ciências
+                    option História
+                    option Geografia
+                    option Inglês
+            button#btn_continue(class="font-medium mt-4 shadow rounded-lg text-sm px-4 text-center bg-[#F0F0F0] text-[#16AFB8] hover:bg-[#D9D9D9] sm:hover:bg-[#369398] sm:px-5 py-3.5")
+                p Continuar
+    div#editors_and_nav(class="hidden flex-row rounded-2xl mr-6 flex-wrap gap-3 sm:flex-nowrap mt-5 px-8 py-4 items-center bg-[#16afb8]")
         //- RichTextEditor Imports
         link(rel='stylesheet', href='/richtexteditor/rte_theme_default.css')
         script(src="/richtexteditor/rte.js")

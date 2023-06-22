@@ -4,9 +4,9 @@ var router = express.Router();
 
 // GET /criteria
 router.get('/', (req, res, next) => {
-    const sql = 'SELECT * FROM criteria'
+    const sql = 'SELECT * FROM criteria WHERE year = ? AND subject = ?'
 
-    req.db.all(sql, [], (err, rows) => {
+    req.db.all(sql, [req.query.year, req.query.subject], (err, rows) => {
         if (err) {
             return res.status(500).json({error: err.message});
         }
