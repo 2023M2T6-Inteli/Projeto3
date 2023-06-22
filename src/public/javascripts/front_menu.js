@@ -446,11 +446,11 @@ async function showCarousel(subject) {
         contentContainer.classList.add('absolute', 'bottom-5', 'hidden', 'py-5', 'text-center', 'text-[#333333]', 'inset-x-[15%]', 'mini:block');
   
         const heading = document.createElement('h5');
-        heading.classList.add('md:text-xl', 'sm:text-lg', 'text-xs');
+        heading.classList.add('md:text-xl', 'sm:text-lg', 'text-xs', 'dark:text-white');
         heading.textContent = content.titulo;
   
         const paragraph = document.createElement('p');
-        paragraph.classList.add('md:text-lg', 'sm:text-sm', 'text-2xs')
+        paragraph.classList.add('md:text-lg', 'sm:text-sm', 'text-2xs', 'dark:text-white')
         paragraph.textContent = content.descricaoSEO;
   
         // Adicionar os elementos ao carrossel
@@ -564,7 +564,7 @@ function darkenBottomButton(button){
 
 function createBottomButton(){
     const btn = document.createElement('button');
-    btn.classList.add('box-content', 'flex-initial', 'border-0', 'border-solid', 'border-transparent', 'bg-[#16afb8]', 'bg-clip-padding', 'p-0', 'opacity-50', 'transition-opacity', 'mx-[3px]', 'h-[3px]', 'w-[30px]', 'border-y-[10px]', '-indent-[999px]', 'duration-[600ms]', 'ease-[cubic-bezier(0.25,0.1,0.25,1.0)]', 'motion-reduce:transition-none');
+    btn.classList.add('box-content', 'flex-initial', 'border-0', 'border-solid', 'border-transparent', 'bg-[#16afb8]', 'dark:bg-white', 'bg-clip-padding', 'p-0', 'opacity-50', 'transition-opacity', 'mx-[3px]', 'h-[3px]', 'w-[30px]', 'border-y-[10px]', '-indent-[999px]', 'duration-[600ms]', 'ease-[cubic-bezier(0.25,0.1,0.25,1.0)]', 'motion-reduce:transition-none');
     btn.setAttribute('type', 'button');
 
     bottomBtnDiv = document.getElementById('bottomCarouselButtons');
