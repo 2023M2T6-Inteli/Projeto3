@@ -918,6 +918,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-40{
+  min-height: 10rem;
+}
+
 .\!w-px {
   width: 1px !important;
 }
@@ -1732,7 +1736,24 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-2xs{
+  font-size: 0.5rem;
+  line-height: 0.75rem;
+}
+
+@media (min-width: 200px) {
+  .mini\:block {
+    display: block;
+  }
+}
+
 @media (min-width: 640px) {
+
   .sm\:my-auto {
     margin-top: auto;
     margin-bottom: auto;
@@ -1978,6 +1999,16 @@ video {
   .md\:py-\[12\.88rem\] {
     padding-top: 12.88rem;
     padding-bottom: 12.88rem;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 

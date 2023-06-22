@@ -439,17 +439,18 @@ async function showCarousel(subject) {
         a.target = '_blank';
 
         const image = document.createElement('img');
-        image.classList.add('block', 'w-[80%]','opacity-50', 'rounded-2xl', 'max-h-96', 'mx-auto');
+        image.classList.add('block', 'w-[80%]','opacity-50', 'rounded-2xl', 'min-h-40','max-h-96', 'mx-auto');
         image.src = content.thumbnail;
   
         const contentContainer = document.createElement('div');
-        contentContainer.classList.add('absolute', 'bottom-5', 'hidden', 'py-5', 'text-center', 'text-[#333333]', 'inset-x-[15%]', 'md:block');
+        contentContainer.classList.add('absolute', 'bottom-5', 'hidden', 'py-5', 'text-center', 'text-[#333333]', 'inset-x-[15%]', 'mini:block');
   
         const heading = document.createElement('h5');
-        heading.classList.add('text-xl');
+        heading.classList.add('md:text-xl', 'sm:text-lg', 'text-xs');
         heading.textContent = content.titulo;
   
         const paragraph = document.createElement('p');
+        paragraph.classList.add('md:text-lg', 'sm:text-sm', 'text-2xs')
         paragraph.textContent = content.descricaoSEO;
   
         // Adicionar os elementos ao carrossel
