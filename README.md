@@ -5,7 +5,7 @@
 </p>
 
 
-## Apex <img align="left" alt="Apex Logo" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
+## Apex 
 
 
 ## Integrantes:
