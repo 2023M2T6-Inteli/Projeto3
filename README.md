@@ -5,7 +5,7 @@
 </p>
 
 
-## Apex <img align="left" alt="Apex Logo" height="40" width="40" src="https://user-images.githubusercontent.com/85657433/234117432-b6fe5eb2-6629-4975-825c-ca778c357da6.jpeg">
+## Apex 
 
 
 ## Integrantes:
@@ -85,22 +85,82 @@ npm start
 
 ## 🗃 Histórico de lançamentos
 
-* 0.2.1 - 25/01/2022
-    * Atualização de documentos (código do módulo permanece inalterado).
-* 0.2.0 - 15/01/2022
-    * Remove `setDefaultXYZ()`
-    * Adiciona `init()`
-* 0.1.1 - 11/01/2022
-    * Crash quando chama `baz()`
-* 0.1.0 - 10/01/2022
-    * O primeiro lançamento adequado
-    * Renomeia `foo()` para `bar()`
-* 0.0.1 - 01/01/2022
-    * Trabalho em andamento
+* 0.0.0 - 14/06/2023
+    * integração tela de atividades
+    * api endpoints para atividades 
+* 0.0.0 - 13/06/2023
+    * sistema de classificação  
+* 0.0.0 - 12/06/2023
+    * update seed do banco de dados para refletir os dados
+    * importando rich text editor 
+* 0.0.0 - 06/06/2023
+    * integração completa 
+* 0.0.0 - 05/06/2023
+    * add cores nos gráficos
+    * add tela de perfil
+    * add logout
+    * integração tela de perfil
+    * criar sala e adicionar aluno 
+* 0.0.0 - 04/06/2023
+    * criptografia da senha
+    *  gerando modais dinamicamente
+* 0.0.0 - 02/06/2023
+    * integração tela de turmas
+    * adicionar e deletar questão
+* 0.3.3 - 01/06/2023
+    * finalização tela de menu
+    * validação do login
+    * pegando dados do banco de dados
+    * arrumando tela de criar atividade
+* 0.3.2 - 31/05/2023
+    * add dropdown em classrooms
+    * algoritmos database 
+* 0.3.1 - 30/05/2023
+    * algoritmo dos gráficos do menu
+    * mudando base de dados
+* 0.3.0 - 29/05/2023
+    * arrumando design dos botões
+    * integração tela de menu
+* 0.2.5 - 26/05/2023
+    * linking screens
+    * arrumando login e registro
+    * atualização da documentação  
+* 0.2.4 - 25/05/2023
+    * tela de turmas
+    * classrooms pug
+    * tela criar atividades
+    * tela de testes
+* 0.2.3 - 24/05/2023
+    * add signin/up
+    * back tela de menu 
+* 0.2.2 - 23/05/2023
+    * add darkmode (modo escuro)
+    * setup pug
+* 0.2.1 - 17/05/2023
+    * templeta padrão para telas do site
+    * add navbar e sidebar
+    * tela de tutorial
+    * base da tela de menu
+    * add dashboard no menu
+* 0.2.0 - 16/05/2023
+    * configurações básicas Flowbite
+    * atualização documentação
+* 0.1.2 - 11/05/2023
+    * manter a conexão DB aberta
+    * enviar erros como JSON
+    * CRUD da tela "atividades"
+* 0.1.1 - 10/05/2023
+    * add seed data no script .SQL
+    * criação do endpoint da tela "classrooms"
+    * CRUD da tela "classrooms"
+* 0.1.0 - 09/05/2023
+    * aplicativo scaffold usando gerador express
+    * add DB script
+      
 
 ## 📋 Licença/License
 
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T6-Inteli/Projeto3">GABA</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">Inteli, Bruna Brasil, Felipe Fuchs, João Cauê, Lucas Nunes, Rafaela Rojas, Rafael Coutinho</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2023M2T6-Inteli/Projeto3">GABA</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/2023M2T6-Inteli/Projeto3">INTELI, BRUNA BRASIL, FELIPE FUCHS, JOÃO HIRATA, LUCAS NUNES, RAFAEL COUTINHO, RAFAELA ROJAS</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
 
 ## 🎓 Referências
 
