@@ -14,8 +14,6 @@ CREATE TABLE IF NOT EXISTS "classrooms"
     "id"      integer NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name"    varchar,
     "user_id" integer NOT NULL,
-    "subject" varchar,
-    "year"    integer,
     CONSTRAINT "fk_classroom_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id")
 );
 CREATE INDEX "index_classrooms_on_user_id" ON "classrooms" ("user_id");
@@ -40,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "activities"
     "name"         varchar,
     "created_at"   text,
     "user_id"      integer NOT NULL,
-    "classroom_id" integer NOT NULL,
+    "classroom_id" integer,
     CONSTRAINT "fk_activity_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id"),
     CONSTRAINT "fk_activity_classroom" FOREIGN KEY ("classroom_id") REFERENCES "classrooms" ("id")
 );
@@ -52,7 +50,6 @@ CREATE TABLE IF NOT EXISTS "criteria"
     "year"        integer,
     "mec_code"    varchar,
     "subject"     varchar,
-    "synthesis"   varchar,
     "description" varchar
 );
 CREATE TABLE IF NOT EXISTS "questions"
@@ -113,16 +110,16 @@ INSERT INTO activities (id, name, created_at, user_id, classroom_id) VALUES (1, 
 INSERT INTO activities (id, name, created_at, user_id, classroom_id) VALUES (2, 'Prova 2', '2023-05-19 13:32:24', 1, 2);
 
 -- Criteria
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (1, 3, 'EF03MA01', 'Math', 'Números', 'Números naturais' );
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (2, 3, 'EF03MA02', 'Math', 'Operações', 'Soma e subtração');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (3, 3, 'EF03MA03', 'Math', 'Geometria', 'Formas geométricas');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (4, 3, 'EF03MA05', 'Math', 'Operações', 'Lorem Ipsim');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (5, 3, 'EF03MA06', 'Math', 'Operações', 'Demo');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (6, 3, 'EF03PT01', 'Português', 'Língua Portuguesa', 'Formas geométricas');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (7, 3, 'EF03PT02', 'Português', 'Literatura', 'Lorem Ipsum');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (8, 3, 'EF03PT03', 'Português', 'Redação', 'Dolor sit');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (9, 3, 'EF03PT04', 'Português', 'Gramática', 'Amet consectur');
-INSERT INTO criteria (id, year, mec_code, subject, synthesis, description) VALUES (10, 3, 'EF03PT05', 'Português', 'Gramática', 'Bla bla');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (1, 3, 'EF03MA01', 'Math', 'Números naturais' );
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (2, 3, 'EF03MA02', 'Math', 'Soma e subtração');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (3, 3, 'EF03MA03', 'Math', 'Formas geométricas');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (4, 3, 'EF03MA05', 'Math', 'Lorem Ipsim');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (5, 3, 'EF03MA06', 'Math', 'Demo');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (6, 3, 'EF03PT01', 'Português', 'Formas geométricas');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (7, 3, 'EF03PT02', 'Português', 'Lorem Ipsum');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (8, 3, 'EF03PT03', 'Português', 'Dolor sit');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (9, 3, 'EF03PT04', 'Português', 'Amet consectur');
+INSERT INTO criteria (id, year, mec_code, subject, description) VALUES (10, 3, 'EF03PT05', 'Português', 'Bla bla');
 
 -- Questions
 INSERT INTO questions (id, content, activity_id, criterium_id, max_grade_percent) VALUES (1, 'Questão 1', 1, 1, 100);

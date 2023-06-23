@@ -57,7 +57,7 @@ async function criteriaDropdown(id) {
     (await criteria(id)).forEach(criterium => {
         var opt = document.createElement('option');
         opt.value = criterium.id;
-        opt.innerHTML = criterium.synthesis;
+        opt.innerHTML = criterium.description;
         criteriaDropdown.appendChild(opt);
     });
 
@@ -172,7 +172,6 @@ async function createActivity(title) {
         body: JSON.stringify({
             // TODO: Remove these IDs
             user_id: 1,
-            classroom_id: 1,
             name: title
         }),
         headers: {

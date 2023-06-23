@@ -37,10 +37,10 @@ router.get('/api/:id', (req, res, next) => {
 
 // POST /api/activities
 router.post('/api/', (req, res, next) => {
-  const { name, user_id, classroom_id } = req.body;
-  const sql = 'INSERT INTO activities(name, user_id, classroom_id) VALUES (?, ?, ?)'
+  const { name, user_id } = req.body;
+  const sql = 'INSERT INTO activities(name, user_id) VALUES (?, ?)'
 
-  req.db.run(sql, [name, user_id, classroom_id], function (err) {
+  req.db.run(sql, [name, user_id], function (err) {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
