@@ -7,8 +7,6 @@ const classroom_list = document.getElementById('classroomsList');
 const students_list = document.getElementById('studentsList');
 const stdInput = document.getElementById('studentName');
 const className = document.getElementById("classroomName");
-const classSubject = document.getElementById("classroomSubject");
-const classYear = document.getElementById("classroomYear");
 
 
 //changing the page content when the user selects a classroom
@@ -59,7 +57,7 @@ function postStudentData(class_id = 1, name){
 //posts data on the classrooms related tables on the database
 function postClassData(name, subject, year){
     let post = new XMLHttpRequest();
-    post.open("POST", `classrooms/addClass?className=${name}&subject=${subject}&year=${year}`, true);
+    post.open("POST", `classrooms/addClass?className=${name}`, true);
     post.send()
 
     post.onreadystatechange = function(){
@@ -67,8 +65,6 @@ function postClassData(name, subject, year){
             alert('Turma adicionada!');
             classroom_list.value = 0;
             className.value = '';
-            classSubject.value = '';
-            classYear.value = '';
             getClassroomsData(1, 0);
         };
     };
@@ -221,16 +217,12 @@ addClass.addEventListener("click", addClassroom);
 function addClassroom(){
 
     className.value = className.value.trim();
-    classSubject.value = classSubject.value.trim();
-    classYear.value = classYear.value.trim();
 
     let name = className.value;
-    let subject = classSubject.value;
-    let year = classYear.value;
 
-    if(name != '' && subject != '' && year != ''){
+    if(name != ''){
         //posting to the database only if all the fields are filled up
-        postClassData(name, subject, year);
+        postClassData(name);
     }
     else{
         alert("Preencha todos os campos para adicionar uma turma!")

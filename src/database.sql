@@ -80,8 +80,8 @@ CREATE INDEX "index_grades_on_student_id" ON "grades" ("student_id");
 INSERT INTO users (id, first_name, last_name, email, accepted_terms_at, admin, encrypted_password) VALUES (1, 'Angelita', 'Silva', 'global@example.com', 0, true, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 
 -- Classroom
-INSERT INTO classrooms (id, name, user_id, subject, year) VALUES (1, 'Português da Angelita', 1, 'Português', 3);
-INSERT INTO classrooms (id, name, user_id, subject, year) VALUES (2, 'Matemática da Angelita', 1, 'Matemática', 3);
+INSERT INTO classrooms (id, name, user_id) VALUES (1, 'Português da Angelita', 1);
+INSERT INTO classrooms (id, name, user_id) VALUES (2, 'Matemática da Angelita', 1);
 
 -- Student
 INSERT INTO students (id, name) VALUES (1, 'Joãozinho');
