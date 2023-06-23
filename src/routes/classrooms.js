@@ -56,7 +56,7 @@ function secondPost(req, res, class_id, std_id){
 
 //creating classrooms
 router.post('/addClass', (req, res, next) => {
-    const sql = `INSERT INTO classrooms(name, user_id, subject, year) VALUES ("${req.query.className}", ${req.session.user_id}, "${req.query.subject}", ${req.query.year});`
+    const sql = `INSERT INTO classrooms(name, user_id) VALUES ("${req.query.className}", ${req.session.user_id});`
 
     req.db.run(sql, [], function (err) {
         if (err) {
