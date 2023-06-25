@@ -274,6 +274,9 @@ function buildGraphOne(arr){
                 x:{
                     grid:{
                         color: '#7A7A7A'
+                    },
+                    ticks:{
+                        display: false
                     }
                 }
             },
@@ -337,7 +340,7 @@ function buildGraphTwo(arr){
                 pointBackgroundColor: colors,
                 borderColor: 'rgb(22, 175, 184, 1)',
                 data: worst_grades,
-                pointRadius: 6,
+                pointRadius: 8,
                 pointBorderWidth: 0,
                 borderWidth: 6
             }]
@@ -364,6 +367,9 @@ function buildGraphTwo(arr){
                 x:{
                     grid:{
                         color: '#7A7A7A'
+                    },
+                    ticks:{
+                        display: false
                     }
                 }
             },
