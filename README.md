@@ -84,7 +84,10 @@ npm start
 6. O servidor está online.
 
 ## 🗃 Histórico de lançamentos
-
+* 0.5.5 - 24/06/2023
+    * refatoração do banco de dados
+    * inserção das habilidades da BNCC no banco
+    * finalização do vídeo de tutorial
 * 0.5.4 - 22/06/2023
     * integração com o algolia
     * add carrousel no menu
