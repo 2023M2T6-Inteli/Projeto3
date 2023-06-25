@@ -170,8 +170,6 @@ async function createActivity(title) {
     const response = await fetch("http://127.0.0.1:3000/activities/api", {
         method: "POST",
         body: JSON.stringify({
-            // TODO: Remove these IDs
-            user_id: 1,
             name: title
         }),
         headers: {
