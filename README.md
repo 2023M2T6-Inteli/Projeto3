@@ -26,6 +26,10 @@
 
 O GABA pretende ajudar no mapeamento pelos professores das defasagens dos estudantes brasileiros de escolas públicas, permitindo que o professor crie atividades na plataforma, exporte-as, aplique-as com seus estudantes e então corrija no site atribuindo notas aos alunos. Como as perguntas ou os itens das atividades criadas são ligados a uma habilidade da BNCC pelo professor, nossa aplicação é capaz de informar após a correção qual a habilidade que precisa ser trabalhada, assim como médias da turma e notas individuais. De acordo com esse feedback, também são recomendados planos de aula da Nova Escola relacionados às defasagens apresentadas pela turma.
 
+<a><img src="https://github.com/2023M2T6-Inteli/Projeto3/assets/85657433/312b7a53-47ed-4f50-a48e-7688915de028" alt="GABA" border="0"></a>
+
+Para saber mais, 
+
 ## Documentação da API
 A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
 
@@ -179,3 +183,8 @@ npm start
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
+2. <https://novaescola.org.br/planos-de-aula/>
+3. <http://www.repositorio.jesuita.org.br/handle/UNISINOS/3773/>
+4. <https://novaescola.org.br/conteudo/11838/defasagem-como-vencer-esse-obstaculo/>
+5. <https://novaescola.org.br/conteudo/11823/os-professores-e-o-mito-de-sisifo/>
+6. <https://integrada.minhabiblioteca.com.br/#/books/9786558040118//>
