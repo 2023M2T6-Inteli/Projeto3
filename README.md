@@ -33,7 +33,7 @@ GABA é a sigla para ácido gama-aminobutírico, um neurotransmissor inibitório
 
 Com o GABA, transforme defasagens em oportunidades de aprendizado.
 
-Para saber mais e assistir o vídeo sobre o GABA [clique aqui](https://youtu.be/isJcyFenwG8)]
+Para saber mais e assistir o vídeo sobre o GABA [clique aqui](https://youtu.be/isJcyFenwG8)
 
 Para acessar a plataforma, [clique aqui](https://gp3wzj-3000.csb.app/)
 
