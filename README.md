@@ -28,7 +28,12 @@ O GABA pretende ajudar no mapeamento pelos professores das defasagens dos estuda
 
 <a><img src="https://github.com/2023M2T6-Inteli/Projeto3/assets/85657433/312b7a53-47ed-4f50-a48e-7688915de028" alt="GABA" border="0"></a>
 
-Para saber mais, 
+
+GABA é a sigla para ácido gama-aminobutírico, um neurotransmissor inibitório responsável por regular a atividade cerebral, promovendo relaxamento e redução da ansiedade.
+
+Com o GABA, transforme defasagens em oportunidades de aprendizado.
+
+Para saber mais e assistir o vídeo sobre o GABA [clique aqui](https://youtu.be/isJcyFenwG8)
 
 ## Documentação da API
 A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
