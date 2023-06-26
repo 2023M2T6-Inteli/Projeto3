@@ -35,8 +35,6 @@ Com o GABA, transforme defasagens em oportunidades de aprendizado.
 
 Para saber mais e assistir o vídeo sobre o GABA [clique aqui](https://youtu.be/isJcyFenwG8)
 
-Para acessar a plataforma, [clique aqui](https://gp3wzj-3000.csb.app/)
-
 ## Documentação da API
 A documentação da API foi feita no Postman e pode ser encontrada [aqui](https://documenter.getpostman.com/view/27352407/2s93ebTqxr).
 
